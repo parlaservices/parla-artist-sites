@@ -1,0 +1,2 @@
+# Normalise trailing slash for folders
+/:slug  /:slug/  301
