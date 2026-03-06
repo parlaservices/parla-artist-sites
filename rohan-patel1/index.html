@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rohan Patel — Tattoo Artist</title>
+  <meta name="description" content="Rohan Patel is a tattoo artist crafting precise, intentional, and deeply personal work. Book your session." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { -webkit-font-smoothing: antialiased; }
+    body { background-color: #09090b; font-family: 'Inter', sans-serif; color: #fafafa; }
+    h1, h2, h3, h4, .font-display { font-family: 'Sora', sans-serif; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #fafafa 0%, #c084fc 60%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70vw;
+      height: 70vw;
+      max-width: 800px;
+      max-height: 800px;
+      background: radial-gradient(ellipse at center, rgba(192, 132, 252, 0.12) 0%, rgba(168, 85, 247, 0.04) 50%, transparent 70%);
+      pointer-events: none;
+      border-radius: 50%;
+    }
+
+    .line-accent {
+      display: inline-block;
+      width: 2px;
+      height: 60px;
+      background: linear-gradient(to bottom, #c084fc, transparent);
+    }
+
+    .card-surface {
+      background: #18181b;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: border-color 0.3s ease;
+    }
+    .card-surface:hover {
+      border-color: rgba(192, 132, 252, 0.25);
+    }
+
+    .tag {
+      background: rgba(192, 132, 252, 0.1);
+      border: 1px solid rgba(192, 132, 252, 0.2);
+      color: #c084fc;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #c084fc;
+      color: #09090b;
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      padding: 0.9rem 2.2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .cta-btn:hover {
+      background: #a855f7;
+      transform: translateY(-1px);
+      box-shadow: 0 12px 40px rgba(192, 132, 252, 0.35);
+    }
+
+    .cta-btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: transparent;
+      color: #fafafa;
+      font-family: 'Sora', sans-serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      padding: 0.85rem 2rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.15);
+      text-decoration: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .cta-btn-ghost:hover {
+      border-color: rgba(192, 132, 252, 0.5);
+      background: rgba(192, 132, 252, 0.06);
+    }
+
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #a1a1aa;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .number-accent {
+      font-family: 'Sora', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: rgba(192, 132, 252, 0.15);
+      line-height: 1;
+    }
+
+    .process-step {
+      border-left: 1px solid rgba(192, 132, 252, 0.2);
+      padding-left: 1.5rem;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .fade-up {
+        opacity: 0;
+        transform: translateY(24px);
+        animation: fadeUp 0.7s ease forwards;
+      }
+      @keyframes fadeUp {
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .delay-1 { animation-delay: 0.1s; }
+      .delay-2 { animation-delay: 0.22s; }
+      .delay-3 { animation-delay: 0.36s; }
+      .delay-4 { animation-delay: 0.5s; }
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 3rem;
+      animation: marquee 22s linear infinite;
+      white-space: nowrap;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .bottom-cta-glow {
+      position: absolute;
+      bottom: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80vw;
+      height: 60vw;
+      max-width: 700px;
+      max-height: 500px;
+      background: radial-gradient(ellipse at center, rgba(192, 132, 252, 0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+
+  <!-- NAV -->
+  <header class="fixed top-0 inset-x-0 z-50" style="background: rgba(9,9,11,0.8); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.04);">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <span class="font-display font-semibold text-base tracking-tight text-white">Rohan Patel</span>
+      <a href="https://myparla.app/rohan-patel1" class="cta-btn" style="padding: 0.55rem 1.4rem; font-size: 0.82rem;">Book a Session</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden pt-20">
+    <div class="hero-glow"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto">
+      <div class="fade-up mb-8">
+        <span class="tag">Tattoo Artist</span>
+      </div>
+
+      <h1 class="fade-up delay-1 font-display font-bold leading-[1.05] tracking-tight mb-6"
+          style="font-size: clamp(3rem, 10vw, 7rem);">
+        Ink with<br />
+        <span class="gradient-text">intention.</span>
+      </h1>
+
+      <p class="fade-up delay-2 text-lg md:text-xl leading-relaxed max-w-xl mx-auto mb-10"
+         style="color: #a1a1aa; font-weight: 300;">
+        Precise, considered, and deeply personal tattoo work — designed around you, built to last a lifetime.
+      </p>
+
+      <div class="fade-up delay-3 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://myparla.app/rohan-patel1" class="cta-btn">
+          Book Your Session
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#work" class="cta-btn-ghost">View My Work</a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="fade-up delay-4 absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      <span class="section-label" style="color: #52525b;">Scroll</span>
+      <div class="line-accent"></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE STRIP -->
+  <div class="overflow-hidden py-6" style="border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+    <div class="marquee-track" aria-hidden="true">
+      <span class="section-label" style="color: #3f3f46;">Fine Line</span>
+      <span style="color: #3f3f46; font-size: 0.5rem;">✦</span>
+      <span class="section-label" style="color: #3f3f46;">Blackwork</span>
+      <span style="color: #3f3f46; font-size: 0.5rem;">✦</span>
+      <span class="section-label" style="color: #3f3f46;">Geometric</span>
+      <span style="color: #3f3f46; font-size: 0.5rem;">✦</span>
+      <span class="section-label" style="color: #3f3f46;">Illustrative</span>
+      <span style="color: #3f3f46; font-size: 0.5rem;">✦</span>
+      <span class="section-label" style="color: #3f3f46;">Custom Design</span>
+      <span style="color: #3f3f46; font-size: 0.5rem;">✦</span>
+      <span class="section-label" style="color: #3f3f46;">Minimalist</span>
+      <span style="color: #3f3f46; font-size: 0.5rem;">✦</span>
+      <span class="section-label" style="color: #3f3f46;">Fine Line</span>
+      <span style="color: #3f3f46; font-size: 0.5rem;">✦</span>
+      <span class="section-label" style="color: #3f3f46;">Blackwork</span>
+      <span style="color: #3f3f46; font-size: 0.5rem;">✦</span>
+      <span class="section-label" style="color: #3f3f46;">Geometric</span>
+      <span style="color: #3f3f46; font-size: 0.5rem;">✦</span>
+      <span class="section-label" style="color: #3f3f46;">Illustrative</span>
+      <span style="color: #3f3f46; font-size: 0.5rem;">✦</span>
+      <span class="section-label" style="color: #3f3f46;">Custom Design</span>
+      <span style="color: #3f3f46; font-size: 0.5rem;">✦</span>
+      <span class="section-label" style="color: #3f3f46;">Minimalist</span>
+      <span style="color: #3f3f46; font-size: 0.5rem;">✦</span>
+    </div>
+  </div>
+
+  <!-- ABOUT / STATEMENT -->
+  <section id="about" class="max-w-6xl mx-auto px-6 py-28 md:py-40">
+    <div class="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
+
+      <div>
+        <div class="section-label mb-8">About</div>
+        <h2 class="font-display font-bold text-4xl md:text-5xl leading-tight tracking-tight mb-8">
+          Art that lives<br/>on the skin.
+        </h2>
+        <p class="leading-relaxed mb-6" style="color: #a1a1aa; font-size: 1.05rem;">
+          I'm Rohan — a tattoo artist who believes every piece of work should feel earned. From the first concept conversation to the final line, I approach each session with craft, care, and full creative commitment.
+        </p>
+        <p class="leading-relaxed" style="color: #71717a; font-size: 0.95rem;">
+          Whether you're bringing a clear vision or a feeling you can't yet articulate, I'll help translate it into something you'll carry with pride.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div class="card-surface rounded-2xl p-7 flex flex-col gap-3">
+          <div class="number-accent">∞</div>
+          <p class="font-display font-semibold text-lg text-white">Every piece is one of one</p>
+          <p class="text-sm leading-relaxed" style="color: #71717a;">No flash, no repeats. Each tattoo is a unique collaboration.</p>
+        </div>
+        <div class="card-surface rounded-2xl p-7 flex flex-col gap-3 mt-8">
+          <div class="number-accent">01</div>
+          <p class="font-display font-semibold text-lg text-white">You, first</p>
+          <p class="text-sm leading-relaxed" style="color: #71717a;">Your body, story, and comfort shape every design decision.</p>
+        </div>
+        <div class="card-surface rounded-2xl p-7 flex flex-col gap-3 -mt-4">
+          <div class="number-accent">✦</div>
+          <p class="font-display font-semibold text-lg text-white">Precision above all</p>
+          <p class="text-sm leading-relaxed" style="color: #71717a;">Clean lines, intentional composition, and long-lasting ink.</p>
+        </div>
+        <div class="card-surface rounded-2xl p-7 flex flex-col gap-3 mt-4">
+          <div class="number-accent">02</div>
+          <p class="font-display font-semibold text-lg text-white">Safe & considered</p>
+          <p class="text-sm leading-relaxed" style="color: #71717a;">Meticulous hygiene standards and a calm, welcoming space.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider max-w-6xl mx-auto px-6" />
+
+  <!-- SERVICES -->
+  <section id="work" class="max-w-6xl mx-auto px-6 py-28 md:py-40">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+      <div>
+        <div class="section-label mb-4">Services</div>
+        <h2 class="font-display font-bold text-4xl md:text-5xl leading-tight tracking-tight">
+          What I do
+        </h2>
+      </div>
+      <a href="https://myparla.app/rohan-patel1" class="cta-btn-ghost self-start md:self-auto">See availability →</a>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <div class="card-surface rounded-2xl p-8 flex flex-col gap-5">
+        <div style="width:44px; height:44px; border-radius:12px; background: rgba(192,132,252,0.12); display:flex; align-items:center; justify-content:center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <h3 class="font-display font-semibold text-xl mb-2">Fine Line</h3>
+          <p class="text-sm leading-relaxed" style="color: #71717a;">Delicate, high-precision linework. Botanical, portraiture, abstract — rendered with surgical detail.</p>
+        </div>
+      </div>
+
+      <div class="card-surface rounded-2xl p-8 flex flex-col gap-5">
+        <div style="width:44px; height:44px; border-radius:12px; background: rgba(192,132,252,0.12); display:flex; align-items:center; justify-content:center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        </div>
+        <div>
+          <h3 class="font-display font-semibold text-xl mb-2">Blackwork</h3>
+          <p class="text-sm leading-relaxed" style="color: #71717a;">Bold, high-contrast black ink. Strong graphic presence with deep cultural and symbolic roots.</p>
+        </div>
+      </div>
+
+      <div class="card-surface rounded-2xl p-8 flex flex-col gap-5">
+        <div style="width:44px; height:44px; border-radius:12px; background: rgba(192,132,252,0.12); display:flex; align-items:center; justify-content:center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/></svg>
+        </div>
+        <div>
+          <h3 class="font-display font-semibold text-xl mb-2">Geometric</h3>
+          <p class="text-sm leading-relaxed" style="color: #71717a;">Patterns, sacred geometry, and structural forms. Balanced compositions that age beautifully.</p>
+        </div>
+      </div>
+
+      <div class="card-surface rounded-2xl p-8 flex flex-col gap-5">
+        <div style="width:44px; height:44px; border-radius:12px; background: rgba(192,132,252,0.12); display:flex; align-items:center; justify-content:center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <div>
+          <h3 class="font-display font-semibold text-xl mb-2">Custom Design</h3>
+          <p class="text-sm leading-relaxed" style="color: #71717a;">Bring a concept, a feeling, or nothing at all. We'll develop something singular together.</p>
+        </div>
+      </div>
+
+      <div class="card-surface rounded-2xl p-8 flex flex-col gap-5">
+        <div style="width:44px; height:44px; border-radius:12px; background: rgba(192,132,252,0.12); display:flex; align-items:center; justify-content:center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+        </div>
+        <div>
+          <h3 class="font-display font-semibold text-xl mb-2">Illustrative</h3>
+          <p class="text-sm leading-relaxed" style="color: #71717a;">Expressive, narrative-driven artwork. Storytelling through texture, line weight, and composition.</p>
+        </div>
+      </div>
+
+      <div class="card-surface rounded-2xl p-8 flex flex-col gap-5">
+        <div style="width:44px; height:44px; border-radius:12px; background: rgba(192,132,252,0.12); display:flex; align-items:center; justify-content:center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <div>
+          <h3 class="font-display font-semibold text-xl mb-2">Cover-ups & Touch-ups</h3>
+          <p class="text-sm leading-relaxed" style="color: #71717a;">Reworking or refreshing existing tattoos with care. Every challenge is a design problem worth solving.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider max-w-6xl mx-auto px-6" />
+
+  <!-- PROCESS -->
+  <section id="process" class="max-w-6xl mx-auto px-6 py-28 md:py-40">
+    <div class="grid md:grid-cols-2 gap-16 md:gap-24">
+
+      <div>
+        <div class="section-label mb-4">Process</div>
+        <h2 class="font-display font-bold text-4xl md:text-5xl leading-tight tracking-tight mb-6">
+          How a session<br/>comes together
+        </h2>
+        <p class="leading-relaxed" style="color: #71717a; font-size: 0.95rem;">
+          From your first message to walking out the door — a thoughtful, unhurried experience at every step.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-10">
+
+        <div class="process-step">
+          <div class="section-label mb-2" style="color: #c084fc;">Step 01</div>
+          <h3 class="font-display font-semibold text-xl mb-2">Book a consultation</h3>
+          <p class="text-sm leading-relaxed" style="color: #71717a;">Use the booking page to share your idea, placement, and timeline. I'll confirm within 48 hours.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="section-label mb-2" style="color: #c084fc;">Step 02</div>
+          <h3 class="font-display font-semibold text-xl mb-2">Design & refinement</h3>
+          <p class="text-sm leading-relaxed" style="color: #71717a;">I'll develop a bespoke concept based on our conversation. We refine until it's exactly right — before we ever touch skin.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="section-label mb-2" style="color: #c084fc;">Step 03</div>
+          <h3 class="font-display font-semibold text-xl mb-2">The session</h3>
+          <p class="text-sm leading-relaxed" style="color: #71717a;">A calm, professional setting. Your comfort is the priority throughout. We go at the right pace.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="section-label mb-2" style="color: #c084fc;">Step 04</div>
+          <h3 class="font-display font-semibold text-xl mb-2">Aftercare & follow-up</h3>
+          <p class="text-sm leading-relaxed" style="color: #71717a;">Full aftercare guidance and a free touch-up if needed. I care about the result long after you leave.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section class="relative overflow-hidden py-32 md:py-48">
+    <div class="bottom-cta-glow"></div>
+    <div class="relative z-10 max-w-3xl mx-auto text-center px-6">
+      <div class="section-label mb-6">Ready?</div>
+      <h2 class="font-display font-bold leading-tight tracking-tight mb-6"
+          style="font-size: clamp(2.5rem, 7vw, 5.5rem);">
+        Let's make something<br/>
+        <span class="gradient-text">worth wearing.</span>
+      </h2>
+      <p class="mb-10 text-lg leading-relaxed" style="color: #71717a; max-width: 480px; margin-left: auto; margin-right: auto; margin-bottom: 2.5rem;">
+        Spots are limited. If you have something in mind, now's the time to reach out.
+      </p>
+      <a href="https://myparla.app/rohan-patel1" class="cta-btn" style="font-size: 1.05rem; padding: 1rem 2.6rem;">
+        Book with Rohan
+        <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="border-top: 1px solid rgba(255,255,255,0.06);">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4">
+      <span class="font-display font-semibold text-sm tracking-tight" style="color: #52525b;">Rohan Patel — Tattoo Artist</span>
+      <p class="text-sm" style="color: #3f3f46;">
+        Powered by <a href="https://myparla.app" class="underline underline-offset-2 transition-colors" style="color: #71717a;" target="_blank" rel="noopener">Parla</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
