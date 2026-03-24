@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="description" content="Samasta — Frequently asked questions about our itineraries, concierge service, and how we design your journey through Indonesia.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samasta — FAQs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Alex+Brush&display=swap" rel="stylesheet">
+<style>
+:root {
+  --obsidian: #0A0A0A;
+  --white: #FFFFFF;
+  --warm-stone: #918778;
+  --sandstone: #BFB29C;
+  --font-heading: 'DM Sans', 'TT Commons Pro', 'Helvetica Neue', sans-serif;
+  --font-body: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  --ls-headers: 0.185em;
+  --ls-buttons: 0.135em;
+  --lh-caps: 1.56;
+  --lh-lower: 1.2;
+  --lh-body: 1.7;
+  --content-pad: clamp(24px, 6vw, 100px);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--white);
+  background: var(--obsidian);
+  overflow-x: hidden;
+  line-height: var(--lh-body);
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* NAV */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px var(--content-pad);
+  transition: background 0.4s ease;
+}
+.nav.scrolled {
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.nav-logo {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: var(--ls-headers);
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  list-style: none;
+}
+.nav-right a {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: var(--ls-buttons);
+  text-transform: uppercase;
+  transition: opacity 0.3s;
+}
+.nav-right a:hover { opacity: 0.7; }
+.nav-btn {
+  border: 1px solid rgba(255,255,255,0.55);
+  border-radius: 30px;
+  padding: 12px 32px;
+}
+.nav-btn:hover {
+  border-color: var(--white);
+  background: rgba(255,255,255,0.06);
+}
+
+/* FAQ HERO */
+.faq-hero {
+  padding: 180px var(--content-pad) 80px;
+  text-align: center;
+}
+.faq-heading {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(36px, 5.5vw, 72px);
+  letter-spacing: var(--ls-headers);
+  line-height: var(--lh-lower);
+  color: var(--white);
+}
+
+/* FAQ ITEMS */
+.faq-section {
+  padding: 40px var(--content-pad) 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.faq-item {
+  display: grid;
+  grid-template-columns: 0.4fr 0.6fr;
+  gap: 40px;
+  align-items: start;
+  padding: 40px 0;
+}
+.faq-question {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(14px, 1.4vw, 17px);
+  letter-spacing: var(--ls-headers);
+  line-height: var(--lh-caps);
+  text-transform: uppercase;
+  color: var(--white);
+}
+.faq-answer {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 18px;
+  color: rgba(255,255,255,0.9);
+  line-height: var(--lh-body);
+  text-align: justify;
+}
+
+/* CTA */
+.faq-cta {
+  text-align: center;
+  padding: 20px var(--content-pad) clamp(80px, 10vw, 120px);
+}
+.faq-cta-text {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 18px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 36px;
+  line-height: var(--lh-body);
+}
+.btn-ghost {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: var(--ls-buttons);
+  text-transform: uppercase;
+  padding: 16px 40px;
+  border-radius: 30px;
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.5);
+  cursor: pointer;
+  transition: all 0.35s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.btn-ghost:hover {
+  border-color: var(--white);
+  background: rgba(255,255,255,0.08);
+}
+
+/* FOOTER */
+.footer {
+  background: var(--obsidian);
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding: 28px var(--content-pad);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.footer-left a {
+  color: rgba(255,255,255,0.8);
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+}
+.footer-left a:hover { color: var(--white); }
+.footer-left svg { width: 22px; height: 22px; }
+.footer-faqs {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: var(--ls-headers);
+  text-transform: uppercase;
+}
+.footer-logo-mark img {
+  height: 36px;
+  width: auto;
+  opacity: 0.75;
+  transition: opacity 0.3s;
+}
+.footer-logo-mark:hover img { opacity: 0.8; }
+
+@media (max-width: 900px) {
+  .faq-item {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+@media (max-width: 600px) {
+  .nav-right { gap: 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">SAMASTA</a>
+  <ul class="nav-right">
+    <li><a href="journeys.html">Our Journeys</a></li>
+    <li><a href="plan.html">Plan Your Trip</a></li>
+    <li><a href="contact.html" class="nav-btn">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<div class="faq-hero reveal">
+  <h1 class="faq-heading">frequently asked<br>questions</h1>
+</div>
+
+<div class="faq-section">
+
+  <div class="faq-item reveal">
+    <h3 class="faq-question">What's the difference between the itinerary and concierge service?</h3>
+    <p class="faq-answer">Immediately after purchase, the itinerary will be delivered to your inbox as a digital download.</p>
+  </div>
+
+  <div class="faq-item reveal">
+    <h3 class="faq-question">How will I receive the itinerary?</h3>
+    <p class="faq-answer">Immediately after purchase, the itinerary will be delivered to your inbox as a digital download.</p>
+  </div>
+
+  <div class="faq-item reveal">
+    <h3 class="faq-question">Do you book everything for me?</h3>
+    <p class="faq-answer">Bookings are included as part of the concierge service. If you opt for the itinerary only, we'll provide curated recommendations and guidance, and you can book directly.</p>
+  </div>
+
+  <div class="faq-item reveal">
+    <h3 class="faq-question">Do I need a visa to visit Indonesia?</h3>
+    <p class="faq-answer">Many travellers can obtain a Visa on Arrival when entering Indonesia. Visa requirements vary by nationality, so we recommend checking the latest entry requirements before travelling. If you add our concierge service, we're happy to guide you through the process.</p>
+  </div>
+
+  <div class="faq-item reveal">
+    <h3 class="faq-question">How far in advance should I book?</h3>
+    <p class="faq-answer">We recommend reaching out at least 3–6 weeks in advance, especially if you're travelling during peak periods or would like concierge support.</p>
+  </div>
+
+  <div class="faq-item reveal">
+    <h3 class="faq-question">Do you include flights and accommodation?</h3>
+    <p class="faq-answer">No, flights and accommodation are not included. We focus on the on-the-ground journey where the experience is shaped.</p>
+  </div>
+
+  <div class="faq-item reveal">
+    <h3 class="faq-question">What happens if something changes during my trip?</h3>
+    <p class="faq-answer">If you've opted for concierge, we're available to assist with adjustments, changes, or any issues that arise while you're travelling.</p>
+  </div>
+
+</div>
+
+<div class="faq-cta reveal">
+  <p class="faq-cta-text">If you're unsure where to begin, we're happy to guide you.</p>
+  <a href="contact.html" class="btn-ghost">Get in Touch</a>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-left">
+    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+    <a href="#" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 6 10-6"/></svg></a>
+    <a href="faqs.html" class="footer-faqs">FAQs</a>
+  </div>
+  <a href="index.html" class="footer-logo-mark"><img src="images/logo-mark-transparent.png" alt="Samasta"></a>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+const nav = document.querySelector('.nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+});
+</script>
+
+</body>
+</html>

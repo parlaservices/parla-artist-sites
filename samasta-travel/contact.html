@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="description" content="Samasta — Get in touch. Tell us about your travel style and we'll create a personalised Indonesian journey.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samasta — Get in Touch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Alex+Brush&display=swap" rel="stylesheet">
+<style>
+:root {
+  --obsidian: #0A0A0A;
+  --white: #FFFFFF;
+  --warm-stone: #918778;
+  --sage: #658063;
+  --cream: #F4ECD8;
+  --sandstone: #BFB29C;
+
+  --font-heading: 'DM Sans', 'TT Commons Pro', 'Helvetica Neue', sans-serif;
+  --font-body: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  --font-script: 'Alex Brush', cursive;
+
+  --ls-headers: 0.185em;
+  --ls-buttons: 0.135em;
+  --lh-caps: 1.56;
+  --lh-lower: 1.2;
+  --lh-body: 1.7;
+  --content-pad: clamp(24px, 6vw, 100px);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--white);
+  background: var(--obsidian);
+  overflow-x: hidden;
+  line-height: var(--lh-body);
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* NAV */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px var(--content-pad);
+  transition: background 0.4s ease;
+}
+.nav.scrolled {
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.nav-logo {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: var(--ls-headers);
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  list-style: none;
+}
+.nav-right a {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: var(--ls-buttons);
+  text-transform: uppercase;
+  transition: opacity 0.3s;
+}
+.nav-right a:hover { opacity: 0.7; }
+.nav-btn {
+  border: 1px solid rgba(255,255,255,0.55);
+  border-radius: 30px;
+  padding: 12px 32px;
+}
+.nav-btn:hover {
+  border-color: var(--white);
+  background: rgba(255,255,255,0.06);
+}
+
+/* ENQUIRY FORM */
+.enquiry {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--obsidian);
+  padding: 160px var(--content-pad) clamp(80px, 10vw, 140px);
+}
+.enquiry-inner {
+  max-width: 560px;
+  width: 100%;
+}
+.enquiry-heading {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(32px, 4.5vw, 52px);
+  letter-spacing: var(--ls-headers);
+  line-height: var(--lh-lower);
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 16px;
+}
+.enquiry-sub {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 18px;
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  margin-bottom: 56px;
+  line-height: var(--lh-body);
+}
+.enquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.form-label {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: var(--ls-buttons);
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+}
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding: 14px 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--white);
+  outline: none;
+  transition: border-color 0.3s;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: rgba(255,255,255,0.35);
+}
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-bottom-color: rgba(255,255,255,0.5);
+}
+.form-select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+  padding-right: 24px;
+}
+.form-select option {
+  background: var(--obsidian);
+  color: var(--white);
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 4px;
+}
+.form-textarea:focus {
+  border-color: rgba(255,255,255,0.35);
+}
+.form-question-num {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: var(--ls-buttons);
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+.form-question-num span {
+  display: block;
+  font-size: 14px;
+  color: rgba(255,255,255,0.9);
+  margin-top: 4px;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+}
+.form-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+.form-option {
+  position: relative;
+}
+.form-option input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.form-option label {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+  padding: 10px 20px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+.form-option label:hover {
+  border-color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.85);
+}
+.form-option input:checked + label {
+  border-color: var(--sandstone);
+  background: rgba(191,178,156,0.15);
+  color: var(--white);
+}
+.form-hint {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(255,255,255,0.5);
+  margin-top: 4px;
+}
+.enquiry-submit {
+  display: block;
+  width: 100%;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: var(--ls-buttons);
+  text-transform: uppercase;
+  text-align: center;
+  padding: 20px;
+  border-radius: 30px;
+  background: var(--sandstone);
+  color: var(--obsidian);
+  border: none;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: 12px;
+}
+.enquiry-submit:hover {
+  background: #cec1ab;
+}
+.enquiry-confirmation {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 15px;
+  font-style: italic;
+  color: rgba(255,255,255,0.65);
+  text-align: center;
+  margin-top: 40px;
+  line-height: var(--lh-body);
+}
+
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+  .nav-right { gap: 20px; }
+}
+
+/* FOOTER */
+.footer {
+  background: var(--obsidian);
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding: 28px var(--content-pad);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.footer-left a {
+  color: rgba(255,255,255,0.8);
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+}
+.footer-left a:hover { color: var(--white); }
+.footer-left svg { width: 22px; height: 22px; }
+.footer-faqs {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: var(--ls-headers);
+  text-transform: uppercase;
+}
+.footer-logo-mark img {
+  height: 36px;
+  width: auto;
+  opacity: 0.75;
+  transition: opacity 0.3s;
+}
+.footer-logo-mark:hover img { opacity: 0.8; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">SAMASTA</a>
+  <ul class="nav-right">
+    <li><a href="journeys.html">Our Journeys</a></li>
+    <li><a href="plan.html">Plan Your Trip</a></li>
+    <li><a href="contact.html" class="nav-btn">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<section class="enquiry">
+  <div class="enquiry-inner reveal">
+    <h2 class="enquiry-heading">get in touch</h2>
+    <p class="enquiry-sub">Tell us a little about how you like to travel, and we'll shape a journey that fits your timing, interests, and pace</p>
+    <form class="enquiry-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="name">Name</label>
+          <input class="form-input" type="text" id="name" placeholder="Your full name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input class="form-input" type="email" id="email" placeholder="your@email.com" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <p class="form-question-num">1.<span>When are you planning to travel?</span></p>
+        <input class="form-input" type="text" id="q1" placeholder="e.g. October 2026">
+      </div>
+
+      <div class="form-group">
+        <p class="form-question-num">2.<span>How many days do you have, and are there any destinations you already have in mind?</span></p>
+        <input class="form-input" type="text" id="q2" placeholder="e.g. 14 days, interested in Java and Bali">
+      </div>
+
+      <div class="form-group">
+        <p class="form-question-num">3.<span>Who are you travelling with?</span></p>
+        <div class="form-options">
+          <div class="form-option"><input type="radio" name="travel-with" id="tw-solo" value="solo"><label for="tw-solo">Solo</label></div>
+          <div class="form-option"><input type="radio" name="travel-with" id="tw-couple" value="couple"><label for="tw-couple">Couple</label></div>
+          <div class="form-option"><input type="radio" name="travel-with" id="tw-friends" value="friends"><label for="tw-friends">Friends</label></div>
+          <div class="form-option"><input type="radio" name="travel-with" id="tw-family" value="family"><label for="tw-family">Family</label></div>
+        </div>
+        <p class="form-hint">If travelling with children, please share their ages below</p>
+      </div>
+
+      <div class="form-group">
+        <p class="form-question-num">4.<span>What type of stays feel right for you?</span></p>
+        <div class="form-options">
+          <div class="form-option"><input type="radio" name="stays" id="st-premium" value="premium"><label for="st-premium">Premium — high-end hotels & private villas</label></div>
+          <div class="form-option"><input type="radio" name="stays" id="st-boutique" value="boutique"><label for="st-boutique">Boutique — design-led, characterful stays</label></div>
+          <div class="form-option"><input type="radio" name="stays" id="st-comfortable" value="comfortable"><label for="st-comfortable">Comfortable — well-rated, good value</label></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <p class="form-question-num">5.<span>What would you like this trip to centre around?</span></p>
+        <div class="form-options">
+          <div class="form-option"><input type="checkbox" id="fc-nature" value="nature"><label for="fc-nature">Nature & landscapes</label></div>
+          <div class="form-option"><input type="checkbox" id="fc-culture" value="culture"><label for="fc-culture">Culture & local life</label></div>
+          <div class="form-option"><input type="checkbox" id="fc-food" value="food"><label for="fc-food">Food & dining</label></div>
+          <div class="form-option"><input type="checkbox" id="fc-wellness" value="wellness"><label for="fc-wellness">Rest, wellness & relaxation</label></div>
+          <div class="form-option"><input type="checkbox" id="fc-adventure" value="adventure"><label for="fc-adventure">Light adventure</label></div>
+          <div class="form-option"><input type="checkbox" id="fc-design" value="design"><label for="fc-design">Design & unique stays</label></div>
+        </div>
+        <p class="form-hint">Select up to three</p>
+      </div>
+
+      <div class="form-group">
+        <p class="form-question-num">6.<span>How would you like us to support your journey?</span></p>
+        <div class="form-options">
+          <div class="form-option"><input type="radio" name="support" id="sp-full" value="full"><label for="sp-full">Full concierge — we arrange everything end-to-end</label></div>
+          <div class="form-option"><input type="radio" name="support" id="sp-partial" value="partial"><label for="sp-partial">Partial — itinerary + key bookings only</label></div>
+          <div class="form-option"><input type="radio" name="support" id="sp-itinerary" value="itinerary"><label for="sp-itinerary">Itinerary design only</label></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <p class="form-question-num">7.<span>If there's anything you'd especially like us to prioritise or avoid, you can share it here</span></p>
+        <textarea class="form-textarea" id="q7" placeholder="Special requests, dietary needs, accessibility requirements, places you'd love to visit..."></textarea>
+      </div>
+
+      <button type="submit" class="enquiry-submit">Enquire Now</button>
+    </form>
+    <p class="enquiry-confirmation">Once we receive your enquiry, we'll review the details and get back to you within two business days to discuss the next steps</p>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-left">
+    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+    <a href="#" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 6 10-6"/></svg></a>
+    <a href="faqs.html" class="footer-faqs">FAQs</a>
+  </div>
+  <a href="index.html" class="footer-logo-mark"><img src="images/logo-mark-transparent.png" alt="Samasta"></a>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+const nav = document.querySelector('.nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+});
+</script>
+
+</body>
+</html>

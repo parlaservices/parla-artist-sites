@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="description" content="Samasta — Across Java & Bali. A thoughtfully mapped journey through Indonesia's volcanic landscapes, village roads, and coastal corners.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samasta — Journeys</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Alex+Brush&display=swap" rel="stylesheet">
+<style>
+:root {
+  --obsidian: #0A0A0A;
+  --white: #FFFFFF;
+  --warm-stone: #918778;
+  --font-heading: 'DM Sans', 'TT Commons Pro', 'Helvetica Neue', sans-serif;
+  --font-body: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  --ls-headers: 0.185em;
+  --ls-buttons: 0.135em;
+  --lh-caps: 1.56;
+  --lh-lower: 1.2;
+  --lh-body: 1.7;
+  --content-pad: clamp(24px, 6vw, 100px);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--white);
+  background: var(--obsidian);
+  overflow-x: hidden;
+  line-height: var(--lh-body);
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* NAV */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px var(--content-pad);
+}
+.nav-logo {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: var(--ls-headers);
+}
+.nav.scrolled {
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  list-style: none;
+}
+.nav-right a {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: var(--ls-buttons);
+  text-transform: uppercase;
+  transition: opacity 0.3s;
+}
+.nav-right a:hover { opacity: 0.7; }
+.nav-btn {
+  border: 1px solid rgba(255,255,255,0.55);
+  border-radius: 30px;
+  padding: 12px 32px;
+}
+.nav-btn:hover {
+  border-color: var(--white);
+  background: rgba(255,255,255,0.06);
+}
+
+/* BUTTONS */
+.btn {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: var(--ls-buttons);
+  text-transform: uppercase;
+  padding: 16px 40px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.5);
+}
+.btn-ghost:hover {
+  border-color: var(--white);
+  background: rgba(255,255,255,0.08);
+}
+
+/* JOURNEYS HERO */
+.journeys-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  background: var(--warm-stone);
+  overflow: hidden;
+}
+.journeys-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.journeys-hero-text {
+  position: absolute;
+  bottom: clamp(50px, 8vw, 90px);
+  left: var(--content-pad);
+  z-index: 3;
+}
+.journeys-hero-heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(36px, 5.2vw, 68px);
+  letter-spacing: var(--ls-headers);
+  line-height: var(--lh-lower);
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+.journeys-hero-body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 18px;
+  color: rgba(255,255,255,0.9);
+  line-height: var(--lh-body);
+  text-align: justify;
+  max-width: 370px;
+}
+
+/* Polaroids — positioned center-right, large, overlapping */
+.journeys-polaroids {
+  position: absolute;
+  z-index: 2;
+  top: 52%;
+  left: 55%;
+  transform: translate(-30%, -44%);
+  width: 60%;
+  max-width: 850px;
+}
+.journeys-polaroids img {
+  width: 100%;
+  display: block;
+}
+
+/* ============================================
+   JOURNEYS VIDEO BANNER
+   ============================================ */
+.journeys-video {
+  position: relative;
+  height: 100vh;
+  min-height: 650px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.journeys-video-bg {
+  position: absolute;
+  inset: 0;
+}
+.journeys-video-el {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.journeys-video-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.1) 40%, rgba(10,10,10,0.45) 100%);
+}
+.journeys-video-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  padding: 0 var(--content-pad);
+}
+.journeys-video-heading {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(26px, 4vw, 48px);
+  letter-spacing: var(--ls-headers);
+  line-height: var(--lh-lower);
+  color: var(--white);
+  margin-bottom: 40px;
+}
+.play-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 60px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.play-btn:hover {
+  border-color: var(--white);
+  background: rgba(255,255,255,0.15);
+  transform: scale(1.08);
+}
+.play-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--white);
+  margin-left: 3px;
+}
+.journeys-video-body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 18px;
+  color: rgba(255,255,255,0.9);
+  line-height: var(--lh-body);
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   JOURNEYS PURCHASE SECTION
+   ============================================ */
+.journeys-purchase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 90vh;
+}
+.purchase-left {
+  position: relative;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  overflow: hidden;
+}
+.purchase-left::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('images/waterfall-bw.jpg') center/cover no-repeat;
+}
+.purchase-card-img {
+  position: relative;
+  z-index: 2;
+  max-width: 300px;
+  width: 100%;
+}
+.purchase-card-img img {
+  width: 100%;
+  display: block;
+}
+.purchase-card-img .btn-purchase {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 50px);
+}
+.btn-purchase {
+  display: block;
+  width: 100%;
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: var(--ls-buttons);
+  text-transform: uppercase;
+  text-align: center;
+  padding: 18px 24px;
+  border-radius: 30px;
+  background: transparent;
+  color: var(--obsidian);
+  border: 1px solid var(--obsidian);
+  cursor: pointer;
+  transition: all 0.35s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.btn-purchase:hover {
+  background: rgba(10,10,10,0.05);
+}
+
+.purchase-right {
+  background: #f0ebe0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 60px;
+}
+.purchase-cover {
+  max-width: 380px;
+  width: 100%;
+}
+.purchase-cover img {
+  width: 100%;
+  display: block;
+  box-shadow: 0 12px 50px rgba(0,0,0,0.15);
+}
+
+/* ============================================
+   WHAT'S INCLUDED
+   ============================================ */
+.included {
+  background: var(--warm-stone);
+  padding: clamp(60px, 8vw, 100px) var(--content-pad);
+  position: relative;
+}
+.included::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+.included-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.included-heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(20px, 2.8vw, 32px);
+  letter-spacing: var(--ls-headers);
+  line-height: var(--lh-caps);
+  text-transform: uppercase;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: clamp(36px, 5vw, 60px);
+}
+.included-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px 80px;
+}
+.included-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.included-check {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(255,255,255,0.7);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+.included-check svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--white);
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.included-text {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  line-height: 1.6;
+}
+
+/* ============================================
+   OPTIONAL CONCIERGE
+   ============================================ */
+.concierge {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: clamp(80px, 10vw, 140px) var(--content-pad);
+  overflow: hidden;
+}
+.concierge-bg {
+  position: absolute;
+  inset: 0;
+  background: url('images/poolside.jpg') center/cover no-repeat;
+}
+.concierge-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10,10,10,0.35);
+}
+.concierge-content {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+}
+.concierge-heading {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(38px, 5.5vw, 68px);
+  letter-spacing: var(--ls-headers);
+  line-height: var(--lh-lower);
+  color: var(--white);
+  margin-bottom: 36px;
+}
+.concierge-body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 18px;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.6;
+  margin-bottom: 50px;
+}
+.concierge-disclaimer {
+  position: absolute;
+  bottom: clamp(20px, 3vw, 36px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(255,255,255,0.65);
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .included-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .journeys-purchase {
+    grid-template-columns: 1fr;
+  }
+  .purchase-left, .purchase-right {
+    padding: 60px 30px;
+  }
+  .journeys-polaroids {
+    width: 70%;
+    left: 50%;
+    top: 38%;
+  }
+  .journeys-hero-heading { font-size: clamp(30px, 7vw, 48px); }
+  .nav-right { gap: 24px; }
+}
+@media (max-width: 600px) {
+  .journeys-polaroids {
+    position: relative;
+    top: auto; left: auto;
+    transform: none;
+    width: 100%;
+    margin-top: 120px;
+    padding: 0 20px;
+  }
+  .journeys-hero {
+    height: auto;
+    min-height: auto;
+    padding-bottom: 40px;
+  }
+  .journeys-hero-text {
+    position: relative;
+    bottom: auto; left: auto;
+    padding: 120px 20px 30px;
+  }
+}
+
+/* FOOTER */
+.footer {
+  background: var(--obsidian);
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding: 28px var(--content-pad);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.footer-left a {
+  color: rgba(255,255,255,0.8);
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+}
+.footer-left a:hover { color: var(--white); }
+.footer-left svg { width: 22px; height: 22px; }
+.footer-faqs {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: var(--ls-headers);
+  text-transform: uppercase;
+}
+.footer-logo-mark img {
+  height: 36px;
+  width: auto;
+  opacity: 0.75;
+  transition: opacity 0.3s;
+}
+.footer-logo-mark:hover img { opacity: 0.8; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">SAMASTA</a>
+  <ul class="nav-right">
+    <li><a href="journeys.html">Our Journeys</a></li>
+    <li><a href="plan.html">Plan Your Trip</a></li>
+    <li><a href="contact.html" class="nav-btn">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<section class="journeys-hero">
+  <div class="journeys-hero-text">
+    <h1 class="journeys-hero-heading reveal">Across<br>Java &amp; Bali</h1>
+    <p class="journeys-hero-body reveal" style="transition-delay: 0.15s;">For those who prefer discovering places at their own pace without the overwhelm of planning every detail</p>
+  </div>
+  <div class="journeys-polaroids">
+    <img src="images/journeys-polaroids-sm.png" alt="Polaroid photos — local life in Java and rice terraces in Bali">
+  </div>
+</section>
+
+<!-- JOURNEYS VIDEO BANNER -->
+<section class="journeys-video">
+  <div class="journeys-video-bg">
+    <video class="journeys-video-el" autoplay muted loop playsinline poster="images/journeys-poster.jpg">
+      <source src="images/journeys-video-mobile.mp4" media="(max-width: 768px)" type="video/mp4">
+      <source src="images/journeys-video.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="journeys-video-content">
+    <h2 class="journeys-video-heading reveal">
+      a thoughtfully mapped<br>
+      journey through indonesia's<br>
+      volcanic landscapes, village<br>
+      roads, and coastal corners
+    </h2>
+    <div class="play-btn reveal" style="transition-delay: 0.15s;">
+      <svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"/></svg>
+    </div>
+    <p class="journeys-video-body reveal" style="transition-delay: 0.25s;">
+      From sunrise in Bromo to the eastern edge of Java and across to<br>
+      Bali, this itinerary connects places that reveal themselves slowly
+    </p>
+  </div>
+</section>
+
+<!-- JOURNEYS PURCHASE SECTION -->
+<section class="journeys-purchase">
+  <div class="purchase-left">
+    <div class="purchase-card-img reveal">
+      <img src="images/purchase-card-clean.png" alt="Java to Bali — Malang to Banyuwangi to Bali, Digital Download, $64.99">
+      <button class="btn-purchase">Unlock the Itinerary</button>
+    </div>
+  </div>
+  <div class="purchase-right">
+    <div class="purchase-cover reveal">
+      <img src="images/itinerary-cover-sm.jpg" alt="Java to Bali itinerary cover — The Collector's Map">
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED IN YOUR ITINERARY -->
+<section class="included">
+  <div class="included-inner">
+    <h2 class="included-heading reveal">What's Included in Your Itinerary</h2>
+    <div class="included-grid reveal" style="transition-delay: 0.15s;">
+      <div class="included-item">
+        <div class="included-check"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <p class="included-text">a thoughtfully designed journey</p>
+      </div>
+      <div class="included-item">
+        <div class="included-check"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <p class="included-text">flexible route options</p>
+      </div>
+      <div class="included-item">
+        <div class="included-check"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <p class="included-text">curated stay recommendations across each destination</p>
+      </div>
+      <div class="included-item">
+        <div class="included-check"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <p class="included-text">practical guidance for a seamless trip</p>
+      </div>
+      <div class="included-item">
+        <div class="included-check"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <p class="included-text">a custom google maps guide with all key places pinned for easy navigation</p>
+      </div>
+      <div class="included-item">
+        <div class="included-check"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <p class="included-text">moments designed for deep connection</p>
+      </div>
+      <div class="included-item">
+        <div class="included-check"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <p class="included-text">local experiences you wouldn't easily find yourself</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPTIONAL CONCIERGE -->
+<section class="concierge">
+  <div class="concierge-bg"></div>
+  <div class="concierge-content">
+    <h2 class="concierge-heading reveal">optional<br>concierge</h2>
+    <p class="concierge-body reveal" style="transition-delay: 0.15s;">Prefer everything handled? Add our concierge service and we'll manage bookings, timing, and last-minute changes so you can focus on the journey</p>
+    <button class="btn btn-ghost reveal" style="transition-delay: 0.25s;">Upgrade with Concierge</button>
+  </div>
+  <p class="concierge-disclaimer">Flights, accommodation, and activity costs are not included</p>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-left">
+    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+    <a href="#" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 6 10-6"/></svg></a>
+    <a href="faqs.html" class="footer-faqs">FAQs</a>
+  </div>
+  <a href="index.html" class="footer-logo-mark"><img src="images/logo-mark-transparent.png" alt="Samasta"></a>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+const nav = document.querySelector('.nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+});
+</script>
+
+</body>
+</html>
