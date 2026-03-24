@@ -114,21 +114,22 @@ a { text-decoration: none; color: inherit; }
 .plan-hero-bg {
   position: absolute;
   inset: 0;
-  /* Placeholder — swap for B&W aerial lagoon video */
-  background:
-    linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.1) 40%, rgba(10,10,10,0.35) 100%),
-    linear-gradient(160deg, #5a6a5a 0%, #4a5a4a 30%, #3a4a3a 60%, #6a7a6a 100%);
-  filter: grayscale(100%);
+}
+.plan-hero-video {
+  position: absolute;
+  inset: -15% 0;
+  width: 100%;
+  height: 130%;
+  object-fit: cover;
+  will-change: transform;
+  transform: translateY(0);
 }
 .plan-hero-bg::after {
-  content: 'video placeholder — B&W aerial lagoon / islands';
+  content: '';
   position: absolute;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 11px;
-  color: rgba(255,255,255,0.2);
-  white-space: nowrap;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0.05) 40%, rgba(10,10,10,0.4) 100%);
 }
 .plan-hero-content {
   position: relative;
@@ -144,32 +145,6 @@ a { text-decoration: none; color: inherit; }
   line-height: var(--lh-lower);
   color: var(--white);
   margin-bottom: 30px;
-}
-.play-btn {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.45);
-  background: rgba(255,255,255,0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  cursor: pointer;
-  transition: all 0.35s ease;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-.play-btn:hover {
-  border-color: var(--white);
-  background: rgba(255,255,255,0.15);
-  transform: scale(1.08);
-}
-.play-btn svg {
-  width: 18px;
-  height: 18px;
-  fill: var(--white);
-  margin-left: 3px;
 }
 
 /* Scroll indicator — bottom center */
@@ -627,16 +602,17 @@ a { text-decoration: none; color: inherit; }
 </nav>
 
 <section class="plan-hero">
-  <div class="plan-hero-bg"></div>
+  <div class="plan-hero-bg">
+    <video class="plan-hero-video" autoplay muted loop playsinline>
+      <source src="images/plan-hero-video.mp4" type="video/mp4">
+    </video>
+  </div>
   <div class="plan-hero-content">
     <h1 class="plan-hero-heading reveal">
       prefer a journey<br>
       designed just<br>
       for you?
     </h1>
-    <div class="play-btn reveal" style="transition-delay: 0.15s;">
-      <svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"/></svg>
-    </div>
   </div>
   <div class="plan-hero-scroll">
     <div class="scroll-line"></div>
