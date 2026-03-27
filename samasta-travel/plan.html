@@ -786,7 +786,7 @@ window.addEventListener('scroll', () => {
 
 <script>
 (function () {
-  var ENDPOINT = 'https://vxlahnriumpcxwrubdny.supabase.co/functions/v1/samasta-webhook';
+  var ENDPOINT = 'https://vxlahnriumpcxwrubdny.supabase.co/functions/v1/website-enquiry';
   var FORM_KEY = '<WEBSITE_FORM_ID_UUID>';
 
   var form = document.querySelector('.enquiry-form');
@@ -830,18 +830,28 @@ window.addEventListener('scroll', () => {
     var stays = form.querySelector('input[name="stays"]:checked');
     var support = form.querySelector('input[name="support"]:checked');
 
+    var answers = {};
+    var q1 = form.querySelector('#q1').value.trim();
+    if (q1) answers.travel_dates = { question: 'When are you planning to travel?', value: q1 };
+
+    var q2 = form.querySelector('#q2').value.trim();
+    if (q2) answers.destinations = { question: 'How many days do you have, and are there any destinations you already have in mind?', value: q2 };
+
+    if (travelWith) answers.travel_group = { question: 'Who are you travelling with?', value: travelWith.value };
+    if (stays) answers.accommodation_style = { question: 'What type of stays feel right for you?', value: stays.value };
+    if (checkedFocus.length) answers.trip_interests = { question: 'What would you like this trip to centre around?', value: checkedFocus.join(', ') };
+    if (support) answers.support_level = { question: 'How would you like us to support your journey?', value: support.value };
+
+    var q7 = form.querySelector('#q7').value.trim();
+    if (q7) answers.special_requests = { question: 'Anything you\'d especially like us to prioritise or avoid', value: q7 };
+
     return {
       form_key: FORM_KEY,
       name: form.querySelector('#name').value.trim(),
       email: form.querySelector('#email').value.trim(),
-      travel_dates: form.querySelector('#q1').value.trim() || undefined,
-      destinations: form.querySelector('#q2').value.trim() || undefined,
-      travel_group: travelWith ? travelWith.value : undefined,
-      accommodation_style: stays ? stays.value : undefined,
-      trip_interests: checkedFocus.length ? checkedFocus : undefined,
-      support_level: support ? support.value : undefined,
-      special_requests: form.querySelector('#q7').value.trim() || undefined,
-      source_page: 'plan'
+      submission_id: crypto.randomUUID(),
+      answers: answers,
+      source_url: window.location.href
     };
   }
 
