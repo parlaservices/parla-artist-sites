@@ -459,5 +459,117 @@ window.addEventListener('scroll', () => {
 });
 </script>
 
+<script>
+(function () {
+  var ENDPOINT = 'https://vxlahnriumpcxwrubdny.supabase.co/functions/v1/samasta-webhook';
+  var FORM_KEY = '<WEBSITE_FORM_ID_UUID>';
+
+  var form = document.querySelector('.enquiry-form');
+  var submitBtn = form.querySelector('.enquiry-submit');
+  var confirmation = document.querySelector('.enquiry-confirmation');
+
+  // Enforce max 3 checkboxes on trip focus (Q5)
+  var focusCheckboxes = form.querySelectorAll('input[type="checkbox"]');
+  focusCheckboxes.forEach(function (cb) {
+    cb.addEventListener('change', function () {
+      var checked = form.querySelectorAll('input[type="checkbox"]:checked');
+      if (checked.length > 3) {
+        cb.checked = false;
+      }
+    });
+  });
+
+  function showError(msg) {
+    var existing = form.querySelector('.form-error-banner');
+    if (existing) existing.remove();
+    var banner = document.createElement('div');
+    banner.className = 'form-error-banner';
+    banner.style.cssText = 'background:rgba(220,60,60,0.15);border:1px solid rgba(220,60,60,0.4);color:#f2c4c4;padding:14px 18px;border-radius:8px;font-size:14px;margin-bottom:16px;font-family:var(--font-body);';
+    banner.textContent = msg;
+    submitBtn.parentNode.insertBefore(banner, submitBtn);
+    setTimeout(function () { if (banner.parentNode) banner.remove(); }, 8000);
+  }
+
+  function resetForm() {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'ENQUIRE NOW';
+  }
+
+  function collectPayload() {
+    var checkedFocus = [];
+    form.querySelectorAll('input[type="checkbox"]:checked').forEach(function (cb) {
+      checkedFocus.push(cb.value);
+    });
+
+    var travelWith = form.querySelector('input[name="travel-with"]:checked');
+    var stays = form.querySelector('input[name="stays"]:checked');
+    var support = form.querySelector('input[name="support"]:checked');
+
+    return {
+      form_key: FORM_KEY,
+      name: form.querySelector('#name').value.trim(),
+      email: form.querySelector('#email').value.trim(),
+      travel_dates: form.querySelector('#q1').value.trim() || undefined,
+      destinations: form.querySelector('#q2').value.trim() || undefined,
+      travel_group: travelWith ? travelWith.value : undefined,
+      accommodation_style: stays ? stays.value : undefined,
+      trip_interests: checkedFocus.length ? checkedFocus : undefined,
+      support_level: support ? support.value : undefined,
+      special_requests: form.querySelector('#q7').value.trim() || undefined,
+      source_page: 'contact'
+    };
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var existing = form.querySelector('.form-error-banner');
+    if (existing) existing.remove();
+
+    var nameVal = form.querySelector('#name').value.trim();
+    var emailVal = form.querySelector('#email').value.trim();
+
+    if (!nameVal) { showError('Please enter your name.'); return; }
+    if (!emailVal || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(emailVal)) {
+      showError('Please enter a valid email address.');
+      return;
+    }
+
+    var payload = collectPayload();
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'SENDING...';
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function (res) {
+      return res.json().then(function (data) { return { ok: res.ok, status: res.status, data: data }; });
+    })
+    .then(function (result) {
+      if (result.ok) {
+        form.style.display = 'none';
+        confirmation.textContent = 'Thank you, ' + nameVal + '. We\u2019ve received your enquiry and will be in touch within two business days.';
+        confirmation.style.fontSize = '18px';
+        confirmation.style.color = 'rgba(255,255,255,0.85)';
+        confirmation.style.fontStyle = 'normal';
+      } else if (result.status === 429) {
+        showError('You\u2019ve recently submitted an enquiry. Please wait a while before trying again.');
+        resetForm();
+      } else {
+        showError(result.data.error || 'Something went wrong. Please try again.');
+        resetForm();
+      }
+    })
+    .catch(function () {
+      showError('Unable to connect. Please check your internet and try again.');
+      resetForm();
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
