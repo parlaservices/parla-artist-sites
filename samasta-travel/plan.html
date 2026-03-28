@@ -589,6 +589,7 @@ a { text-decoration: none; color: inherit; }
 }
 .footer-logo-mark:hover img { opacity: 0.8; }
 </style>
+<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 </head>
 <body>
 
@@ -739,6 +740,7 @@ a { text-decoration: none; color: inherit; }
         <textarea class="form-textarea" id="q7" placeholder="Special requests, dietary needs, accessibility requirements, places you'd love to visit..."></textarea>
       </div>
 
+      <div class="h-captcha" data-sitekey="__HCAPTCHA_SITE_KEY__" data-theme="dark"></div>
       <button type="submit" class="enquiry-submit">Enquire Now</button>
     </form>
     <p class="enquiry-confirmation">Once we receive your enquiry, we'll review the details and get back to you within two business days to discuss the next steps</p>
@@ -818,6 +820,7 @@ window.addEventListener('scroll', () => {
   function resetForm() {
     submitBtn.disabled = false;
     submitBtn.textContent = 'ENQUIRE NOW';
+    if (typeof hcaptcha !== 'undefined') hcaptcha.reset();
   }
 
   function collectPayload() {
@@ -845,11 +848,14 @@ window.addEventListener('scroll', () => {
     var q7 = form.querySelector('#q7').value.trim();
     if (q7) answers.special_requests = { question: 'Anything you\'d especially like us to prioritise or avoid', value: q7 };
 
+    var captchaResponse = document.querySelector('[name="h-captcha-response"]');
+
     return {
       form_key: FORM_KEY,
       name: form.querySelector('#name').value.trim(),
       email: form.querySelector('#email').value.trim(),
       submission_id: crypto.randomUUID(),
+      captcha_token: captchaResponse ? captchaResponse.value : '',
       answers: answers,
       source_url: window.location.href
     };
