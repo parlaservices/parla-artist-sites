@@ -6,9 +6,10 @@
 <meta name="description" content="Samasta — Plan your custom trip through Indonesia. Tell us how you like to travel and we'll shape a journey designed just for you.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Samasta — Plan Your Trip</title>
+<link rel="icon" href="data:," type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Alex+Brush&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Alex+Brush&display=block" rel="stylesheet">
 <style>
 :root {
   --obsidian: #0A0A0A;
@@ -44,8 +45,8 @@ a { text-decoration: none; color: inherit; }
 
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 .reveal.visible {
   opacity: 1;
@@ -93,10 +94,12 @@ a { text-decoration: none; color: inherit; }
   border: 1px solid rgba(255,255,255,0.55);
   border-radius: 30px;
   padding: 12px 32px;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 .nav-btn:hover {
   border-color: var(--white);
-  background: rgba(255,255,255,0.06);
+  background: var(--white);
+  color: var(--obsidian);
 }
 
 /* HERO */
@@ -150,7 +153,7 @@ a { text-decoration: none; color: inherit; }
 /* Scroll indicator — bottom center */
 .plan-hero-scroll {
   position: absolute;
-  bottom: clamp(40px, 6vw, 80px);
+  bottom: clamp(20px, 3vw, 40px);
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
@@ -168,8 +171,8 @@ a { text-decoration: none; color: inherit; }
 }
 .scroll-line {
   width: 1px;
-  height: 70px;
-  background: rgba(255,255,255,0.45);
+  height: 60px;
+  background: rgba(255,255,255,1);
   transform-origin: top;
   transform: scaleY(0);
   animation: lineGrow 1s ease forwards;
@@ -184,13 +187,13 @@ a { text-decoration: none; color: inherit; }
   font-size: 11px;
   letter-spacing: var(--ls-buttons);
   text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,1);
   opacity: 0;
   animation: textFade 0.8s ease forwards;
   animation-delay: 2.4s;
 }
 @keyframes textFade {
-  to { opacity: 0.6; }
+  to { opacity: 1; }
 }
 
 
@@ -245,11 +248,12 @@ a { text-decoration: none; color: inherit; }
 .no-two-body {
   position: relative;
   z-index: 2;
-  font-family: var(--font-body);
-  font-weight: 300;
+  font-family: var(--font-heading);
+  font-weight: 400;
   font-size: 18px;
-  color: rgba(255,255,255,0.9);
-  line-height: var(--lh-body);
+  letter-spacing: 0.06em;
+  color: var(--white);
+  line-height: 1.6;
   max-width: 460px;
 }
 
@@ -515,7 +519,7 @@ a { text-decoration: none; color: inherit; }
   color: var(--obsidian);
   border: none;
   cursor: pointer;
-  transition: all 0.35s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
   -webkit-appearance: none;
   appearance: none;
   margin-top: 12px;
@@ -582,19 +586,99 @@ a { text-decoration: none; color: inherit; }
   text-transform: uppercase;
 }
 .footer-logo-mark img {
-  height: 36px;
+  height: 56px;
   width: auto;
   opacity: 0.75;
   transition: opacity 0.3s;
 }
 .footer-logo-mark:hover img { opacity: 0.8; }
+@media (max-width: 768px) {
+  .nav {
+    padding: 18px var(--content-pad);
+  }
+  .nav-right {
+    gap: 16px;
+  }
+  .nav-right a {
+    font-size: 10px;
+  }
+  .nav-btn {
+    padding: 10px 18px;
+  }
+  .no-two-heading {
+    font-size: clamp(28px, 7vw, 44px);
+  }
+  .br-desktop { display: none; }
+}
+@media (max-width: 480px) {
+  .nav-right {
+    gap: 10px;
+  }
+  .nav-right a {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+  .nav-btn {
+    padding: 8px 14px;
+  }
+}
+
+/* BURGER MENU */
+.nav-burger {
+  display: none;
+  background: transparent;
+  border: 0;
+  padding: 8px;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 101;
+}
+.nav-burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+.nav-burger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.active span:nth-child(2) { opacity: 0; }
+.nav-burger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 768px) {
+  .nav-burger { display: flex; }
+  .nav-right {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 75%;
+    max-width: 320px;
+    background: rgba(10,10,10,0.97);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px !important;
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+    padding: 40px;
+    z-index: 100;
+  }
+  .nav-right.open { transform: translateX(0); }
+  .nav-right a { font-size: 16px !important; }
+  .nav-right .nav-btn { padding: 14px 28px !important; }
+}
+
 </style>
 <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 </head>
 <body>
 
 <nav class="nav">
-  <a href="index.html" class="nav-logo">SAMASTA</a>
+  <a href="index.html" class="nav-logo"><img src="images/samasta-logo-white.png" alt="Samasta" style="height: 28px; display: block;"></a>
+  <button class="nav-burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-right">
     <li><a href="journeys.html">Our Journeys</a></li>
     <li><a href="plan.html">Plan Your Trip</a></li>
@@ -629,7 +713,7 @@ a { text-decoration: none; color: inherit; }
 <!-- NO TWO JOURNEYS ARE THE SAME -->
 <section class="no-two">
   <div class="no-two-left">
-    <h2 class="no-two-heading reveal">no two<br>samasta<br>journeys<br>are the<br>same</h2>
+    <h2 class="no-two-heading reveal">no two<br class="br-desktop"> samasta<br class="br-desktop"> journeys<br>are the<br class="br-desktop"> same</h2>
     <p class="no-two-body reveal" style="transition-delay: 0.15s;">Some travellers want sunrise volcano hikes and long drives through mountain roads. others prefer slow coastal days, good food, and time to wander</p>
   </div>
   <div class="no-two-right">
@@ -684,17 +768,26 @@ a { text-decoration: none; color: inherit; }
       </div>
 
       <div class="form-group">
-        <p class="form-question-num">1.<span>When are you planning to travel?</span></p>
+        <p class="form-question-num">1.<span>Which service are you interested in?</span></p>
+        <div class="form-options">
+          <div class="form-option"><input type="radio" name="service" id="sv-concierge" value="concierge"><label for="sv-concierge">Concierge service</label></div>
+          <div class="form-option"><input type="radio" name="service" id="sv-itinerary" value="custom-itinerary"><label for="sv-itinerary">Custom-crafted itinerary</label></div>
+          <div class="form-option"><input type="radio" name="service" id="sv-both" value="both"><label for="sv-both">Both</label></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <p class="form-question-num">2.<span>When are you planning to travel?</span></p>
         <input class="form-input" type="text" id="q1" placeholder="e.g. October 2026">
       </div>
 
       <div class="form-group">
-        <p class="form-question-num">2.<span>How many days do you have, and are there any destinations you already have in mind?</span></p>
+        <p class="form-question-num">3.<span>How many days do you have, and are there any destinations you already have in mind?</span></p>
         <input class="form-input" type="text" id="q2" placeholder="e.g. 14 days, interested in Java and Bali">
       </div>
 
       <div class="form-group">
-        <p class="form-question-num">3.<span>Who are you travelling with?</span></p>
+        <p class="form-question-num">4.<span>Who are you travelling with?</span></p>
         <div class="form-options">
           <div class="form-option"><input type="radio" name="travel-with" id="tw-solo" value="solo"><label for="tw-solo">Solo</label></div>
           <div class="form-option"><input type="radio" name="travel-with" id="tw-couple" value="couple"><label for="tw-couple">Couple</label></div>
@@ -705,7 +798,12 @@ a { text-decoration: none; color: inherit; }
       </div>
 
       <div class="form-group">
-        <p class="form-question-num">4.<span>What type of stays feel right for you?</span></p>
+        <p class="form-question-num">4a.<span>If travelling with family, what are the ages of the children?</span></p>
+        <input class="form-input" type="text" id="q4a" placeholder="e.g. 6, 9, and 12">
+      </div>
+
+      <div class="form-group">
+        <p class="form-question-num">5.<span>What type of stays feel right for you?</span></p>
         <div class="form-options">
           <div class="form-option"><input type="radio" name="stays" id="st-premium" value="premium"><label for="st-premium">Premium — high-end hotels & private villas</label></div>
           <div class="form-option"><input type="radio" name="stays" id="st-boutique" value="boutique"><label for="st-boutique">Boutique — design-led, characterful stays</label></div>
@@ -714,7 +812,7 @@ a { text-decoration: none; color: inherit; }
       </div>
 
       <div class="form-group">
-        <p class="form-question-num">5.<span>What would you like this trip to centre around?</span></p>
+        <p class="form-question-num">6.<span>What would you like this trip to centre around?</span></p>
         <div class="form-options">
           <div class="form-option"><input type="checkbox" id="fc-nature" value="nature"><label for="fc-nature">Nature & landscapes</label></div>
           <div class="form-option"><input type="checkbox" id="fc-culture" value="culture"><label for="fc-culture">Culture & local life</label></div>
@@ -727,7 +825,7 @@ a { text-decoration: none; color: inherit; }
       </div>
 
       <div class="form-group">
-        <p class="form-question-num">6.<span>How would you like us to support your journey?</span></p>
+        <p class="form-question-num">7.<span>How would you like us to support your journey?</span></p>
         <div class="form-options">
           <div class="form-option"><input type="radio" name="support" id="sp-full" value="full"><label for="sp-full">Full concierge — we arrange everything end-to-end</label></div>
           <div class="form-option"><input type="radio" name="support" id="sp-partial" value="partial"><label for="sp-partial">Partial — itinerary + key bookings only</label></div>
@@ -736,7 +834,7 @@ a { text-decoration: none; color: inherit; }
       </div>
 
       <div class="form-group">
-        <p class="form-question-num">7.<span>If there's anything you'd especially like us to prioritise or avoid, you can share it here</span></p>
+        <p class="form-question-num">8.<span>If there's anything you'd especially like us to prioritise or avoid, you can share it here</span></p>
         <textarea class="form-textarea" id="q7" placeholder="Special requests, dietary needs, accessibility requirements, places you'd love to visit..."></textarea>
       </div>
 
@@ -751,8 +849,8 @@ a { text-decoration: none; color: inherit; }
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-left">
-    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-    <a href="#" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 6 10-6"/></svg></a>
+    <a href="https://www.instagram.com/samastatravels/" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+    <a href="mailto:info@samastatravels.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 6 10-6"/></svg></a>
     <a href="faqs.html" class="footer-faqs">FAQs</a>
   </div>
   <a href="index.html" class="footer-logo-mark"><img src="images/logo-mark-transparent.png" alt="Samasta"></a>
@@ -795,7 +893,7 @@ window.addEventListener('scroll', () => {
   var submitBtn = form.querySelector('.enquiry-submit');
   var confirmation = document.querySelector('.enquiry-confirmation');
 
-  // Enforce max 3 checkboxes on trip focus (Q5)
+  // Enforce max 3 checkboxes on trip focus (Q6)
   var focusCheckboxes = form.querySelectorAll('input[type="checkbox"]');
   focusCheckboxes.forEach(function (cb) {
     cb.addEventListener('change', function () {
@@ -829,11 +927,15 @@ window.addEventListener('scroll', () => {
       checkedFocus.push(cb.value);
     });
 
+    var service = form.querySelector('input[name="service"]:checked');
     var travelWith = form.querySelector('input[name="travel-with"]:checked');
     var stays = form.querySelector('input[name="stays"]:checked');
     var support = form.querySelector('input[name="support"]:checked');
 
     var answers = {};
+
+    if (service) answers.service_interest = { question: 'Which service are you interested in?', value: service.value };
+
     var q1 = form.querySelector('#q1').value.trim();
     if (q1) answers.travel_dates = { question: 'When are you planning to travel?', value: q1 };
 
@@ -841,6 +943,10 @@ window.addEventListener('scroll', () => {
     if (q2) answers.destinations = { question: 'How many days do you have, and are there any destinations you already have in mind?', value: q2 };
 
     if (travelWith) answers.travel_group = { question: 'Who are you travelling with?', value: travelWith.value };
+
+    var q4a = form.querySelector('#q4a').value.trim();
+    if (q4a) answers.family_ages = { question: 'If travelling with family, what are the ages of the children?', value: q4a };
+
     if (stays) answers.accommodation_style = { question: 'What type of stays feel right for you?', value: stays.value };
     if (checkedFocus.length) answers.trip_interests = { question: 'What would you like this trip to centre around?', value: checkedFocus.join(', ') };
     if (support) answers.support_level = { question: 'How would you like us to support your journey?', value: support.value };
@@ -912,5 +1018,20 @@ window.addEventListener('scroll', () => {
 })();
 </script>
 
+
+<script>
+(function() {
+  var burger = document.querySelector('.nav-burger');
+  var menu = document.querySelector('.nav-links') || document.querySelector('.nav-right');
+  if (burger && menu) {
+    burger.addEventListener('click', function() {
+      var open = menu.classList.toggle('open');
+      burger.classList.toggle('active');
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  }
+})();
+</script>
 </body>
 </html>

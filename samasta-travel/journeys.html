@@ -6,9 +6,10 @@
 <meta name="description" content="Samasta — Across Java & Bali. A thoughtfully mapped journey through Indonesia's volcanic landscapes, village roads, and coastal corners.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Samasta — Journeys</title>
+<link rel="icon" href="data:," type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Alex+Brush&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Alex+Brush&display=block" rel="stylesheet">
 <style>
 :root {
   --obsidian: #0A0A0A;
@@ -38,8 +39,8 @@ a { text-decoration: none; color: inherit; }
 
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 .reveal.visible {
   opacity: 1;
@@ -86,10 +87,12 @@ a { text-decoration: none; color: inherit; }
   border: 1px solid rgba(255,255,255,0.55);
   border-radius: 30px;
   padding: 12px 32px;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 .nav-btn:hover {
   border-color: var(--white);
-  background: rgba(255,255,255,0.06);
+  background: var(--white);
+  color: var(--obsidian);
 }
 
 /* BUTTONS */
@@ -103,7 +106,7 @@ a { text-decoration: none; color: inherit; }
   padding: 16px 40px;
   border-radius: 30px;
   cursor: pointer;
-  transition: all 0.35s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
   -webkit-appearance: none;
   appearance: none;
   background: none;
@@ -117,7 +120,8 @@ a { text-decoration: none; color: inherit; }
 }
 .btn-ghost:hover {
   border-color: var(--white);
-  background: rgba(255,255,255,0.08);
+  background: var(--white);
+  color: var(--obsidian);
 }
 
 /* JOURNEYS HERO */
@@ -171,10 +175,10 @@ a { text-decoration: none; color: inherit; }
   position: absolute;
   z-index: 2;
   top: 52%;
-  left: 55%;
+  left: 65%;
   transform: translate(-30%, -44%);
-  width: 60%;
-  max-width: 850px;
+  width: 48%;
+  max-width: 700px;
 }
 .journeys-polaroids img {
   width: 100%;
@@ -216,7 +220,7 @@ a { text-decoration: none; color: inherit; }
 .journeys-video-content {
   position: relative;
   z-index: 2;
-  max-width: 900px;
+  max-width: 1100px;
   padding: 0 var(--content-pad);
 }
 .journeys-video-heading {
@@ -237,6 +241,8 @@ a { text-decoration: none; color: inherit; }
   max-width: 580px;
   margin: 0 auto;
 }
+.br-mobile { display: none; }
+@media (max-width: 768px) { .br-mobile { display: inline; } }
 
 /* ============================================
    JOURNEYS PURCHASE SECTION
@@ -264,7 +270,7 @@ a { text-decoration: none; color: inherit; }
 .purchase-card-img {
   position: relative;
   z-index: 2;
-  max-width: 300px;
+  max-width: 345px;
   width: 100%;
 }
 .purchase-card-img img {
@@ -276,7 +282,7 @@ a { text-decoration: none; color: inherit; }
   bottom: 48px;
   left: 50%;
   transform: translateX(-50%);
-  width: calc(100% - 50px);
+  width: 250px;
 }
 .btn-purchase {
   display: block;
@@ -293,12 +299,13 @@ a { text-decoration: none; color: inherit; }
   color: var(--obsidian);
   border: 1px solid var(--obsidian);
   cursor: pointer;
-  transition: all 0.35s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
   -webkit-appearance: none;
   appearance: none;
 }
 .btn-purchase:hover {
-  background: rgba(10,10,10,0.05);
+  background: var(--obsidian);
+  color: var(--white);
 }
 
 .purchase-right {
@@ -479,7 +486,7 @@ a { text-decoration: none; color: inherit; }
     top: auto; left: auto;
     transform: none;
     width: 100%;
-    margin-top: 120px;
+    margin-top: 60px;
     padding: 0 20px;
   }
   .journeys-hero {
@@ -524,18 +531,113 @@ a { text-decoration: none; color: inherit; }
   text-transform: uppercase;
 }
 .footer-logo-mark img {
-  height: 36px;
+  height: 56px;
   width: auto;
   opacity: 0.75;
   transition: opacity 0.3s;
 }
 .footer-logo-mark:hover img { opacity: 0.8; }
+@media (max-width: 768px) {
+  .nav {
+    padding: 18px var(--content-pad);
+  }
+  .nav-right {
+    gap: 16px;
+  }
+  .nav-right a {
+    font-size: 10px;
+  }
+  .nav-btn {
+    padding: 10px 18px;
+  }
+  .journeys-video-content {
+    max-width: 100%;
+  }
+  .journeys-video-heading {
+    font-size: clamp(22px, 4vw, 36px);
+  }
+  .br-desktop { display: none; }
+  .journeys-video-body {
+    font-size: 16px;
+    padding: 0 12px;
+  }
+  .purchase-card-img {
+    max-width: 380px;
+  }
+  .purchase-card-img .btn-purchase {
+    width: 200px;
+    padding: 14px 20px;
+    font-size: 11px;
+  }
+}
+@media (max-width: 480px) {
+  .nav-right {
+    gap: 10px;
+  }
+  .nav-right a {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+  .nav-btn {
+    padding: 8px 14px;
+  }
+}
+
+/* BURGER MENU */
+.nav-burger {
+  display: none;
+  background: transparent;
+  border: 0;
+  padding: 8px;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 101;
+}
+.nav-burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+.nav-burger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.active span:nth-child(2) { opacity: 0; }
+.nav-burger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 768px) {
+  .nav-burger { display: flex; }
+  .nav-right {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 75%;
+    max-width: 320px;
+    background: rgba(10,10,10,0.97);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px !important;
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+    padding: 40px;
+    z-index: 100;
+  }
+  .nav-right.open { transform: translateX(0); }
+  .nav-right a { font-size: 16px !important; }
+  .nav-right .nav-btn { padding: 14px 28px !important; }
+}
+
 </style>
 </head>
 <body>
 
 <nav class="nav">
-  <a href="index.html" class="nav-logo">SAMASTA</a>
+  <a href="index.html" class="nav-logo"><img src="images/samasta-logo-white.png" alt="Samasta" style="height: 28px; display: block;"></a>
+  <button class="nav-burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-right">
     <li><a href="journeys.html">Our Journeys</a></li>
     <li><a href="plan.html">Plan Your Trip</a></li>
@@ -568,9 +670,8 @@ a { text-decoration: none; color: inherit; }
       volcanic landscapes, village<br>
       roads, and coastal corners
     </h2>
-    <p class="journeys-video-body reveal" style="transition-delay: 0.25s;">
-      From sunrise in Bromo to the eastern edge of Java and across to<br>
-      Bali, this itinerary connects places that reveal themselves slowly
+    <p class="journeys-video-body reveal">
+      From sunrise in Bromo to the eastern edge of Java<br class="br-mobile"> and across to<br class="br-desktop"> Bali, this itinerary connects places that<br class="br-mobile"> reveal themselves slowly
     </p>
   </div>
 </section>
@@ -580,7 +681,7 @@ a { text-decoration: none; color: inherit; }
   <div class="purchase-left">
     <div class="purchase-card-img reveal">
       <img src="images/purchase-card-clean.png" alt="Java to Bali — Malang to Banyuwangi to Bali, Digital Download, $64.99">
-      <button class="btn-purchase">Unlock the Itinerary</button>
+      <a href="https://www.paypal.com/ncp/payment/79SJ5TSWJ9VPS" target="_blank" class="btn-purchase">Unlock the Itinerary</a>
     </div>
   </div>
   <div class="purchase-right">
@@ -633,7 +734,7 @@ a { text-decoration: none; color: inherit; }
   <div class="concierge-content">
     <h2 class="concierge-heading reveal">optional<br>concierge</h2>
     <p class="concierge-body reveal" style="transition-delay: 0.15s;">Prefer everything handled? Add our concierge service and we'll manage bookings, timing, and last-minute changes so you can focus on the journey</p>
-    <button class="btn btn-ghost reveal" style="transition-delay: 0.25s;">Upgrade with Concierge</button>
+    <a href="contact.html" class="btn btn-ghost reveal">Upgrade with Concierge</a>
   </div>
   <p class="concierge-disclaimer">Flights, accommodation, and activity costs are not included</p>
 </section>
@@ -642,8 +743,8 @@ a { text-decoration: none; color: inherit; }
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-left">
-    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-    <a href="#" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 6 10-6"/></svg></a>
+    <a href="https://www.instagram.com/samastatravels/" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+    <a href="mailto:info@samastatravels.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 6 10-6"/></svg></a>
     <a href="faqs.html" class="footer-faqs">FAQs</a>
   </div>
   <a href="index.html" class="footer-logo-mark"><img src="images/logo-mark-transparent.png" alt="Samasta"></a>
@@ -664,5 +765,20 @@ window.addEventListener('scroll', () => {
 });
 </script>
 
+
+<script>
+(function() {
+  var burger = document.querySelector('.nav-burger');
+  var menu = document.querySelector('.nav-links') || document.querySelector('.nav-right');
+  if (burger && menu) {
+    burger.addEventListener('click', function() {
+      var open = menu.classList.toggle('open');
+      burger.classList.toggle('active');
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  }
+})();
+</script>
 </body>
 </html>

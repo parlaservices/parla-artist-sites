@@ -6,9 +6,10 @@
 <meta name="description" content="Samasta — Curated travel itineraries through Indonesia. From volcanic highlands to coastal villages, experience the journey the way it was meant to feel.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Samasta — Travel, the way it was meant to feel</title>
+<link rel="icon" href="data:," type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Alex+Brush&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Alex+Brush&display=block" rel="stylesheet">
 <style>
 /* ============================================
    DESIGN TOKENS
@@ -76,8 +77,8 @@ a { text-decoration: none; color: inherit; }
    ============================================ */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 .reveal.visible {
   opacity: 1;
@@ -128,10 +129,12 @@ a { text-decoration: none; color: inherit; }
   border: 1px solid rgba(255,255,255,0.55);
   border-radius: 30px;
   padding: 12px 32px;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 .nav-btn:hover {
   border-color: var(--white);
-  background: rgba(255,255,255,0.06);
+  background: var(--white);
+  color: var(--obsidian);
 }
 
 /* ============================================
@@ -147,7 +150,7 @@ a { text-decoration: none; color: inherit; }
   padding: 16px 40px;
   border-radius: 30px;
   cursor: pointer;
-  transition: all 0.35s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 .btn-ghost {
   background: transparent;
@@ -156,7 +159,8 @@ a { text-decoration: none; color: inherit; }
 }
 .btn-ghost:hover {
   border-color: var(--white);
-  background: rgba(255,255,255,0.08);
+  background: var(--white);
+  color: var(--obsidian);
 }
 .btn-ghost-dark {
   background: var(--white);
@@ -164,7 +168,8 @@ a { text-decoration: none; color: inherit; }
   border: 1px solid var(--obsidian);
 }
 .btn-ghost-dark:hover {
-  background: #f5f5f5;
+  background: var(--obsidian);
+  color: var(--white);
 }
 
 /* ============================================
@@ -219,6 +224,7 @@ a { text-decoration: none; color: inherit; }
   flex-direction: column;
   align-items: center;
   gap: 12px;
+  margin-top: 20vh;
   opacity: 0;
   transform: translateY(-10px);
   animation: scrollReveal 1.2s ease forwards;
@@ -234,7 +240,7 @@ a { text-decoration: none; color: inherit; }
 .hero-scroll-line {
   width: 1px;
   height: 60px;
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,1);
   transform-origin: top;
   animation: lineGrow 1s ease forwards;
   animation-delay: 1.8s;
@@ -251,13 +257,13 @@ a { text-decoration: none; color: inherit; }
   font-size: 11px;
   letter-spacing: var(--ls-buttons);
   text-transform: uppercase;
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,1);
   opacity: 0;
   animation: textFade 0.8s ease forwards;
   animation-delay: 2.4s;
 }
 @keyframes textFade {
-  to { opacity: 0.7; }
+  to { opacity: 1; }
 }
 
 /* ============================================
@@ -360,7 +366,7 @@ a { text-decoration: none; color: inherit; }
 .polaroids-row {
   position: relative;
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto 50px;
 }
 .polaroids-row img {
@@ -505,7 +511,10 @@ a { text-decoration: none; color: inherit; }
     gap: 40px;
   }
   .arrive-image-wrap {
-    order: -1;
+    order: 2;
+  }
+  .designed-image {
+    order: 2;
   }
   .polaroids-row {
     gap: 16px;
@@ -542,12 +551,101 @@ a { text-decoration: none; color: inherit; }
   text-transform: uppercase;
 }
 .footer-logo-mark img {
-  height: 36px;
+  height: 56px;
   width: auto;
   opacity: 0.75;
   transition: opacity 0.3s;
 }
 .footer-logo-mark:hover img { opacity: 0.8; }
+@media (max-width: 768px) {
+  .nav {
+    padding: 18px var(--content-pad);
+  }
+  .nav-links {
+    gap: 16px;
+  }
+  .nav-links a {
+    font-size: 10px;
+  }
+  .nav-btn {
+    padding: 10px 18px;
+  }
+  .hero-heading {
+    font-size: clamp(28px, 7vw, 48px);
+  }
+  .effortless-heading {
+    font-size: 18px;
+    line-height: 1.4;
+  }
+  .br-desktop { display: none; }
+}
+@media (max-width: 480px) {
+  .nav-links {
+    gap: 10px;
+  }
+  .nav-links a {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+  .nav-btn {
+    padding: 8px 14px;
+  }
+  .destination-label {
+    font-size: clamp(22px, 6vw, 36px);
+  }
+  .polaroids-row {
+    max-width: 100%;
+  }
+}
+
+/* BURGER MENU */
+.nav-burger {
+  display: none;
+  background: transparent;
+  border: 0;
+  padding: 8px;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 101;
+}
+.nav-burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+.nav-burger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.active span:nth-child(2) { opacity: 0; }
+.nav-burger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 768px) {
+  .nav-burger { display: flex; }
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 75%;
+    max-width: 320px;
+    background: rgba(10,10,10,0.97);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px !important;
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+    padding: 40px;
+    z-index: 100;
+  }
+  .nav-links.open { transform: translateX(0); }
+  .nav-links a { font-size: 16px !important; }
+  .nav-links .nav-btn { padding: 14px 28px !important; }
+}
+
 </style>
 </head>
 <body>
@@ -556,7 +654,8 @@ a { text-decoration: none; color: inherit; }
      NAVIGATION
      ============================================ -->
 <nav class="nav" id="nav">
-  <a href="index.html" class="nav-logo">SAMASTA</a>
+  <a href="index.html" class="nav-logo"><img src="images/samasta-logo-white.png" alt="Samasta" style="height: 28px; display: block;"></a>
+  <button class="nav-burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links">
     <li><a href="journeys.html">Our Journeys</a></li>
     <li><a href="plan.html">Plan Your Trip</a></li>
@@ -611,7 +710,7 @@ a { text-decoration: none; color: inherit; }
       </p>
       <p class="arrive-closer">All that's left is to arrive</p>
       <!-- IMP #3: Primary CTA — "Explore the journeys" -->
-      <a href="#" class="btn btn-ghost">Explore the journeys</a>
+      <a href="journeys.html" class="btn btn-ghost">Explore the journeys</a>
     </div>
     <div class="arrive-image-wrap reveal" style="transition-delay: 0.15s;">
       <img src="images/mountain-bw.png" alt="Mountain landscape" class="arrive-image">
@@ -639,10 +738,10 @@ a { text-decoration: none; color: inherit; }
         <li>Design-led stays in Bali</li>
       </ul>
       <!-- IMP #3: Primary CTA -->
-      <a href="#" class="btn btn-ghost-dark">Explore the journey</a>
+      <a href="journeys.html" class="btn btn-ghost-dark">Unlock the itinerary</a>
     </div>
     <div class="destination-mockup reveal" style="transition-delay: 0.15s;">
-      <img src="images/itinerary-spread.jpg" alt="Java to Bali itinerary preview on tablet">
+      <img src="images/itinerary-spread.png" alt="Java to Bali itinerary preview on tablet">
     </div>
   </div>
 </section>
@@ -661,7 +760,7 @@ a { text-decoration: none; color: inherit; }
       <img src="images/polaroids-transparent-sm.png" alt="Polaroid photos of traditional village and outrigger boat">
     </div>
     <!-- IMP #3: Secondary CTA — "Plan a custom trip" -->
-    <a href="#" class="btn btn-ghost reveal" style="transition-delay: 0.25s;">Plan a custom trip</a>
+    <a href="plan.html" class="btn btn-ghost reveal">Plan a Bespoke Trip</a>
   </div>
 </section>
 
@@ -675,7 +774,7 @@ a { text-decoration: none; color: inherit; }
       <img src="images/statue-bw.jpg" alt="Balinese statue with traditional floral headdress">
     </div>
     <div class="designed-text reveal" style="transition-delay: 0.15s;">
-      <h2 class="designed-heading">Designed<br>Around<br>You</h2>
+      <h2 class="designed-heading">Designed<br>Around<br class="br-desktop"> You</h2>
       <p class="designed-body">At SAMASTA, we design itineraries that guide you to Indonesia's most unique and remote destinations; a meeting point of raw landscapes and living traditions. From secluded beaches and serene highlands to villages that seem frozen in time, we connect you with experiences that offer a deeper understanding of the local way of life.</p>
       <p class="designed-body">Whether it's uncovering ancient traditions, discovering time-honoured crafts, or hearing the stories of local communities, we help you explore Indonesia beyond the surface. With our thoughtful planning and insider knowledge, you can travel with ease and truly engage with the culture and nature of each destination.</p>
     </div>
@@ -689,8 +788,8 @@ a { text-decoration: none; color: inherit; }
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-left">
-    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-    <a href="#" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 6 10-6"/></svg></a>
+    <a href="https://www.instagram.com/samastatravels/" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+    <a href="mailto:info@samastatravels.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 6 10-6"/></svg></a>
     <a href="faqs.html" class="footer-faqs">FAQs</a>
   </div>
   <a href="index.html" class="footer-logo-mark"><img src="images/logo-mark-transparent.png" alt="Samasta"></a>
@@ -744,5 +843,20 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 </script>
 
+
+<script>
+(function() {
+  var burger = document.querySelector('.nav-burger');
+  var menu = document.querySelector('.nav-links') || document.querySelector('.nav-right');
+  if (burger && menu) {
+    burger.addEventListener('click', function() {
+      var open = menu.classList.toggle('open');
+      burger.classList.toggle('active');
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  }
+})();
+</script>
 </body>
 </html>
