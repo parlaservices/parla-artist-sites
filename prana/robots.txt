@@ -1,0 +1,14 @@
+# Prana Tattoo — robots.txt
+# Allow all well-behaved crawlers; point them at the sitemap.
+
+User-agent: *
+Allow: /
+
+# Block internal/snapshot folders if they ever get deployed by mistake
+Disallow: /_pre_seo_phase1/
+Disallow: /_pre_seo_phase2/
+Disallow: /_pre_seo_phase3_task1/
+Disallow: /artists/img/charlie-original/
+
+# Sitemap location
+Sitemap: https://pranatattoo.com/sitemap.xml

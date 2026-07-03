@@ -1,0 +1,11 @@
+{
+  "name": "Prana Tattoo",
+  "short_name": "Prana",
+  "icons": [
+    { "src": "favicon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "favicon-512.png", "type": "image/png", "sizes": "512x512" }
+  ],
+  "theme_color": "#23201A",
+  "background_color": "#FBFAF4",
+  "display": "standalone"
+}

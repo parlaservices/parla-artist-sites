@@ -1,0 +1,24 @@
+# Prana Tattoo — authoritative Netlify config for this site.
+#
+# This repo hosts multiple sites. Netlify loads its config from the base
+# directory, so deploying from the repo root picks up the ambient samasta
+# config, whose [[headers]] OVERRIDE prana/_headers (netlify.toml wins over
+# _headers). Fix: run the deploy from INSIDE this folder so THIS netlify.toml
+# is the base config. Always deploy prana like so:
+#
+#   cd /Users/test/dev/parla-artist-sites/prana
+#   netlify deploy --prod --site=ae72a073-f13d-44bd-ac73-18ddfd610df0 --dir=.
+#
+# CSP is scoped to Prana's real dependencies: Google Fonts + the Google Maps
+# embed on studio.html. No hCaptcha / Supabase / Tailwind — there are no
+# on-page forms (bookings link out to myparla.app).
+
+[[headers]]
+  for = "/*"
+
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self'; frame-src https://maps.google.com https://www.google.com https://*.google.com; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
