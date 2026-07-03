@@ -2,20 +2,99 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
-<meta name="description" content="Samasta — Across Java & Bali. A thoughtfully mapped journey through Indonesia's volcanic landscapes, village roads, and coastal corners.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Samasta — Journeys</title>
+<title>Java & Bali Itinerary — 14 Days, Self-Guided | Samasta</title>
+<meta name="description" content="Our flagship Indonesia itinerary: Mount Bromo sunrise, Java train journeys, Banyuwangi, and design-led Bali stays. Digital download, $64.99.">
+<link rel="canonical" href="https://samastatravels.com/journeys/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="product">
+<meta property="og:site_name" content="Samasta Travel">
+<meta property="og:title" content="Java & Bali Itinerary — 14 Days, Self-Guided | Samasta">
+<meta property="og:description" content="Our flagship Indonesia itinerary: Mount Bromo sunrise, Java train journeys, Banyuwangi, and design-led Bali stays. Digital download, $64.99.">
+<meta property="og:url" content="https://samastatravels.com/journeys/">
+<meta property="og:image" content="https://samastatravels.com/images/og-journeys.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Java & Bali Itinerary — 14 Days, Self-Guided | Samasta">
+<meta name="twitter:description" content="Our flagship Indonesia itinerary: Mount Bromo sunrise, Java train journeys, Banyuwangi, and design-led Bali stays. Digital download, $64.99.">
+<meta name="twitter:image" content="https://samastatravels.com/images/og-journeys.jpg">
+
+<link rel="preload" as="image" href="images/journeys-poster.jpg" fetchpriority="high">
 <link rel="icon" type="image/png" href="data:image/png;base64,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">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Alex+Brush&display=block" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Java to Bali Itinerary \u2014 The Collector's Map",
+  "description": "A self-guided 14-day itinerary across Java and Bali. Mount Bromo sunrise, Java train journeys, village kitchens, and design-led stays in Bali. Delivered as a digital download.",
+  "image": "https://samastatravels.com/images/og-journeys.jpg",
+  "brand": {
+    "@type": "Brand",
+    "name": "Samasta Travel"
+  },
+  "category": "Travel Itinerary",
+  "offers": {
+    "@type": "Offer",
+    "price": "64.99",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock",
+    "url": "https://samastatravels.com/journeys/",
+    "seller": {
+      "@id": "https://samastatravels.com/#organization"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://samastatravels.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Our Journeys",
+      "item": "https://samastatravels.com/journeys/"
+    }
+  ]
+}
+</script>
 <style>
+@font-face {
+  font-family: 'TT Commons Pro';
+  src: local('TT Commons Pro'), local('TTCommonsPro-Regular'), url('fonts/TTCommonsPro-Regular.woff2') format('woff2'), url('fonts/TTCommonsPro-Regular.woff') format('woff');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'TT Commons Pro';
+  src: local('TT Commons Pro Medium'), local('TTCommonsPro-Medium'), url('fonts/TTCommonsPro-Medium.woff2') format('woff2'), url('fonts/TTCommonsPro-Medium.woff') format('woff');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'TT Commons Pro';
+  src: local('TT Commons Pro Bold'), local('TTCommonsPro-Bold'), url('fonts/TTCommonsPro-Bold.woff2') format('woff2'), url('fonts/TTCommonsPro-Bold.woff') format('woff');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
 :root {
-  --obsidian: #0A0A0A;
+  --obsidian: #000000;
   --white: #FFFFFF;
   --warm-stone: #918778;
-  --font-heading: 'DM Sans', 'TT Commons Pro', 'Helvetica Neue', sans-serif;
+  --font-heading: 'TT Commons Pro', 'DM Sans', 'Helvetica Neue', sans-serif;
   --font-body: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   --ls-headers: 0.185em;
   --ls-buttons: 0.135em;
@@ -34,7 +113,9 @@ body {
   overflow-x: hidden;
   line-height: var(--lh-body);
 }
-img { max-width: 100%; display: block; }
+img { max-width: 100%; display: block; height: auto; }
+/* Logo has inline height: 28px — width must auto-scale to preserve aspect ratio */
+.nav-logo img { width: auto; }
 a { text-decoration: none; color: inherit; }
 
 .reveal {
@@ -56,6 +137,7 @@ a { text-decoration: none; color: inherit; }
   justify-content: space-between;
   align-items: center;
   padding: 32px var(--content-pad);
+  transition: background 0.4s ease;
 }
 .nav-logo {
   font-family: var(--font-heading);
@@ -123,66 +205,358 @@ a { text-decoration: none; color: inherit; }
   background: var(--white);
   color: var(--obsidian);
 }
+.btn-solid {
+  background: var(--obsidian);
+  color: var(--white);
+  border: 1px solid var(--obsidian);
+}
+.btn-solid:hover {
+  background: rgba(10,10,10,0.85);
+}
 
-/* JOURNEYS HERO */
+/* JOURNEYS HERO — full-bleed image, centered content */
 .journeys-hero {
   position: relative;
-  height: 100vh;
-  min-height: 700px;
-  background: var(--warm-stone);
+  min-height: 100vh;
+  min-height: 100svh; /* iOS Safari: avoid bottom-bar overlap */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+  color: var(--white);
 }
-.journeys-hero::before {
-  content: '';
+.journeys-hero-bg {
   position: absolute;
   inset: 0;
-  opacity: 0.08;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 200px;
-  mix-blend-mode: overlay;
-  pointer-events: none;
+  z-index: 0;
 }
-
-.journeys-hero-text {
+.journeys-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.journeys-hero-overlay {
   position: absolute;
-  bottom: clamp(50px, 8vw, 90px);
-  left: var(--content-pad);
-  z-index: 3;
+  inset: 0;
+  background: rgba(0,0,0,0.42);
+  z-index: 1;
+}
+.journeys-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 var(--content-pad);
+  max-width: 820px;
+  width: 100%;
 }
 .journeys-hero-heading {
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: clamp(36px, 5.2vw, 68px);
+  font-size: clamp(36px, 5.2vw, 64px);
   letter-spacing: var(--ls-headers);
   line-height: var(--lh-lower);
   text-transform: uppercase;
   color: var(--white);
-  margin-bottom: 24px;
+  margin-bottom: 40px;
+}
+.journeys-hero-cta {
+  margin-bottom: 0;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, opacity 0.45s ease 0.15s, transform 0.45s ease 0.15s;
+}
+.journeys-hero-cta:hover {
+  background: var(--white);
+  color: var(--obsidian);
+  border-color: var(--white);
 }
 .journeys-hero-body {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 18px;
-  color: rgba(255,255,255,0.9);
+  font-size: 20px;
+  color: var(--white);
   line-height: var(--lh-body);
-  text-align: justify;
-  max-width: 370px;
+  max-width: 580px;
+  margin: 0 auto 28px;
+}
+.journeys-hero-tagline {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(16px, 1.5vw, 19px);
+  letter-spacing: 0.04em;
+  color: var(--white);
+  margin: 0 auto 34px;
+}
+@media (max-width: 768px) {
+  .journeys-hero-heading { font-size: clamp(32px, 8vw, 44px); margin-bottom: 28px; }
+  .journeys-hero-body { font-size: 20px; }
+  .journeys-hero-cta { margin-bottom: 0; }
 }
 
-/* Polaroids — positioned center-right, large, overlapping */
-.journeys-polaroids {
-  position: absolute;
-  z-index: 2;
-  top: 52%;
-  left: 65%;
-  transform: translate(-30%, -44%);
-  width: 48%;
-  max-width: 700px;
+/* ============================================
+   ROUTE AT A GLANCE
+   ============================================ */
+.route-glance {
+  position: relative;
+  background: #E9E2D2;
+  color: var(--obsidian);
+  overflow: hidden;
 }
-.journeys-polaroids img {
+.route-glance-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('images/paper-bg.webp'), url('images/paper-bg.png');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.9;
+}
+.route-glance-top {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  grid-template-areas:
+    "map body"
+    "head head";
+  align-items: start;
+  column-gap: clamp(32px, 5vw, 80px);
+  padding-right: var(--content-pad);
+}
+.route-map-wrap { grid-area: map; position: relative; }
+.route-map-wrap picture { display: block; }
+.route-map-wrap img {
   width: 100%;
+  height: auto;
   display: block;
+}
+.route-glance-body {
+  grid-area: body;
+  padding-top: clamp(60px, 8vw, 110px);
+  max-width: 640px;
+}
+.route-glance-headwrap {
+  grid-area: head;
+  position: relative;
+  z-index: 1;
+  padding: clamp(28px, 3.5vw, 48px) 0 clamp(50px, 6vw, 80px) var(--content-pad);
+}
+.route-glance-body p {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 20px;
+  line-height: var(--lh-body);
+  color: var(--obsidian);
+  text-align: justify;
+}
+.route-glance-heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(36px, 5vw, 60px);
+  letter-spacing: var(--ls-headers);
+  line-height: var(--lh-lower);
+  text-transform: uppercase;
+  color: var(--obsidian);
+  margin-top: 0;
+}
+.route-glance-heading em {
+  font-style: italic;
+  font-weight: 700;
+}
+
+/* Destination strip with hover-reveal cards */
+.dest-strip {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+}
+.dest-card {
+  position: relative;
+  display: block;
+  border: none;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  font-family: inherit;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.dest-card picture { display: block; width: 100%; height: 100%; }
+.dest-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.dest-card:hover img { transform: scale(1.04); }
+
+.dest-card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  padding: clamp(20px, 3vw, 36px);
+  color: var(--white);
+  background: linear-gradient(180deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.32) 50%, rgba(0,0,0,0.72) 100%);
+  transition: background 0.35s ease;
+}
+.dest-card:hover .dest-card-overlay,
+.dest-card.is-open .dest-card-overlay {
+  background: rgba(0,0,0,0.68);
+}
+.dest-card-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(13px, 1.1vw, 17px);
+  letter-spacing: var(--ls-headers);
+  text-transform: uppercase;
+  color: var(--white);
+  text-align: center;
+  position: absolute;
+  left: clamp(16px, 3vw, 30px);
+  right: clamp(16px, 3vw, 30px);
+  top: 47%;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.55), 0 2px 18px rgba(0,0,0,0.6);
+  transition: top 0.5s ease;
+}
+.dest-card:hover .dest-card-title,
+.dest-card.is-open .dest-card-title {
+  top: 26%;
+}
+.dest-card-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--white);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease 0.12s, transform 0.4s ease 0.12s;
+  position: absolute;
+  top: 42%;
+  left: clamp(18px, 3vw, 34px);
+  right: clamp(18px, 3vw, 34px);
+}
+.dest-card:hover .dest-card-body,
+.dest-card.is-open .dest-card-body {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+  .route-glance-top {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "map"
+      "head"
+      "body";
+    column-gap: 0;
+    padding-right: 0;
+  }
+  .route-glance-body {
+    padding: 0 var(--content-pad) clamp(40px, 6vw, 60px);
+  }
+  .route-glance-headwrap {
+    padding: clamp(22px, 4vw, 32px) var(--content-pad) clamp(14px, 2.5vw, 22px);
+  }
+  .dest-card-body { max-width: none; }
+  /* Horizontal scrolling carousel on mobile */
+  .dest-strip {
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0;
+    gap: 0;
+  }
+  .dest-strip::-webkit-scrollbar { display: none; }
+  .dest-card {
+    flex: 0 0 85%;
+    max-width: none;
+    scroll-snap-align: start;
+  }
+  /* On mobile, body is always partially visible (no hover) — show title + condensed body */
+  .dest-card-overlay {
+    background: rgba(0,0,0,0.55);
+  }
+  .dest-card .dest-card-title {
+    top: 26%;
+  }
+  .dest-card .dest-card-body {
+    opacity: 1;
+    transform: translateY(0);
+    top: 42%;
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+}
+
+/* ============================================
+   THREE COLUMN INFO BLOCK
+   ============================================ */
+.three-col {
+  position: relative;
+  overflow: hidden;
+  background: var(--obsidian);
+  color: var(--white);
+  padding: clamp(70px, 9vw, 130px) var(--content-pad);
+}
+.three-col-bar {
+  position: absolute;
+  top: clamp(20px, 3vw, 44px);
+  right: 0;
+  width: clamp(150px, 24vw, 300px);
+  z-index: 1;
+  pointer-events: none;
+}
+.three-col-bar img { display: block; width: 100%; height: auto; }
+.three-col-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(40px, 5vw, 80px);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.three-col-item {
+  display: flex;
+  flex-direction: column;
+}
+.three-col-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(20px, 1.6vw, 24px);
+  letter-spacing: var(--ls-headers);
+  line-height: var(--lh-lower);
+  text-transform: lowercase;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+.three-col-body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 20px;
+  line-height: var(--lh-body);
+  color: var(--white);
+}
+@media (max-width: 900px) {
+  .three-col-inner { grid-template-columns: 1fr; gap: 40px; }
+  .three-col-title br { display: none; }
+  .three-col-title { font-size: 18px; }
 }
 
 /* ============================================
@@ -235,8 +609,8 @@ a { text-decoration: none; color: inherit; }
 .journeys-video-body {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 18px;
-  color: rgba(255,255,255,0.9);
+  font-size: 20px;
+  color: var(--white);
   line-height: var(--lh-body);
   max-width: 580px;
   margin: 0 auto;
@@ -275,7 +649,7 @@ a { text-decoration: none; color: inherit; }
 .purchase-card-img {
   position: relative;
   z-index: 2;
-  max-width: 345px;
+  max-width: 442px;
   width: 100%;
 }
 .purchase-card-img img {
@@ -284,7 +658,7 @@ a { text-decoration: none; color: inherit; }
 }
 .purchase-card-img .btn-purchase {
   position: absolute;
-  bottom: 48px;
+  bottom: 15%;
   left: 50%;
   transform: translateX(-50%);
   width: 250px;
@@ -356,7 +730,7 @@ a { text-decoration: none; color: inherit; }
   margin: 0 auto;
 }
 .included-heading {
-  font-family: var(--font-heading);
+  font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
   font-weight: 700;
   font-size: clamp(20px, 2.8vw, 32px);
   letter-spacing: var(--ls-headers);
@@ -397,12 +771,86 @@ a { text-decoration: none; color: inherit; }
   stroke-linejoin: round;
 }
 .included-text {
-  font-family: var(--font-heading);
+  font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
   font-weight: 400;
   font-size: 18px;
   letter-spacing: 0.06em;
   color: var(--white);
   line-height: 1.6;
+}
+
+/* ============================================
+   WHO IT'S FOR
+   ============================================ */
+.who-for {
+  position: relative;
+  background-image: url('images/paper-bg.webp'), url('images/paper-bg.png');
+  background-size: cover;
+  background-position: center;
+  color: var(--obsidian);
+  padding: clamp(70px, 9vw, 130px) var(--content-pad);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: center;
+  max-width: 100%;
+  overflow: hidden;
+}
+.who-for-inner { max-width: 620px; }
+.who-for-heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(36px, 5vw, 60px);
+  letter-spacing: var(--ls-headers);
+  line-height: var(--lh-lower);
+  text-transform: uppercase;
+  color: var(--obsidian);
+  margin-bottom: 40px;
+}
+.who-for-heading em { font-style: italic; font-weight: 700; }
+.who-for-body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 20px;
+  line-height: var(--lh-body);
+  color: var(--obsidian);
+}
+.who-for-image {
+  max-width: 340px;
+  justify-self: end;
+}
+.who-for-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+@media (max-width: 900px) {
+  .who-for {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .who-for-image {
+    justify-self: center;
+    max-width: 260px;
+  }
+}
+
+/* Mobile: avoid ugly word-spacing from justified text on narrow columns */
+@media (max-width: 768px) {
+  .route-glance-body p,
+  .journeys-hero-body {
+    text-align: left;
+  }
+}
+
+/* Concierge lead line tweak */
+.concierge-lead {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 16px;
 }
 
 /* ============================================
@@ -423,6 +871,13 @@ a { text-decoration: none; color: inherit; }
   position: absolute;
   inset: 0;
   background: url('images/poolside.jpg') center/cover no-repeat;
+  background-image: image-set(
+    url('images/poolside.webp') type('image/webp'),
+    url('images/poolside.jpg') type('image/jpeg')
+  );
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .concierge-bg::after {
   content: '';
@@ -447,8 +902,8 @@ a { text-decoration: none; color: inherit; }
 .concierge-body {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 18px;
-  color: rgba(255,255,255,0.9);
+  font-size: 20px;
+  color: var(--white);
   line-height: 1.6;
   margin-bottom: 50px;
 }
@@ -462,7 +917,7 @@ a { text-decoration: none; color: inherit; }
   font-weight: 300;
   font-size: 13px;
   font-style: italic;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255,255,255,0.82);
   white-space: nowrap;
 }
 
@@ -477,33 +932,7 @@ a { text-decoration: none; color: inherit; }
   .purchase-left, .purchase-right {
     padding: 60px 30px;
   }
-  .journeys-polaroids {
-    width: 70%;
-    left: 50%;
-    top: 38%;
-  }
-  .journeys-hero-heading { font-size: clamp(30px, 7vw, 48px); }
-  .nav-right { gap: 24px; }
-}
-@media (max-width: 600px) {
-  .journeys-polaroids {
-    position: relative;
-    top: auto; left: auto;
-    transform: none;
-    width: 100%;
-    margin-top: 60px;
-    padding: 0 20px;
-  }
-  .journeys-hero {
-    height: auto;
-    min-height: auto;
-    padding-bottom: 40px;
-  }
-  .journeys-hero-text {
-    position: relative;
-    bottom: auto; left: auto;
-    padding: 120px 20px 30px;
-  }
+  .nav-right { gap: 20px; }
 }
 
 /* FOOTER */
@@ -521,7 +950,7 @@ a { text-decoration: none; color: inherit; }
   gap: 24px;
 }
 .footer-left a {
-  color: rgba(255,255,255,0.8);
+  color: rgba(255,255,255,0.9);
   transition: color 0.3s;
   display: flex;
   align-items: center;
@@ -645,22 +1074,126 @@ a { text-decoration: none; color: inherit; }
 <body>
 
 <nav class="nav">
-  <a href="index.html" class="nav-logo"><img src="images/samasta-logo-white.png" alt="Samasta" style="height: 28px; display: block;"></a>
+  <a href="index.html" class="nav-logo"><img src="images/samasta-logo-white.png" alt="Samasta" style="height: 28px; display: block;" width="310" height="79" fetchpriority="high" decoding="async"></a>
   <button class="nav-burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-right">
+    <li><a href="index.html#circle">The Circle</a></li>
     <li><a href="journeys.html">Our Journeys</a></li>
     <li><a href="plan.html">Plan Your Trip</a></li>
     <li><a href="contact.html" class="nav-btn">Get in Touch</a></li>
   </ul>
 </nav>
 
+<main>
+
 <section class="journeys-hero">
-  <div class="journeys-hero-text">
-    <h1 class="journeys-hero-heading reveal">Across<br>Java &amp; Bali</h1>
-    <p class="journeys-hero-body reveal" style="transition-delay: 0.15s;">For those who prefer discovering places at their own pace without the overwhelm of planning every detail</p>
+  <div class="journeys-hero-bg">
+    <picture>
+      <source srcset="images/hero-rice-terraces.webp" type="image/webp">
+      <img src="images/hero-rice-terraces.png" alt="" width="1366" height="768" fetchpriority="high" decoding="async">
+    </picture>
   </div>
-  <div class="journeys-polaroids">
-    <img src="images/journeys-polaroids-sm.png" alt="Polaroid photos — local life in Java and rice terraces in Bali">
+  <div class="journeys-hero-overlay"></div>
+  <div class="journeys-hero-content">
+    <h1 class="journeys-hero-heading reveal">Across<br>Java &amp; Bali</h1>
+    <p class="journeys-hero-body reveal" style="transition-delay:0.15s;">A self-guided 14-day Java to Bali itinerary for travellers who want volcano mornings, village roads, ferry crossings, and slower days in Bali without carrying the weight of planning every detail.</p>
+    <p class="journeys-hero-tagline reveal" style="transition-delay:0.25s;">Join our circle for access</p>
+    <a href="https://forms.gle/rsQETuWactn9vecEA" target="_blank" rel="noopener" class="btn btn-solid journeys-hero-cta reveal">Join &amp; Unlock</a>
+  </div>
+</section>
+
+<!-- ROUTE AT A GLANCE -->
+<section class="route-glance">
+  <div class="route-glance-bg" aria-hidden="true"></div>
+  <div class="route-glance-top">
+      <div class="route-map-wrap reveal">
+        <picture>
+          <source srcset="images/route-map.webp" type="image/webp">
+          <img src="images/route-map.png" alt="Map of the Java to Bali route — Malang, Pronojiwo, Bromo, Banyuwangi, Pupuan, Ubud" width="864" height="466" loading="lazy" decoding="async">
+        </picture>
+      </div>
+      <div class="route-glance-body reveal" style="transition-delay:0.15s;">
+        <p>Travel from Malang to Mount Bromo, Banyuwangi, Ijen, Pupuan, and Ubud on a journey that moves beyond Indonesia's landmarks and into the stories that surround them. Alongside volcano sunrises and celebrated destinations are village roads, ferry crossings, farming communities, creative workshops, and encounters that illuminate Indonesia's past and present. From traces of colonial history to traditions that continue to shape daily life, the route is designed to offer a deeper understanding of the places it passes through.</p>
+      </div>
+      <div class="route-glance-headwrap">
+        <h2 class="route-glance-heading reveal">the route<br>at a <em>glance</em></h2>
+      </div>
+  </div>
+
+  <!-- Destination strip -->
+  <div class="dest-strip" role="list">
+    <button class="dest-card" role="listitem" aria-expanded="false" data-name="Malang">
+      <picture>
+        <source srcset="images/dest-malang.webp" type="image/webp">
+        <img src="images/dest-malang.png" alt="Malang — colonial monument and town square" width="1080" height="1350" loading="lazy" decoding="async">
+      </picture>
+      <span class="dest-card-overlay">
+        <span class="dest-card-title">MALANG</span>
+        <span class="dest-card-body">Cool mountain air, colonial architecture, and a gateway to East Java.</span>
+      </span>
+    </button>
+    <button class="dest-card" role="listitem" aria-expanded="false" data-name="Bromo">
+      <picture>
+        <source srcset="images/dest-bromo.webp" type="image/webp">
+        <img src="images/dest-bromo.png" alt="Mount Bromo — volcanic landscape with rising steam" width="1080" height="1350" loading="lazy" decoding="async">
+      </picture>
+      <span class="dest-card-overlay">
+        <span class="dest-card-title">BROMO</span>
+        <span class="dest-card-body">A landscape that feels almost otherworldly, and a sunrise that slowly reveals the scale of East Java's volcanic heart.</span>
+      </span>
+    </button>
+    <button class="dest-card" role="listitem" aria-expanded="false" data-name="Banyuwangi">
+      <picture>
+        <source srcset="images/dest-banyuwangi.webp" type="image/webp">
+        <img src="images/dest-banyuwangi.png" alt="Banyuwangi — Ijen crater lake and steam at dawn" width="1080" height="1350" loading="lazy" decoding="async">
+      </picture>
+      <span class="dest-card-overlay">
+        <span class="dest-card-title">BANYUWANGI</span>
+        <span class="dest-card-body">At the eastern edge of Java, volcanic terrain gives way to forests, coastline, and communities whose traditions continue to shape the region.</span>
+      </span>
+    </button>
+    <button class="dest-card" role="listitem" aria-expanded="false" data-name="Pupuan">
+      <picture>
+        <source srcset="images/dest-pupuan.webp" type="image/webp">
+        <img src="images/dest-pupuan.png" alt="Pupuan — temple gate among forested rice country in Bali" width="1080" height="1350" loading="lazy" decoding="async">
+      </picture>
+      <span class="dest-card-overlay">
+        <span class="dest-card-title">PUPUAN</span>
+        <span class="dest-card-body">A quieter side of Bali shaped by farming communities and rice-covered hills.</span>
+      </span>
+    </button>
+    <button class="dest-card" role="listitem" aria-expanded="false" data-name="Ubud">
+      <picture>
+        <source srcset="images/dest-ubud.webp" type="image/webp">
+        <img src="images/dest-ubud.png" alt="Ubud — a Balinese artist at work in her studio" width="1080" height="1350" loading="lazy" decoding="async">
+      </picture>
+      <span class="dest-card-overlay">
+        <span class="dest-card-title">UBUD</span>
+        <span class="dest-card-body">Art, culture, wellness, and a slower pace to end the journey.</span>
+      </span>
+    </button>
+  </div>
+</section>
+
+<!-- THREE COLUMN INFO BLOCK -->
+<section class="three-col">
+  <picture class="three-col-bar" aria-hidden="true">
+    <source srcset="images/decorative-bar.webp" type="image/webp">
+    <img src="images/decorative-bar.png" alt="" width="712" height="81" loading="lazy" decoding="async">
+  </picture>
+  <div class="three-col-inner">
+    <div class="three-col-item reveal">
+      <h3 class="three-col-title">how the <br>journey <br>moves</h3>
+      <p class="three-col-body">Travel across East Java and Bali by private driver, rail, jeep, and ferry. The route is designed around realistic travel times, with practical guidance for every transition along the way.</p>
+    </div>
+    <div class="three-col-item reveal" style="transition-delay:0.1s;">
+      <h3 class="three-col-title">where <br>you <br>stay</h3>
+      <p class="three-col-body">Curated stay recommendations at every stop, from guesthouses and homestays to design-led hotels, glamping, and a farmstay. Each one was chosen to complement the character of the destination.</p>
+    </div>
+    <div class="three-col-item reveal" style="transition-delay:0.2s;">
+      <h3 class="three-col-title">local <br>experiences that <br>shape the trip</h3>
+      <p class="three-col-body">Beyond the major destinations are cultural villages, forests, local markets, regenerative farms, artist studios, and creative workshops that offer a deeper understanding of Indonesia and the communities that shape it.</p>
+    </div>
   </div>
 </section>
 
@@ -672,36 +1205,22 @@ a { text-decoration: none; color: inherit; }
       <source src="images/journeys-video.mp4" type="video/mp4">
     </video>
   </div>
-  <div class="journeys-video-content">
-    <h2 class="journeys-video-heading reveal">
-      a thoughtfully mapped<br>
-      journey through indonesia's<br>
-      volcanic landscapes, village<br>
-      roads, and coastal corners
-    </h2>
-    <p class="journeys-video-body journeys-video-body-desktop reveal">
-      From sunrise in Bromo to the eastern edge of Java and across to<br> Bali, this itinerary connects places that reveal themselves slowly
-    </p>
-    <p class="journeys-video-body journeys-video-body-mobile reveal">
-      From sunrise in Bromo to the eastern<br>
-      edge of Java and across to Bali,<br>
-      this itinerary connects places<br>
-      that reveal themselves slowly
-    </p>
-  </div>
 </section>
 
 <!-- JOURNEYS PURCHASE SECTION -->
 <section class="journeys-purchase">
   <div class="purchase-left">
     <div class="purchase-card-img reveal">
-      <img src="images/purchase-card-clean.png" alt="Java to Bali — Malang to Banyuwangi to Bali, Digital Download, $64.99">
-      <a href="https://www.paypal.com/ncp/payment/79SJ5TSWJ9VPS" target="_blank" class="btn-purchase">Unlock the Itinerary</a>
+      <picture>
+          <source srcset="images/purchase-card-clean.webp" type="image/webp">
+          <img src="images/purchase-card-clean.png" alt="Java to Bali — Malang to Banyuwangi to Bali — available to Circle members" width="499" height="798" loading="lazy" decoding="async">
+        </picture>
+      <a href="https://forms.gle/rsQETuWactn9vecEA" target="_blank" rel="noopener" class="btn-purchase">Join &amp; Unlock</a>
     </div>
   </div>
   <div class="purchase-right">
     <div class="purchase-cover reveal">
-      <img src="images/itinerary-cover-sm.jpg" alt="Java to Bali itinerary cover — The Collector's Map">
+      <img src="images/itinerary-cover-sm.jpg" alt="Java to Bali itinerary cover — The Collector's Map" width="500" height="709" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -713,33 +1232,52 @@ a { text-decoration: none; color: inherit; }
     <div class="included-grid reveal" style="transition-delay: 0.15s;">
       <div class="included-item">
         <div class="included-check"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
-        <p class="included-text">a thoughtfully designed journey</p>
+        <p class="included-text">a thoughtfully mapped 14-day route across East Java and Bali</p>
       </div>
       <div class="included-item">
         <div class="included-check"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
-        <p class="included-text">flexible route options</p>
+        <p class="included-text">route options for a more adventurous or more relaxed East Java start</p>
       </div>
       <div class="included-item">
         <div class="included-check"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
-        <p class="included-text">curated stay recommendations across each destination</p>
+        <p class="included-text">curated stay recommendations across every stop</p>
       </div>
       <div class="included-item">
         <div class="included-check"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
-        <p class="included-text">practical guidance for a seamless trip</p>
+        <p class="included-text">practical notes on weather, timing, cash, dress, and pacing</p>
       </div>
       <div class="included-item">
         <div class="included-check"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
-        <p class="included-text">a custom google maps guide with all key places pinned for easy navigation</p>
+        <p class="included-text">transport guidance for drivers, train legs, Bromo jeep access, and the Java&ndash;Bali ferry</p>
       </div>
       <div class="included-item">
         <div class="included-check"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
-        <p class="included-text">moments designed for deep connection</p>
+        <p class="included-text">personalised interactive Google Maps available with Journey Concierge</p>
       </div>
       <div class="included-item">
         <div class="included-check"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
-        <p class="included-text">local experiences you wouldn't easily find yourself</p>
+        <p class="included-text">local cafés, food spots, markets, cultural stops, and slower detours</p>
+      </div>
+      <div class="included-item">
+        <div class="included-check"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg></div>
+        <p class="included-text">pointers to distinctive experiences you would be unlikely to find quickly on your own</p>
       </div>
     </div>
+  </div>
+</section>
+
+
+<!-- WHO IT'S FOR -->
+<section class="who-for">
+  <div class="who-for-inner">
+    <h2 class="who-for-heading reveal">who it's<br><em>for</em></h2>
+    <p class="who-for-body reveal" style="transition-delay:0.1s;">For couples, solo travellers, and small groups who want a self-guided trip with clarity. Best for people who like independence, early starts when they matter, and days that feel considered rather than overfilled.</p>
+  </div>
+  <div class="who-for-image reveal" style="transition-delay:0.2s;">
+    <picture>
+      <source srcset="images/who-its-for-polaroid.webp" type="image/webp">
+      <img src="images/who-its-for-polaroid.png" alt="Two elders sitting on a stone bench beneath a tree" width="1080" height="1350" loading="lazy" decoding="async">
+    </picture>
   </div>
 </section>
 
@@ -747,13 +1285,16 @@ a { text-decoration: none; color: inherit; }
 <section class="concierge">
   <div class="concierge-bg"></div>
   <div class="concierge-content">
-    <h2 class="concierge-heading reveal">optional<br>concierge</h2>
-    <p class="concierge-body reveal" style="transition-delay: 0.15s;">Prefer everything handled? Add our concierge service and we'll manage bookings, timing, and last-minute changes so you can focus on the journey</p>
-    <a href="contact.html" class="btn btn-ghost reveal">Upgrade with Concierge</a>
+    <h2 class="concierge-heading reveal">optional journey<br>concierge</h2>
+    <p class="concierge-lead reveal" style="transition-delay: 0.1s;">Prefer everything handled?</p>
+    <p class="concierge-body reveal" style="transition-delay: 0.15s;">With the itinerary, you receive the complete self-guided route and book it yourself. With journey concierge, we help manage bookings, timing, and last-minute changes so you can focus on the journey.</p>
+    <a href="contact.html" class="btn btn-ghost reveal">Upgrade to Concierge</a>
   </div>
   <p class="concierge-disclaimer">Flights, accommodation, and activity costs are not included</p>
 </section>
 
+
+</main>
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -762,7 +1303,7 @@ a { text-decoration: none; color: inherit; }
     <a href="mailto:info@samastatravels.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 6 10-6"/></svg></a>
     <a href="faqs.html" class="footer-faqs">FAQs</a>
   </div>
-  <a href="index.html" class="footer-logo-mark"><img src="images/logo-mark-transparent.png" alt="Samasta"></a>
+  <a href="index.html" class="footer-logo-mark"><img src="images/logo-mark-transparent.png" alt="Samasta" width="170" height="174" loading="lazy" decoding="async"></a>
 </footer>
 
 <script>
@@ -778,6 +1319,26 @@ const nav = document.querySelector('.nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 80);
 });
+
+// Destination cards: hover handles desktop; tap toggles on touch devices
+(function() {
+  var cards = document.querySelectorAll('.dest-card');
+  if (!cards.length) return;
+  // Only enable tap-toggle on touch / coarse pointer
+  var isCoarse = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  if (!isCoarse) return;
+  cards.forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      e.preventDefault();
+      var wasOpen = card.classList.contains('is-open');
+      cards.forEach(function(c) { c.classList.remove('is-open'); c.setAttribute('aria-expanded','false'); });
+      if (!wasOpen) {
+        card.classList.add('is-open');
+        card.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+})();
 </script>
 
 

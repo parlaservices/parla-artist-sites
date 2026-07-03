@@ -2,21 +2,90 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
-<meta name="description" content="Samasta — Curated travel itineraries through Indonesia. From volcanic highlands to coastal villages, experience the journey the way it was meant to feel.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Samasta — Travel, the way it was meant to feel</title>
+<title>Samasta — Java & Bali Itinerary | Self-Guided Indonesia Journey</title>
+<meta name="description" content="A curated 14-day Java to Bali itinerary, designed for travellers who want Indonesia on their own terms. Volcanic landscapes, village kitchens, design-led stays.">
+<link rel="canonical" href="https://samastatravels.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Samasta Travel">
+<meta property="og:title" content="Samasta — Java & Bali Itinerary | Self-Guided Indonesia Journey">
+<meta property="og:description" content="A curated 14-day Java to Bali itinerary, designed for travellers who want Indonesia on their own terms. Volcanic landscapes, village kitchens, design-led stays.">
+<meta property="og:url" content="https://samastatravels.com/">
+<meta property="og:image" content="https://samastatravels.com/images/og-index.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Samasta — Java & Bali Itinerary | Self-Guided Indonesia Journey">
+<meta name="twitter:description" content="A curated 14-day Java to Bali itinerary, designed for travellers who want Indonesia on their own terms. Volcanic landscapes, village kitchens, design-led stays.">
+<meta name="twitter:image" content="https://samastatravels.com/images/og-index.jpg">
+
+<link rel="preload" as="image" href="images/hero-poster.jpg" fetchpriority="high">
 <link rel="icon" type="image/png" href="data:image/png;base64,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">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Alex+Brush&display=block" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "@id": "https://samastatravels.com/#organization",
+  "name": "Samasta Travel",
+  "url": "https://samastatravels.com/",
+  "logo": "https://samastatravels.com/images/samasta-logo-white.png",
+  "image": "https://samastatravels.com/images/og-index.jpg",
+  "description": "Curated travel itineraries through Indonesia. From volcanic highlands to coastal villages, experience the journey the way it was meant to feel.",
+  "email": "info@samastatravels.com",
+  "areaServed": {
+    "@type": "Country",
+    "name": "Indonesia"
+  },
+  "sameAs": [
+    "https://www.instagram.com/samastatravels/"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://samastatravels.com/#website",
+  "url": "https://samastatravels.com/",
+  "name": "Samasta Travel",
+  "description": "Curated Indonesia travel itineraries",
+  "publisher": {
+    "@id": "https://samastatravels.com/#organization"
+  },
+  "inLanguage": "en"
+}
+</script>
 <style>
 /* ============================================
    DESIGN TOKENS
    ============================================ */
+@font-face {
+  font-family: 'TT Commons Pro';
+  src: local('TT Commons Pro'), local('TTCommonsPro-Regular'), url('fonts/TTCommonsPro-Regular.woff2') format('woff2'), url('fonts/TTCommonsPro-Regular.woff') format('woff');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'TT Commons Pro';
+  src: local('TT Commons Pro Medium'), local('TTCommonsPro-Medium'), url('fonts/TTCommonsPro-Medium.woff2') format('woff2'), url('fonts/TTCommonsPro-Medium.woff') format('woff');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'TT Commons Pro';
+  src: local('TT Commons Pro Bold'), local('TTCommonsPro-Bold'), url('fonts/TTCommonsPro-Bold.woff2') format('woff2'), url('fonts/TTCommonsPro-Bold.woff') format('woff');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
 :root {
   /* Palette */
-  --obsidian: #0A0A0A;
+  --obsidian: #000000;
   --white: #FFFFFF;
   --warm-stone: #918778;
   --sage: #658063;
@@ -26,10 +95,11 @@
   --driftwood: #807970;
 
   /* Typography
-     Production: replace 'DM Sans' with self-hosted 'TT Commons Pro'
-     DM Sans is used as a close geometric sans stand-in for preview.
+     Brand font is TT Commons Pro (self-hosted via @font-face above — drop the
+     licensed .woff2/.woff files into /fonts). DM Sans remains as the fallback
+     until those files are present.
   */
-  --font-heading: 'DM Sans', 'TT Commons Pro', 'Helvetica Neue', sans-serif;
+  --font-heading: 'TT Commons Pro', 'DM Sans', 'Helvetica Neue', sans-serif;
   --font-body: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   --font-script: 'Alex Brush', 'Brush Script MT', 'Segoe Script', cursive;
 
@@ -69,7 +139,9 @@ body {
   letter-spacing: var(--ls-body);
 }
 
-img { max-width: 100%; display: block; }
+img { max-width: 100%; display: block; height: auto; }
+/* Logo has inline height: 28px — width must auto-scale to preserve aspect ratio */
+.nav-logo img { width: auto; }
 a { text-decoration: none; color: inherit; }
 
 /* ============================================
@@ -95,7 +167,7 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 28px var(--content-pad);
+  padding: 32px var(--content-pad);
   transition: background 0.4s ease;
 }
 .nav.scrolled {
@@ -112,7 +184,8 @@ a { text-decoration: none; color: inherit; }
 }
 .nav-links {
   display: flex;
-  gap: 40px;
+  align-items: center;
+  gap: 48px;
   list-style: none;
 }
 .nav-links a {
@@ -170,6 +243,14 @@ a { text-decoration: none; color: inherit; }
 .btn-ghost-dark:hover {
   background: var(--obsidian);
   color: var(--white);
+}
+.btn-solid {
+  background: var(--obsidian);
+  color: var(--white);
+  border: 1px solid var(--obsidian);
+}
+.btn-solid:hover {
+  background: rgba(10,10,10,0.85);
 }
 
 /* ============================================
@@ -493,8 +574,8 @@ a { text-decoration: none; color: inherit; }
 .designed-body {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 18px;
-  color: rgba(255,255,255,0.9);
+  font-size: 20px;
+  color: var(--white);
   line-height: var(--lh-body);
   text-align: justify;
   margin-bottom: 28px;
@@ -562,7 +643,7 @@ a { text-decoration: none; color: inherit; }
     padding: 18px var(--content-pad);
   }
   .nav-links {
-    gap: 16px;
+    gap: 20px;
   }
   .nav-links a {
     font-size: 10px;
@@ -646,6 +727,155 @@ a { text-decoration: none; color: inherit; }
   .nav-links .nav-btn { padding: 14px 28px !important; }
 }
 
+/* ============================================
+   SECTION 3: WELCOME IN
+   ============================================ */
+.welcome {
+  position: relative;
+  background: #E9E2D2;
+  color: var(--obsidian);
+  overflow: hidden;
+}
+.welcome-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('images/paper-bg.webp'), url('images/paper-bg.png');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  opacity: 0.9;
+  pointer-events: none;
+}
+.welcome-inner {
+  position: relative;
+  z-index: 1;
+  padding: var(--section-pad) var(--content-pad) 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.welcome-intro { text-align: center; max-width: 640px; margin: 0 auto; }
+.welcome-heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(36px, 5vw, 60px);
+  letter-spacing: var(--ls-headers);
+  line-height: var(--lh-lower);
+  text-transform: uppercase;
+  color: var(--obsidian);
+}
+.welcome-heading em { font-style: italic; font-weight: 700; }
+.welcome-body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 20px;
+  line-height: var(--lh-body);
+  color: var(--obsidian);
+  max-width: 480px;
+  margin: 24px auto 32px;
+}
+.welcome-cta {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+.welcome-cta:hover {
+  background: #7a7a7a;
+  border-color: #7a7a7a;
+}
+.welcome-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: clamp(40px, 5vw, 64px);
+}
+.welcome-card { position: relative; overflow: hidden; aspect-ratio: 4 / 5; }
+.welcome-card picture { display: block; width: 100%; height: 100%; }
+.welcome-card img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+.welcome-card:hover img { transform: scale(1.06); }
+.welcome-card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(20px, 2.5vw, 32px);
+  background: rgba(0,0,0,0.35);
+}
+.welcome-card-label {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(14px, 1.4vw, 19px);
+  letter-spacing: 0.12em;
+  line-height: 1.45;
+  color: var(--white);
+  text-transform: lowercase;
+  text-align: center;
+}
+@media (max-width: 900px) {
+  .welcome-grid {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0;
+    padding: 0;
+  }
+  .welcome-grid::-webkit-scrollbar { display: none; }
+  .welcome-card { flex: 0 0 85%; max-width: none; scroll-snap-align: start; }
+}
+
+/* ============================================
+   SECTION 3B: THE COLLECTOR'S MAP 01
+   ============================================ */
+.cmap {
+  position: relative;
+  overflow: hidden;
+  color: var(--white);
+  padding: clamp(50px, 6.5vw, 100px) var(--content-pad);
+}
+.cmap-bg { position: absolute; inset: 0; z-index: 0; }
+.cmap-bg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cmap-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.40); z-index: 1; }
+.cmap-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1150px;
+  margin: 0 auto;
+  text-align: center;
+}
+.cmap-heading-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: clamp(20px, 4vw, 64px);
+}
+.cmap-word {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(20px, 3vw, 34px);
+  letter-spacing: var(--ls-headers);
+  line-height: var(--lh-lower);
+  text-transform: lowercase;
+  color: var(--white);
+  white-space: nowrap;
+  text-align: center;
+}
+.cmap-envelope { display: block; width: clamp(320px, 36vw, 540px); }
+.cmap-envelope img { width: 100%; height: auto; display: block; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4)); }
+.cmap-cta {
+  margin-top: clamp(16px, 2.5vw, 28px);
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s;
+}
+@media (max-width: 768px) {
+  .cmap-heading-row { grid-template-columns: 1fr; justify-items: center; gap: 24px; }
+  .cmap-word { font-size: clamp(18px, 5.5vw, 26px); }
+  .cmap-envelope { width: min(82vw, 380px); margin-top: calc(-1 * min(5.5vw, 28px)); margin-bottom: calc(-1 * min(5.5vw, 28px)); }
+  .cmap-cta { display: block; width: min(82vw, 380px); margin: 28px auto 0; box-sizing: border-box; }
+}
+
 </style>
 </head>
 <body>
@@ -654,14 +884,17 @@ a { text-decoration: none; color: inherit; }
      NAVIGATION
      ============================================ -->
 <nav class="nav" id="nav">
-  <a href="index.html" class="nav-logo"><img src="images/samasta-logo-white.png" alt="Samasta" style="height: 28px; display: block;"></a>
+  <a href="index.html" class="nav-logo"><img src="images/samasta-logo-white.png" alt="Samasta" style="height: 28px; display: block;" width="310" height="79" fetchpriority="high" decoding="async"></a>
   <button class="nav-burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links">
+    <li><a href="#circle">The Circle</a></li>
     <li><a href="journeys.html">Our Journeys</a></li>
     <li><a href="plan.html">Plan Your Trip</a></li>
     <li><a href="contact.html" class="nav-btn">Get in Touch</a></li>
   </ul>
 </nav>
+
+<main>
 
 <!-- ============================================
      SECTION 1: HERO
@@ -713,36 +946,69 @@ a { text-decoration: none; color: inherit; }
       <a href="journeys.html" class="btn btn-ghost">Explore the journeys</a>
     </div>
     <div class="arrive-image-wrap reveal" style="transition-delay: 0.15s;">
-      <img src="images/mountain-bw.png" alt="Mountain landscape" class="arrive-image">
+      <img src="images/mountain-bw.png" alt="Mountain landscape" class="arrive-image" width="893" height="912" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
 
 <!-- ============================================
-     SECTION 3: THE FIRST DESTINATION
+     SECTION 3: WELCOME IN
      ============================================ -->
-<section class="destination">
-  <div class="destination-grid">
-    <div class="reveal">
-      <h2 class="destination-label">The First<br>Destination</h2>
-      <p class="destination-sub">
-        How to fall in love with<br>
-        Indonesia in 14 days
-      </p>
-      <p class="highlights-label">Highlights</p>
-      <ul class="highlights-list">
-        <li>Sunrise over Mount Bromo</li>
-        <li>Train journeys across Java</li>
-        <li>Village markets and local kitchens</li>
-        <li>Dramatic volcanic terrain</li>
-        <li>Design-led stays in Bali</li>
-      </ul>
-      <!-- IMP #3: Primary CTA -->
-      <a href="journeys.html" class="btn btn-ghost-dark">Unlock the itinerary</a>
+<section class="welcome" id="circle">
+  <div class="welcome-bg" aria-hidden="true"></div>
+  <div class="welcome-inner">
+    <div class="welcome-intro reveal">
+      <h2 class="welcome-heading">Welcome <em>in</em></h2>
+      <p class="welcome-body">We're building a growing collection of journeys, destination guides and stories from across Indonesia. One route, one story and one destination at a time.</p>
+      <a href="https://forms.gle/rsQETuWactn9vecEA" target="_blank" rel="noopener" class="btn btn-solid welcome-cta">Join our circle</a>
     </div>
-    <div class="destination-mockup reveal" style="transition-delay: 0.15s;">
-      <img src="images/itinerary-spread.png" alt="Java to Bali itinerary preview on tablet">
+  </div>
+  <div class="welcome-grid">
+      <div class="welcome-card">
+        <picture>
+          <source srcset="images/welcome-fields.webp" type="image/webp">
+          <img src="images/welcome-fields.png" alt="Terraced hillsides and palm groves in Indonesia" width="1080" height="1350" loading="lazy" decoding="async">
+        </picture>
+        <span class="welcome-card-overlay"><span class="welcome-card-label">new journeys<br>as they're<br>released</span></span>
+      </div>
+      <div class="welcome-card">
+        <picture>
+          <source srcset="images/welcome-car.webp" type="image/webp">
+          <img src="images/welcome-car.png" alt="A vintage car on a mountain road" width="1080" height="1350" loading="lazy" decoding="async">
+        </picture>
+        <span class="welcome-card-overlay"><span class="welcome-card-label">destination<br>guides &amp;<br>travel notes</span></span>
+      </div>
+      <div class="welcome-card">
+        <picture>
+          <source srcset="images/welcome-weaver.webp" type="image/webp">
+          <img src="images/welcome-weaver.png" alt="A weaver working at a traditional loom" width="1080" height="1350" loading="lazy" decoding="async">
+        </picture>
+        <span class="welcome-card-overlay"><span class="welcome-card-label">early access<br>to future<br>collections</span></span>
+      </div>
+  </div>
+</section>
+
+<!-- ============================================
+     SECTION 3B: THE COLLECTOR'S MAP 01
+     ============================================ -->
+<section class="cmap" id="collection">
+  <div class="cmap-bg" aria-hidden="true">
+    <picture>
+      <source srcset="images/collectors-map-bg.webp" type="image/webp">
+      <img src="images/collectors-map-bg.png" alt="" width="1366" height="968" loading="lazy" decoding="async">
+    </picture>
+  </div>
+  <div class="cmap-overlay"></div>
+  <div class="cmap-content">
+    <div class="cmap-heading-row">
+      <span class="cmap-word reveal" style="transition-delay: 0.15s;">your first</span>
+      <picture class="cmap-envelope reveal">
+        <source srcset="images/collectors-envelope.webp" type="image/webp">
+        <img src="images/collectors-envelope.png" alt="The Collector's Map 01: Java to Bali — how to fall in love with Indonesia in 14 days" width="1080" height="1350" loading="lazy" decoding="async">
+      </picture>
+      <span class="cmap-word reveal" style="transition-delay: 0.25s;">journey</span>
     </div>
+    <a href="journeys.html" class="btn btn-ghost cmap-cta reveal">Start your collection</a>
   </div>
 </section>
 
@@ -757,7 +1023,10 @@ a { text-decoration: none; color: inherit; }
       you shouldn't need weeks of research to experience a place properly
     </h2>
     <div class="polaroids-row reveal" style="transition-delay: 0.15s;">
-      <img src="images/polaroids-transparent-sm.png" alt="Polaroid photos of traditional village and outrigger boat">
+      <picture>
+          <source srcset="images/polaroids-transparent-sm.webp" type="image/webp">
+          <img src="images/polaroids-transparent-sm.png" alt="Polaroid photos of traditional village and outrigger boat" width="1777" height="724" loading="lazy" decoding="async">
+        </picture>
     </div>
     <!-- IMP #3: Secondary CTA — "Plan a custom trip" -->
     <a href="plan.html" class="btn btn-ghost reveal">Plan a Bespoke Trip</a>
@@ -771,7 +1040,7 @@ a { text-decoration: none; color: inherit; }
   <div class="designed-grid">
     <div class="designed-image reveal">
       <div class="designed-accent"></div>
-      <img src="images/statue-bw.jpg" alt="Balinese statue with traditional floral headdress">
+      <img src="images/statue-bw.jpg" alt="Balinese statue with traditional floral headdress" width="491" height="820" loading="lazy" decoding="async">
     </div>
     <div class="designed-text reveal" style="transition-delay: 0.15s;">
       <h2 class="designed-heading">Designed<br>Around<br class="br-desktop"> You</h2>
@@ -785,6 +1054,8 @@ a { text-decoration: none; color: inherit; }
      SCRIPTS
      ============================================ -->
 
+</main>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-left">
@@ -792,7 +1063,7 @@ a { text-decoration: none; color: inherit; }
     <a href="mailto:info@samastatravels.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 6 10-6"/></svg></a>
     <a href="faqs.html" class="footer-faqs">FAQs</a>
   </div>
-  <a href="index.html" class="footer-logo-mark"><img src="images/logo-mark-transparent.png" alt="Samasta"></a>
+  <a href="index.html" class="footer-logo-mark"><img src="images/logo-mark-transparent.png" alt="Samasta" width="170" height="174" loading="lazy" decoding="async"></a>
 </footer>
 
 <script>

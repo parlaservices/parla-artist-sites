@@ -2,21 +2,155 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
-<meta name="description" content="Samasta — Frequently asked questions about our itineraries, concierge service, and how we design your journey through Indonesia.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Samasta — FAQs</title>
+<title>FAQs — Indonesia Itineraries & Custom Trip Planning | Samasta</title>
+<meta name="description" content="Answers to common questions about our Java & Bali itinerary, concierge service, visas, booking lead times, and how Samasta works.">
+<link rel="canonical" href="https://samastatravels.com/faqs/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Samasta Travel">
+<meta property="og:title" content="FAQs — Indonesia Itineraries & Custom Trip Planning | Samasta">
+<meta property="og:description" content="Answers to common questions about our Java & Bali itinerary, concierge service, visas, booking lead times, and how Samasta works.">
+<meta property="og:url" content="https://samastatravels.com/faqs/">
+<meta property="og:image" content="https://samastatravels.com/images/og-faqs.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FAQs — Indonesia Itineraries & Custom Trip Planning | Samasta">
+<meta name="twitter:description" content="Answers to common questions about our Java & Bali itinerary, concierge service, visas, booking lead times, and how Samasta works.">
+<meta name="twitter:image" content="https://samastatravels.com/images/og-faqs.jpg">
+
 <link rel="icon" type="image/png" href="data:image/png;base64,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">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Alex+Brush&display=block" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is the itinerary really free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Join us and you'll receive immediate access to our self-guided itinerary at no cost. If you'd prefer a journey tailored to you, or would like us to handle bookings, logistics and support along the way, you can upgrade to our personalised itinerary or concierge service at any time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between the itinerary, personalised itinerary and journey concierge service?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our self-guided itinerary gives you everything you need to explore independently, including the route, stay recommendations, transport guidance and local recommendations. A personalised itinerary is designed around you — your travel style, interests, budget and pace. With concierge, we go a step further, managing accommodation, transport, bookings, reservations and changes on your behalf so you can simply enjoy the journey."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How will I receive the itinerary?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Once you join our circle, your itinerary will be delivered instantly to your inbox as a digital download, ready to save and use while travelling."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you book everything for me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not with the self-guided itinerary. You'll make your own bookings using our recommendations. If you'd rather we handle the planning, booking coordination and logistics, our journey concierge service is designed to take care of everything for you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's included in the itinerary?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your itinerary includes a thoughtfully designed route, curated stay recommendations, transport guidance, a custom map, local recommendations and practical travel notes to help you explore independently. It is a planning product, not a bundled tour package."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if something changes during my trip?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you're travelling with the self-guided itinerary, you'll manage any changes directly with your accommodation or transport providers. If you've chosen our concierge service, we'll help coordinate changes, resolve issues and adjust your plans wherever possible while you're travelling."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a visa to visit Indonesia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Many travellers can obtain a Visa on Arrival when entering Indonesia. Visa requirements vary by nationality, so we recommend checking the latest entry requirements before travelling. If you add our concierge service, we're happy to guide you through the process."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How far in advance should I book?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We recommend reaching out at least 3–6 weeks in advance, especially if you're travelling during peak periods or would like concierge support."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you include flights and accommodation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, flights and accommodation are not included with the self-guided itinerary. If you choose our concierge service, we'll help coordinate and book your accommodation, transport and selected experiences, so you can focus on enjoying the journey."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://samastatravels.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "FAQs",
+      "item": "https://samastatravels.com/faqs/"
+    }
+  ]
+}
+</script>
 <style>
+@font-face {
+  font-family: 'TT Commons Pro';
+  src: local('TT Commons Pro'), local('TTCommonsPro-Regular'), url('fonts/TTCommonsPro-Regular.woff2') format('woff2'), url('fonts/TTCommonsPro-Regular.woff') format('woff');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'TT Commons Pro';
+  src: local('TT Commons Pro Medium'), local('TTCommonsPro-Medium'), url('fonts/TTCommonsPro-Medium.woff2') format('woff2'), url('fonts/TTCommonsPro-Medium.woff') format('woff');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'TT Commons Pro';
+  src: local('TT Commons Pro Bold'), local('TTCommonsPro-Bold'), url('fonts/TTCommonsPro-Bold.woff2') format('woff2'), url('fonts/TTCommonsPro-Bold.woff') format('woff');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
 :root {
-  --obsidian: #0A0A0A;
+  --obsidian: #000000;
   --white: #FFFFFF;
   --warm-stone: #918778;
   --sandstone: #BFB29C;
-  --font-heading: 'DM Sans', 'TT Commons Pro', 'Helvetica Neue', sans-serif;
+  --font-heading: 'TT Commons Pro', 'DM Sans', 'Helvetica Neue', sans-serif;
   --font-body: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   --ls-headers: 0.185em;
   --ls-buttons: 0.135em;
@@ -35,7 +169,9 @@ body {
   overflow-x: hidden;
   line-height: var(--lh-body);
 }
-img { max-width: 100%; display: block; }
+img { max-width: 100%; display: block; height: auto; }
+/* Logo has inline height: 28px — width must auto-scale to preserve aspect ratio */
+.nav-logo img { width: auto; }
 a { text-decoration: none; color: inherit; }
 
 .reveal {
@@ -118,29 +254,71 @@ a { text-decoration: none; color: inherit; }
   margin: 0 auto;
 }
 .faq-item {
-  display: grid;
-  grid-template-columns: 0.4fr 0.6fr;
-  gap: 40px;
-  align-items: start;
-  padding: 40px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+}
+.faq-item:first-of-type {
+  border-top: 1px solid rgba(255,255,255,0.14);
 }
 .faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  padding: clamp(24px, 3vw, 34px) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  text-align: left;
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: clamp(14px, 1.4vw, 17px);
+  font-size: clamp(14px, 1.4vw, 16px);
   letter-spacing: var(--ls-headers);
   line-height: var(--lh-caps);
   text-transform: uppercase;
-  color: var(--white);
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  transition: color 0.2s ease;
 }
+.faq-question:hover,
+.faq-question:focus-visible { color: rgba(255,255,255,0.75); }
+.faq-q-text { flex: 1; }
+.faq-icon {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: rgba(255,255,255,0.75);
+}
+.faq-icon svg { width: 100%; height: 100%; display: block; }
+.faq-icon-vert {
+  transform-origin: 12px 12px;
+  transition: transform 0.35s cubic-bezier(.4,.0,.2,1);
+}
+.faq-question[aria-expanded="true"] .faq-icon-vert {
+  transform: rotate(90deg);
+}
+.faq-panel {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.45s cubic-bezier(.4,.0,.2,1);
+}
+.faq-panel.is-open { max-height: 1200px; }
 .faq-answer {
+  padding: 0 40px clamp(28px, 3.5vw, 40px) 0;
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 18px;
-  color: rgba(255,255,255,0.9);
+  font-size: 20px;
+  color: var(--white);
   line-height: var(--lh-body);
-  text-align: justify;
+  max-width: 720px;
 }
+.faq-answer p { margin: 0 0 14px; }
+.faq-answer p:last-child { margin-bottom: 0; }
 
 /* CTA */
 .faq-cta {
@@ -215,10 +393,16 @@ a { text-decoration: none; color: inherit; }
 }
 .footer-logo-mark:hover img { opacity: 0.8; }
 
-@media (max-width: 900px) {
-  .faq-item {
-    grid-template-columns: 1fr;
-    gap: 16px;
+@media (max-width: 768px) {
+  .faq-question {
+    font-size: 13px;
+    padding: 22px 0;
+    gap: 20px;
+  }
+  .faq-answer {
+    font-size: 20px;
+    padding-right: 20px;
+    padding-bottom: 24px;
   }
 }
 @media (max-width: 600px) {
@@ -304,14 +488,17 @@ a { text-decoration: none; color: inherit; }
 <body>
 
 <nav class="nav">
-  <a href="index.html" class="nav-logo"><img src="images/samasta-logo-white.png" alt="Samasta" style="height: 28px; display: block;"></a>
+  <a href="index.html" class="nav-logo"><img src="images/samasta-logo-white.png" alt="Samasta" style="height: 28px; display: block;" width="310" height="79" fetchpriority="high" decoding="async"></a>
   <button class="nav-burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-right">
+    <li><a href="index.html#circle">The Circle</a></li>
     <li><a href="journeys.html">Our Journeys</a></li>
     <li><a href="plan.html">Plan Your Trip</a></li>
     <li><a href="contact.html" class="nav-btn">Get in Touch</a></li>
   </ul>
 </nav>
+
+<main>
 
 <div class="faq-hero reveal">
   <h1 class="faq-heading">frequently asked<br>questions</h1>
@@ -320,38 +507,134 @@ a { text-decoration: none; color: inherit; }
 <div class="faq-section">
 
   <div class="faq-item reveal">
-    <h3 class="faq-question">What's the difference between the itinerary and concierge service?</h3>
-    <p class="faq-answer">Immediately after purchase, the itinerary will be delivered to your inbox as a digital download.</p>
+    <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-1" id="faq-btn-1">
+      <span class="faq-q-text">Is the itinerary really free?</span>
+      <span class="faq-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19" class="faq-icon-vert"/></svg>
+      </span>
+    </button>
+    <div class="faq-panel" id="faq-panel-1" role="region" aria-labelledby="faq-btn-1">
+      <div class="faq-answer">
+            <p>Yes. Join us and you'll receive immediate access to our self-guided itinerary at no cost. If you'd prefer a journey tailored to you, or would like us to handle bookings, logistics and support along the way, you can upgrade to our personalised itinerary or concierge service at any time.</p>
+      </div>
+    </div>
   </div>
 
   <div class="faq-item reveal">
-    <h3 class="faq-question">How will I receive the itinerary?</h3>
-    <p class="faq-answer">Immediately after purchase, the itinerary will be delivered to your inbox as a digital download.</p>
+    <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-2" id="faq-btn-2">
+      <span class="faq-q-text">What's the difference between the itinerary, personalised itinerary and journey concierge service?</span>
+      <span class="faq-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19" class="faq-icon-vert"/></svg>
+      </span>
+    </button>
+    <div class="faq-panel" id="faq-panel-2" role="region" aria-labelledby="faq-btn-2">
+      <div class="faq-answer">
+            <p>Our self-guided itinerary gives you everything you need to explore independently, including the route, stay recommendations, transport guidance and local recommendations.</p>
+            <p>A personalised itinerary is designed around you — your travel style, interests, budget and pace.</p>
+            <p>With concierge, we go a step further, managing accommodation, transport, bookings, reservations and changes on your behalf so you can simply enjoy the journey.</p>
+      </div>
+    </div>
   </div>
 
   <div class="faq-item reveal">
-    <h3 class="faq-question">Do you book everything for me?</h3>
-    <p class="faq-answer">Bookings are included as part of the concierge service. If you opt for the itinerary only, we'll provide curated recommendations and guidance, and you can book directly.</p>
+    <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-3" id="faq-btn-3">
+      <span class="faq-q-text">How will I receive the itinerary?</span>
+      <span class="faq-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19" class="faq-icon-vert"/></svg>
+      </span>
+    </button>
+    <div class="faq-panel" id="faq-panel-3" role="region" aria-labelledby="faq-btn-3">
+      <div class="faq-answer">
+            <p>Once you join our circle, your itinerary will be delivered instantly to your inbox as a digital download, ready to save and use while travelling.</p>
+      </div>
+    </div>
   </div>
 
   <div class="faq-item reveal">
-    <h3 class="faq-question">Do I need a visa to visit Indonesia?</h3>
-    <p class="faq-answer">Many travellers can obtain a Visa on Arrival when entering Indonesia. Visa requirements vary by nationality, so we recommend checking the latest entry requirements before travelling. If you add our concierge service, we're happy to guide you through the process.</p>
+    <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-4" id="faq-btn-4">
+      <span class="faq-q-text">Do you book everything for me?</span>
+      <span class="faq-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19" class="faq-icon-vert"/></svg>
+      </span>
+    </button>
+    <div class="faq-panel" id="faq-panel-4" role="region" aria-labelledby="faq-btn-4">
+      <div class="faq-answer">
+            <p>Not with the self-guided itinerary. You'll make your own bookings using our recommendations.</p>
+            <p>If you'd rather we handle the planning, booking coordination and logistics, our journey concierge service is designed to take care of everything for you.</p>
+      </div>
+    </div>
   </div>
 
   <div class="faq-item reveal">
-    <h3 class="faq-question">How far in advance should I book?</h3>
-    <p class="faq-answer">We recommend reaching out at least 3–6 weeks in advance, especially if you're travelling during peak periods or would like concierge support.</p>
+    <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-5" id="faq-btn-5">
+      <span class="faq-q-text">What's included in the itinerary?</span>
+      <span class="faq-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19" class="faq-icon-vert"/></svg>
+      </span>
+    </button>
+    <div class="faq-panel" id="faq-panel-5" role="region" aria-labelledby="faq-btn-5">
+      <div class="faq-answer">
+            <p>Your itinerary includes a thoughtfully designed route, curated stay recommendations, transport guidance, a custom map, local recommendations and practical travel notes to help you explore independently.</p>
+            <p>It is a planning product, not a bundled tour package.</p>
+      </div>
+    </div>
   </div>
 
   <div class="faq-item reveal">
-    <h3 class="faq-question">Do you include flights and accommodation?</h3>
-    <p class="faq-answer">No, flights and accommodation are not included. We focus on the on-the-ground journey where the experience is shaped.</p>
+    <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-6" id="faq-btn-6">
+      <span class="faq-q-text">What happens if something changes during my trip?</span>
+      <span class="faq-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19" class="faq-icon-vert"/></svg>
+      </span>
+    </button>
+    <div class="faq-panel" id="faq-panel-6" role="region" aria-labelledby="faq-btn-6">
+      <div class="faq-answer">
+            <p>If you're travelling with the self-guided itinerary, you'll manage any changes directly with your accommodation or transport providers.</p>
+            <p>If you've chosen our concierge service, we'll help coordinate changes, resolve issues and adjust your plans wherever possible while you're travelling.</p>
+      </div>
+    </div>
   </div>
 
   <div class="faq-item reveal">
-    <h3 class="faq-question">What happens if something changes during my trip?</h3>
-    <p class="faq-answer">If you've opted for concierge, we're available to assist with adjustments, changes, or any issues that arise while you're travelling.</p>
+    <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-7" id="faq-btn-7">
+      <span class="faq-q-text">Do I need a visa to visit Indonesia?</span>
+      <span class="faq-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19" class="faq-icon-vert"/></svg>
+      </span>
+    </button>
+    <div class="faq-panel" id="faq-panel-7" role="region" aria-labelledby="faq-btn-7">
+      <div class="faq-answer">
+            <p>Many travellers can obtain a Visa on Arrival when entering Indonesia. Visa requirements vary by nationality, so we recommend checking the latest entry requirements before travelling. If you add our concierge service, we're happy to guide you through the process.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item reveal">
+    <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-8" id="faq-btn-8">
+      <span class="faq-q-text">How far in advance should I book?</span>
+      <span class="faq-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19" class="faq-icon-vert"/></svg>
+      </span>
+    </button>
+    <div class="faq-panel" id="faq-panel-8" role="region" aria-labelledby="faq-btn-8">
+      <div class="faq-answer">
+            <p>We recommend reaching out at least 3–6 weeks in advance, especially if you're travelling during peak periods or would like concierge support.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item reveal">
+    <button class="faq-question" aria-expanded="false" aria-controls="faq-panel-9" id="faq-btn-9">
+      <span class="faq-q-text">Do you include flights and accommodation?</span>
+      <span class="faq-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="5" x2="12" y2="19" class="faq-icon-vert"/></svg>
+      </span>
+    </button>
+    <div class="faq-panel" id="faq-panel-9" role="region" aria-labelledby="faq-btn-9">
+      <div class="faq-answer">
+            <p>No, flights and accommodation are not included with the self-guided itinerary. If you choose our concierge service, we'll help coordinate and book your accommodation, transport and selected experiences, so you can focus on enjoying the journey.</p>
+      </div>
+    </div>
   </div>
 
 </div>
@@ -361,6 +644,8 @@ a { text-decoration: none; color: inherit; }
   <a href="contact.html" class="btn-ghost">Get in Touch</a>
 </div>
 
+</main>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-left">
@@ -368,7 +653,7 @@ a { text-decoration: none; color: inherit; }
     <a href="mailto:info@samastatravels.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 6 10-6"/></svg></a>
     <a href="faqs.html" class="footer-faqs">FAQs</a>
   </div>
-  <a href="index.html" class="footer-logo-mark"><img src="images/logo-mark-transparent.png" alt="Samasta"></a>
+  <a href="index.html" class="footer-logo-mark"><img src="images/logo-mark-transparent.png" alt="Samasta" width="170" height="174" loading="lazy" decoding="async"></a>
 </footer>
 
 <script>
@@ -383,6 +668,17 @@ reveals.forEach(el => observer.observe(el));
 const nav = document.querySelector('.nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 80);
+});
+
+// FAQ accordion — multiple panels can be open at once
+document.querySelectorAll('.faq-question').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var panel = document.getElementById(btn.getAttribute('aria-controls'));
+    if (!panel) return;
+    var wasOpen = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', wasOpen ? 'false' : 'true');
+    panel.classList.toggle('is-open', !wasOpen);
+  });
 });
 </script>
 
