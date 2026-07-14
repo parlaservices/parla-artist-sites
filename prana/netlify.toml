@@ -13,6 +13,64 @@
 # embed on studio.html. No hCaptcha / Supabase / Tailwind — there are no
 # on-page forms (bookings link out to myparla.app).
 
+# Legacy URLs from the old Squarespace site (and the pre-Squarespace site,
+# per Wayback) → closest live page, so Google drops the stale entries on
+# recrawl. /artists and /faqs need force=true: Netlify's pretty-URL handling
+# already serves artists.html/faqs.html at those paths, which would otherwise
+# shadow the redirect and leave duplicate content indexed at two URLs.
+
+[[redirects]]
+  from = "/contact"
+  to = "/studio.html"
+  status = 301
+
+[[redirects]]
+  from = "/who-we-are"
+  to = "/studio.html"
+  status = 301
+
+[[redirects]]
+  from = "/gallery"
+  to = "/artists.html"
+  status = 301
+
+[[redirects]]
+  from = "/bookings"
+  to = "/artists.html"
+  status = 301
+
+[[redirects]]
+  from = "/home"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/about"
+  to = "/studio.html"
+  status = 301
+
+[[redirects]]
+  from = "/portfolio/*"
+  to = "/artists.html"
+  status = 301
+
+[[redirects]]
+  from = "/soon"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/artists"
+  to = "/artists.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/faqs"
+  to = "/faqs.html"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/*"
 
