@@ -9,9 +9,11 @@
 #   cd /Users/test/dev/parla-artist-sites/prana
 #   netlify deploy --prod --site=ae72a073-f13d-44bd-ac73-18ddfd610df0 --dir=.
 #
-# CSP is scoped to Prana's real dependencies: Google Fonts + the Google Maps
-# embed on studio.html. No hCaptcha / Supabase / Tailwind — there are no
-# on-page forms (bookings link out to myparla.app).
+# CSP is scoped to Prana's real dependencies: Google Fonts, the Google Maps
+# embed on studio.html, and GA4 (gtag.js loader + analytics beacons, incl.
+# region-specific collect endpoints — hence the wildcards). No hCaptcha /
+# Supabase / Tailwind — there are no on-page forms (bookings link out to
+# myparla.app). Keep the CSP here and in _headers byte-identical.
 
 # Legacy URLs from the old Squarespace site (and the pre-Squarespace site,
 # per Wayback) → closest live page, so Google drops the stale entries on
@@ -79,4 +81,4 @@
     X-Frame-Options = "DENY"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self'; frame-src https://maps.google.com https://www.google.com https://*.google.com; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src https://maps.google.com https://www.google.com https://*.google.com; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
