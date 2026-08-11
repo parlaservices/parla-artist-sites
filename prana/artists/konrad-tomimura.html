@@ -3,6 +3,19 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- .js hook: gates the carousel reveal on scripting being available -->
+<script>document.documentElement.classList.add('js');</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FHVN91TMYH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FHVN91TMYH');
+</script>
+
 <link rel="preload" as="image" imagesrcset="img/konrad/portfolio-01-480.webp 480w, img/konrad/portfolio-01-768.webp 768w, img/konrad/portfolio-01.webp 900w" imagesizes="(max-width: 600px) 80vw, (max-width: 980px) 50vw, 25vw" type="image/webp" fetchpriority="high" />
   <!-- Favicons — Prana monogram -->
   <link rel="icon" href="../assets/favicon.ico" sizes="any">
@@ -237,6 +250,19 @@ a { color: inherit; text-decoration: none; }
   height: 100%;
   display: block;
   object-fit: cover;
+}
+/* Carousel reveal: images fade in with a left-to-right drift as they decode.
+   Gated on .js so a scripting failure can never hide the work. The first slide
+   is exempt so it is never painted at opacity 0 and stays a clean LCP candidate. */
+.js .portfolio-slide:not(:first-child) img {
+  opacity: 0;
+  transform: translateX(-14px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+  transition-delay: var(--reveal-delay, 0s);
+}
+.js .portfolio-slide img.is-revealed {
+  opacity: 1;
+  transform: translateX(0);
 }
 /* PLACEHOLDER: portfolio photograph — replace with <img> or background-image */
 .portfolio-slide .ph {
@@ -633,6 +659,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .js .portfolio-slide img { transform: none; transition: opacity 0.2s ease; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
@@ -768,16 +795,6 @@ a { color: inherit; text-decoration: none; }
     "https://instagram.com/konrad.qq"
   ]
 }
-</script>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FHVN91TMYH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-FHVN91TMYH');
 </script>
 </head>
 <body>
@@ -1181,29 +1198,57 @@ c223 -101 481 -300 829 -640 88 -85 237 -255 237 -269 0 -13 -144 -85 -230
 
 
 <script>
-/* Perf: hydrate carousel slides 5+ only as they approach the viewport */
+/* Carousel loading: hydrate slides as they approach the viewport, and reveal
+   each image with a left-to-right drift once it has decoded. Slide 1 is painted
+   immediately rather than faded, so it stays a valid LCP candidate for the
+   preload hint in the document head to accelerate. */
 (function () {
-  var lazyEls = document.querySelectorAll('.portfolio-slide source[data-srcset], .portfolio-slide img[data-src]');
-  if (!lazyEls.length) return;
-  function hydrate(el) {
-    if (el.dataset.srcset) { el.setAttribute('srcset', el.dataset.srcset); el.removeAttribute('data-srcset'); }
-    if (el.dataset.src)    { el.setAttribute('src', el.dataset.src);       el.removeAttribute('data-src'); }
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.portfolio-slide'));
+  if (!slides.length) return;
+
+  function reveal(img) {
+    if (!img || img.classList.contains('is-revealed')) return;
+    var show = function () { img.classList.add('is-revealed'); };
+    if (img.decode) { img.decode().then(show, show); } else { show(); }
+  }
+  /* Reveal on load *or* error: a broken image must never leave the slide
+     stranded at opacity 0, since the CSS has already hidden it. */
+  function arm(img) {
+    if (!img) return;
+    if (img.complete && img.currentSrc) { reveal(img); return; }
+    img.addEventListener('load',  function () { reveal(img); }, { once: true });
+    img.addEventListener('error', function () { reveal(img); }, { once: true });
   }
   function hydrateSlide(slide) {
-    slide.querySelectorAll('source[data-srcset], img[data-src]').forEach(hydrate);
+    slide.querySelectorAll('source[data-srcset], img[data-src]').forEach(function (el) {
+      if (el.dataset.srcset) { el.setAttribute('srcset', el.dataset.srcset); el.removeAttribute('data-srcset'); }
+      if (el.dataset.src)    { el.setAttribute('src', el.dataset.src);       el.removeAttribute('data-src'); }
+    });
+    arm(slide.querySelector('img'));
   }
-  if (!('IntersectionObserver' in window)) {
-    document.querySelectorAll('.portfolio-slide').forEach(hydrateSlide);
-    return;
-  }
+
+  var pending = slides.filter(function (s) { return s.querySelector('[data-src], [data-srcset]'); });
+  var eager   = slides.filter(function (s) { return pending.indexOf(s) === -1; });
+
+  /* Stagger the eagerly-loaded slides so the opening row reveals left to right.
+     Every eager slide is armed — the count varies per artist. The first slide
+     is skipped because CSS never hides it. */
+  var step = 0;
+  eager.forEach(function (s) {
+    var img = s.querySelector('img');
+    if (!img || s === slides[0]) return;
+    img.style.setProperty('--reveal-delay', (step++ * 110) + 'ms');
+    arm(img);
+  });
+
+  /* Defer the rest until they approach the viewport */
+  if (!('IntersectionObserver' in window)) { pending.forEach(hydrateSlide); return; }
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) { hydrateSlide(e.target); io.unobserve(e.target); }
     });
-  }, { rootMargin: '0px 600px 0px 600px' });
-  document.querySelectorAll('.portfolio-slide').forEach(function (s) {
-    if (s.querySelector('[data-src], [data-srcset]')) io.observe(s);
-  });
+  }, { rootMargin: '0px 900px 0px 900px' });
+  pending.forEach(function (s) { io.observe(s); });
 })();
 </script>
 </body>
