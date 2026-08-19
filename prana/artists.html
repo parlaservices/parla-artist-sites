@@ -4,6 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<!-- .js hook: gates the scroll cue on scripting being available -->
+<script>document.documentElement.classList.add('js');</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FHVN91TMYH"></script>
 <script>
@@ -24,7 +26,7 @@
   <meta name="theme-color" content="#23201A">
 
 <title>Tattoo Artists in Bondi Beach, Prana Tattoo</title>
-<meta name="description" content="Meet the six resident tattoo artists at Prana Tattoo, Bondi Beach. Specialising in fine line, blackwork, ornamental, dotwork, micro-realism and illustrative tattooing." />
+<meta name="description" content="Meet the seven resident tattoo artists at Prana Tattoo, Bondi Beach. Specialising in fine line, blackwork, ornamental, dotwork, micro-realism and illustrative tattooing." />
 
   <!-- SEO Phase 3 Task 1: canonical + OpenGraph + Twitter Card -->
   <link rel="canonical" href="https://pranatattoo.com/artists.html" />
@@ -32,7 +34,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Prana Tattoo" />
   <meta property="og:title" content="Tattoo Artists in Bondi Beach, Prana Tattoo" />
-  <meta property="og:description" content="Meet the six resident tattoo artists at Prana Tattoo, Bondi Beach. Specialising in fine line, blackwork, ornamental, dotwork, micro-realism and illustrative tattooing." />
+  <meta property="og:description" content="Meet the seven resident tattoo artists at Prana Tattoo, Bondi Beach. Specialising in fine line, blackwork, ornamental, dotwork, micro-realism and illustrative tattooing." />
   <meta property="og:url" content="https://pranatattoo.com/artists.html" />
   <meta property="og:image" content="https://pranatattoo.com/og/home.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -42,7 +44,7 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Tattoo Artists in Bondi Beach, Prana Tattoo" />
-  <meta name="twitter:description" content="Meet the six resident tattoo artists at Prana Tattoo, Bondi Beach. Specialising in fine line, blackwork, ornamental, dotwork, micro-realism and illustrative tattooing." />
+  <meta name="twitter:description" content="Meet the seven resident tattoo artists at Prana Tattoo, Bondi Beach. Specialising in fine line, blackwork, ornamental, dotwork, micro-realism and illustrative tattooing." />
   <meta name="twitter:image" content="https://pranatattoo.com/og/home.jpg" />
   <meta name="twitter:image:alt" content="Prana Tattoo, custom tattoo studio in Bondi Beach, Sydney" />
 
@@ -175,7 +177,7 @@ a { color: inherit; text-decoration: none; }
   /* Each row gets an equal third of the remaining viewport height
      (so the whole 6-tile mosaic is visible on landing without scrolling).
      minmax 180px floor protects us on very short viewports. */
-  grid-template-rows: repeat(3, minmax(180px, calc((100vh - var(--nav-h)) / 3)));
+  grid-template-rows: repeat(4, minmax(180px, calc((100vh - var(--nav-h)) / 2.8)));
   width: 100%;
 }
 .artist-cell,
@@ -383,6 +385,14 @@ a { color: inherit; text-decoration: none; }
   transform-origin: right center;
 }
 .artist-cell:hover .artist-cta-arrow { width: 30px; }
+
+/* Touch devices can't hover: keep the CTA and divider always visible.
+   Matches the desktop hover state so mobile users see the booking prompt. */
+@media (hover: none) {
+  .artist-cta { opacity: 1; transform: translateY(0); }
+  .artist-divider { transform: scaleX(1); opacity: 1; }
+  .artist-cta-arrow { width: 30px; }
+}
 
 /* =======================================================
    REVEAL PANEL — slides out from behind the artist tile
@@ -630,6 +640,52 @@ a { color: inherit; text-decoration: none; }
   .footer-artists { flex: 0 1 auto; }
   .footer-right { justify-content: center; }
 }
+
+/* Scroll cue — bottom-centre chevron, visible until first scroll.
+   Gated on .js so it can never persist for no-JS visitors. */
+.scroll-cue {
+  display: none;
+}
+.js .scroll-cue {
+  display: inline-flex;
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%);
+  z-index: 30;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  background: rgba(251, 250, 244, 0.92);
+  color: var(--ink);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+  animation: cue-bob 2.4s ease-in-out infinite;
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+.js .scroll-cue:hover {
+  background: var(--bg);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+}
+.js .scroll-cue.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+@keyframes cue-bob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(6px); }
+}
+@media (max-width: 980px) {
+  .js .scroll-cue { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .scroll-cue { animation: none; }
+}
 </style>
 
 <!-- SEO Phase 1: LocalBusiness schema -->
@@ -639,7 +695,7 @@ a { color: inherit; text-decoration: none; }
   "@type": "TattooParlor",
   "@id": "https://pranatattoo.com/#studio",
   "name": "Prana Tattoo",
-  "description": "Custom tattoo studio in Bondi Beach, Sydney. Six resident artists specialising in fine line, blackwork, ornamental, dotwork, micro-realism and black-and-grey realism.",
+  "description": "Custom tattoo studio in Bondi Beach, Sydney. Seven resident artists specialising in fine line, blackwork, ornamental, dotwork, micro-realism and black-and-grey realism.",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "101 O'Brien St",
@@ -662,6 +718,18 @@ a { color: inherit; text-decoration: none; }
   "priceRange": "$$$",
   "telephone": "+61 416 355 056",
   "email": "bookings@pranatattoo.com",
+  "founder": [
+    {
+      "@type": "Person",
+      "name": "Charlie Lund",
+      "url": "https://pranatattoo.com/artists/charlie-lund.html"
+    },
+    {
+      "@type": "Person",
+      "name": "Josh Marx",
+      "url": "https://pranatattoo.com/artists/josh-marx.html"
+    }
+  ],
   "sameAs": ["https://instagram.com/_pranatattoo.com_"]
 }
 </script>
@@ -989,8 +1057,45 @@ c223 -101 481 -300 829 -640 88 -85 237 -255 237 -269 0 -13 -144 -85 -230
 
       <div class="tile-empty is-medium" aria-hidden="true"></div>
 
+      <!-- ROW 4 -->
+      <a class="artist-cell tone-c reveal-right"
+         href="artists/louise-sargent.html"
+         aria-label="Explore Louise Sargent's profile and book">
+        <div class="artist-reveal" aria-hidden="true">
+          <picture>
+            <source type="image/webp" data-srcset="artists/img/louise/portfolio-06-480.webp 480w, artists/img/louise/portfolio-06-768.webp 768w, artists/img/louise/portfolio-06.webp 800w" sizes="25vw">
+            <img data-src="artists/img/louise/portfolio-06.jpg" alt="Fine line valkyrie tattoo by Louise Sargent at Prana Tattoo, Bondi Beach" decoding="async">
+          </picture>
+        </div>
+        <div class="artist-image" aria-hidden="true">
+          <picture>
+            <source type="image/webp" srcset="artists/img/louise/tile-600.webp 600w, artists/img/louise/tile.webp 1200w" sizes="(max-width: 600px) 100vw, (max-width: 980px) 50vw, 25vw">
+            <img src="artists/img/louise/tile.jpg" alt="" decoding="async">
+          </picture>
+        </div>
+        <div class="artist-overlay" aria-hidden="true"></div>
+        <div class="artist-content">
+          <span class="artist-name">Louise Sargent</span>
+          <span class="artist-divider" aria-hidden="true"></span>
+          <span class="artist-cta">
+            <span>Explore Profile &amp; Book</span>
+            <span class="artist-cta-arrow" aria-hidden="true"></span>
+          </span>
+        </div>
+      </a>
+
+      <div class="tile-empty is-dark" aria-hidden="true"></div>
+      <div class="tile-empty is-medium" aria-hidden="true"></div>
+      <div class="tile-empty is-light" aria-hidden="true"></div>
+
     </div>
   </section>
+  <button class="scroll-cue" aria-label="Scroll to more artists" data-scroll-cue>
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M6 9 L12 15 L18 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
 
   <!-- ============================================================
        BELOW-FOLD DESCRIPTOR — indexable copy, no heading hierarchy.
@@ -998,9 +1103,9 @@ c223 -101 481 -300 829 -640 88 -85 237 -255 237 -269 0 -13 -144 -85 -230
        ============================================================ -->
   <section class="artists-descriptor" aria-label="About the artists">
     <div class="container">
-      <p>Prana Tattoo is home to six resident artists working in Bondi Beach, Sydney. Each artist runs their own practice and bookings. You&rsquo;ll find their full portfolios, bios, and Instagram handles on their individual pages.</p>
-      <p>Between them, the roster covers <a href="artists/charlie-lund.html">illustrative black and grey, realism and custom script</a>, <a href="artists/josh-marx.html">ornamental, geometry, fine line and blackwork</a>, <a href="artists/caroline-lindskov.html">fine line and sacred geometry</a>, <a href="artists/konrad-tomimura.html">intricate small-scale composition</a>, <a href="artists/chris-moit.html">neo ornamental, black and grey, fine line and geometric work</a>, and <a href="artists/izzy-antonievich.html">freehand illustrative work</a>.</p>
-      <p>The studio is at 101 O&rsquo;Brien St, Bondi Beach, NSW 2026. Open 10am to 6pm every day by appointment.</p>
+      <p>Prana Tattoo is home to seven resident artists working in Bondi Beach, Sydney. Each artist runs their own practice and bookings. You&rsquo;ll find their full portfolios, bios, and Instagram handles on their individual pages.</p>
+      <p>Between them, the roster covers <a href="artists/charlie-lund.html">illustrative black and grey, realism and custom script</a>, <a href="artists/josh-marx.html">ornamental, geometry, fine line and blackwork</a>, <a href="artists/caroline-lindskov.html">fine line and sacred geometry</a>, <a href="artists/konrad-tomimura.html">intricate small-scale composition</a>, <a href="artists/chris-moit.html">neo ornamental, black and grey, fine line and geometric work</a>, <a href="artists/izzy-antonievich.html">freehand illustrative work</a>, and <a href="artists/louise-sargent.html">fine line with Japanese and neo-traditional influence</a>.</p>
+      <p>The studio is at 101 O&rsquo;Brien St, Bondi Beach, NSW 2026. Open 10am to 6pm: Monday to Friday by appointment, walk-ins welcome Saturday and Sunday.</p>
     </div>
   </section>
 
@@ -1028,7 +1133,7 @@ c223 -101 481 -300 829 -640 88 -85 237 -255 237 -269 0 -13 -144 -85 -230
           <a href="https://instagram.com/misskalitattoos" target="_blank" rel="noopener" aria-label="Caroline Lindskov on Instagram"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span class="handle">@misskalitattoos</span></a>
           <a href="https://instagram.com/konrad.qq" target="_blank" rel="noopener" aria-label="Konrad Tomimura on Instagram"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span class="handle">@konrad.qq</span></a>
           <a href="https://instagram.com/_buffa.tt_" target="_blank" rel="noopener" aria-label="Chris Moit on Instagram"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span class="handle">@_buffa.tt_</span></a>
-          <a href="https://instagram.com/jazz.fantasy" target="_blank" rel="noopener" aria-label="Izzy Antonievich on Instagram"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span class="handle">@jazz.fantasy</span></a>
+          <a href="https://instagram.com/jazz.fantasy" target="_blank" rel="noopener" aria-label="Izzy Antonievich on Instagram"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span class="handle">@jazz.fantasy</span></a><a href="https://instagram.com/louisesargenttattoos" target="_blank" rel="noopener" aria-label="Louise Sargent on Instagram"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span class="handle">@louisesargenttattoos</span></a>
       </div>
 
       <div class="footer-right">
@@ -1065,6 +1170,23 @@ c223 -101 481 -300 829 -640 88 -85 237 -255 237 -269 0 -13 -144 -85 -230
   if (document.readyState === 'complete') hydrate();
   else window.addEventListener('load', hydrate);
   if (mq.addEventListener) mq.addEventListener('change', hydrate);
+})();
+
+/* Scroll cue: hide on first scroll; click scrolls to the final row */
+(function () {
+  var cue = document.querySelector('[data-scroll-cue]');
+  if (!cue) return;
+  function hide() {
+    cue.classList.add('is-hidden');
+    window.removeEventListener('scroll', onScroll);
+  }
+  function onScroll() { if (window.scrollY > 40) hide(); }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  cue.addEventListener('click', function () {
+    var target = document.querySelector('a[href="artists/louise-sargent.html"]');
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    hide();
+  });
 })();
 </script>
 </body>

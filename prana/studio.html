@@ -202,6 +202,18 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.65;
   color: var(--ink);
 }
+.hero-copy a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--hair);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.25s ease, text-decoration-color 0.25s ease;
+}
+.hero-copy a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
 .hero-copy p.closing {
   font-style: italic;
   color: var(--smoke);
@@ -603,7 +615,7 @@ a { color: inherit; text-decoration: none; }
   "@type": "TattooParlor",
   "@id": "https://pranatattoo.com/#studio",
   "name": "Prana Tattoo",
-  "description": "Custom tattoo studio in Bondi Beach, Sydney. Six resident artists specialising in fine line, blackwork, ornamental, dotwork, micro-realism and black-and-grey realism.",
+  "description": "Custom tattoo studio in Bondi Beach, Sydney. Seven resident artists specialising in fine line, blackwork, ornamental, dotwork, micro-realism and black-and-grey realism.",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "101 O'Brien St",
@@ -626,6 +638,18 @@ a { color: inherit; text-decoration: none; }
   "priceRange": "$$$",
   "telephone": "+61 416 355 056",
   "email": "bookings@pranatattoo.com",
+  "founder": [
+    {
+      "@type": "Person",
+      "name": "Charlie Lund",
+      "url": "https://pranatattoo.com/artists/charlie-lund.html"
+    },
+    {
+      "@type": "Person",
+      "name": "Josh Marx",
+      "url": "https://pranatattoo.com/artists/josh-marx.html"
+    }
+  ],
   "sameAs": ["https://instagram.com/_pranatattoo.com_"]
 }
 </script>
@@ -786,7 +810,9 @@ c223 -101 481 -300 829 -640 88 -85 237 -255 237 -269 0 -13 -144 -85 -230
         <div class="hero-copy">
           <p>Prana represents the exchange of energy into form; art translated onto skin, carried between bodies.</p>
 
-          <p>We are a tattoo studio based in Bondi Beach, Sydney, specialising in fine line, blackwork, ornamental, and custom tattooing. You come to us with an idea, and we work with you to develop it into a tattoo that holds.</p>
+          <p>We are a tattoo studio based in Bondi Beach, Sydney showcasing an array of brilliant artists specialising in fine line, blackwork, ornamental, and custom tattooing. You come to us with an idea, and we work with you to develop it into a tattoo that holds.</p>
+
+          <p>Prana was founded by artists <a href="artists/charlie-lund.html">Charlie Lund</a> and <a href="artists/josh-marx.html">Josh Marx</a>, and is today home to seven residents, each running their own practice under one roof.</p>
 
           <p>Your piece is built in context, with placement, scale, and detail resolved on the body so the work feels considered and specific to you.</p>
 
@@ -916,7 +942,7 @@ c223 -101 481 -300 829 -640 88 -85 237 -255 237 -269 0 -13 -144 -85 -230
           <a href="https://instagram.com/misskalitattoos" target="_blank" rel="noopener" aria-label="Caroline Lindskov on Instagram"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span class="handle">@misskalitattoos</span></a>
           <a href="https://instagram.com/konrad.qq" target="_blank" rel="noopener" aria-label="Konrad Tomimura on Instagram"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span class="handle">@konrad.qq</span></a>
           <a href="https://instagram.com/_buffa.tt_" target="_blank" rel="noopener" aria-label="Chris Moit on Instagram"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span class="handle">@_buffa.tt_</span></a>
-          <a href="https://instagram.com/jazz.fantasy" target="_blank" rel="noopener" aria-label="Izzy Antonievich on Instagram"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span class="handle">@jazz.fantasy</span></a>
+          <a href="https://instagram.com/jazz.fantasy" target="_blank" rel="noopener" aria-label="Izzy Antonievich on Instagram"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span class="handle">@jazz.fantasy</span></a><a href="https://instagram.com/louisesargenttattoos" target="_blank" rel="noopener" aria-label="Louise Sargent on Instagram"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span class="handle">@louisesargenttattoos</span></a>
       </div>
 
       <div class="footer-right">
