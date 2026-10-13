@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get in Touch | Parla Studio</title>
+<meta name="description" content="Get in touch with Parla Studio. Choose your artist and tell us a little about what you have in mind, and we'll get back to you.">
+<link rel="canonical" href="https://parla-studio.netlify.app/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Parla Studio">
+<meta property="og:title" content="Get in Touch | Parla Studio">
+<meta property="og:description" content="Get in touch with Parla Studio. Choose your artist and tell us a little about what you have in mind, and we'll get back to you.">
+<meta property="og:url" content="https://parla-studio.netlify.app/">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Get in Touch | Parla Studio">
+<meta name="twitter:description" content="Get in touch with Parla Studio. Choose your artist and tell us a little about what you have in mind, and we'll get back to you.">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Alex+Brush&display=block" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Get in Touch \u2014 Parla Studio",
+  "url": "https://parla-studio.netlify.app/",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Parla Studio",
+    "url": "https://parla-studio.netlify.app/"
+  }
+}
+</script>
+<style>
+@font-face {
+  font-family: 'TT Commons Pro';
+  src: local('TT Commons Pro'), local('TTCommonsPro-Regular'), url('fonts/TTCommonsPro-Regular.woff2') format('woff2'), url('fonts/TTCommonsPro-Regular.woff') format('woff');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'TT Commons Pro';
+  src: local('TT Commons Pro Medium'), local('TTCommonsPro-Medium'), url('fonts/TTCommonsPro-Medium.woff2') format('woff2'), url('fonts/TTCommonsPro-Medium.woff') format('woff');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'TT Commons Pro';
+  src: local('TT Commons Pro Bold'), local('TTCommonsPro-Bold'), url('fonts/TTCommonsPro-Bold.woff2') format('woff2'), url('fonts/TTCommonsPro-Bold.woff') format('woff');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+:root {
+  --obsidian: #000000;
+  --white: #FFFFFF;
+  --warm-stone: #918778;
+  --sage: #658063;
+  --cream: #F4ECD8;
+  --sandstone: #BFB29C;
+
+  --font-heading: 'TT Commons Pro', 'DM Sans', 'Helvetica Neue', sans-serif;
+  --font-body: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  --font-script: 'Alex Brush', cursive;
+
+  --ls-headers: 0.185em;
+  --ls-buttons: 0.135em;
+  --lh-caps: 1.56;
+  --lh-lower: 1.2;
+  --lh-body: 1.7;
+  --content-pad: clamp(24px, 6vw, 100px);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--white);
+  background: var(--obsidian);
+  overflow-x: hidden;
+  line-height: var(--lh-body);
+}
+img { max-width: 100%; display: block; height: auto; }
+/* Logo has inline height: 28px — width must auto-scale to preserve aspect ratio */
+.nav-logo img { width: auto; }
+a { text-decoration: none; color: inherit; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* NAV */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px var(--content-pad);
+  transition: background 0.4s ease;
+}
+.nav.scrolled {
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.nav-logo {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: var(--ls-headers);
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  list-style: none;
+}
+.nav-right a {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: var(--ls-buttons);
+  text-transform: uppercase;
+  transition: opacity 0.3s;
+}
+.nav-right a:hover { opacity: 0.7; }
+.nav-btn {
+  border: 1px solid rgba(255,255,255,0.55);
+  border-radius: 30px;
+  padding: 12px 32px;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.nav-btn:hover {
+  border-color: var(--white);
+  background: var(--white);
+  color: var(--obsidian);
+}
+
+/* ENQUIRY FORM */
+.enquiry {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--obsidian);
+  padding: 160px var(--content-pad) clamp(80px, 10vw, 140px);
+}
+.enquiry-inner {
+  max-width: 560px;
+  width: 100%;
+}
+.enquiry-heading {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(32px, 4.5vw, 52px);
+  letter-spacing: var(--ls-headers);
+  line-height: var(--lh-lower);
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 16px;
+}
+.enquiry-sub {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 20px;
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  margin-bottom: 56px;
+  line-height: var(--lh-body);
+}
+.enquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.form-label {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: var(--ls-buttons);
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+}
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding: 14px 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--white);
+  outline: none;
+  transition: border-color 0.3s;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: rgba(255,255,255,0.35);
+}
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-bottom-color: rgba(255,255,255,0.5);
+}
+.form-select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+  padding-right: 24px;
+}
+.form-select:invalid {
+  color: rgba(255,255,255,0.35);
+}
+.form-select option {
+  background: var(--obsidian);
+  color: var(--white);
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 4px;
+}
+.form-textarea:focus {
+  border-color: rgba(255,255,255,0.35);
+}
+.form-question-num {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: var(--ls-buttons);
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+.form-question-num span {
+  display: block;
+  font-size: 14px;
+  color: rgba(255,255,255,0.9);
+  margin-top: 4px;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+}
+.form-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+.form-option {
+  position: relative;
+}
+.form-option input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.form-option label {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+  padding: 10px 20px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+.form-option label:hover {
+  border-color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.85);
+}
+.form-option input:checked + label {
+  border-color: var(--sandstone);
+  background: rgba(191,178,156,0.15);
+  color: var(--white);
+}
+.form-hint {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(255,255,255,0.5);
+  margin-top: 4px;
+}
+.enquiry-submit {
+  display: block;
+  width: 100%;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: var(--ls-buttons);
+  text-transform: uppercase;
+  text-align: center;
+  padding: 20px;
+  border-radius: 30px;
+  background: var(--sandstone);
+  color: var(--obsidian);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: 12px;
+}
+.enquiry-submit:hover {
+  background: #cec1ab;
+}
+.enquiry-confirmation {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 15px;
+  font-style: italic;
+  color: rgba(255,255,255,0.65);
+  text-align: center;
+  margin-top: 40px;
+  line-height: var(--lh-body);
+}
+
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+  .nav-right { gap: 20px; }
+}
+
+/* FOOTER */
+.footer {
+  background: var(--obsidian);
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding: 28px var(--content-pad);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.footer-left a {
+  color: rgba(255,255,255,0.8);
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+}
+.footer-left a:hover { color: var(--white); }
+.footer-left svg { width: 22px; height: 22px; }
+.footer-faqs {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: var(--ls-headers);
+  text-transform: uppercase;
+}
+.footer-copy {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+}
+.footer-logo-mark img {
+  height: 56px;
+  width: auto;
+  opacity: 0.75;
+  transition: opacity 0.3s;
+}
+.footer-logo-mark:hover img { opacity: 0.8; }
+@media (max-width: 768px) {
+  .nav {
+    padding: 18px var(--content-pad);
+  }
+  .nav-right {
+    gap: 16px;
+  }
+  .nav-right a {
+    font-size: 10px;
+  }
+  .nav-btn {
+    padding: 10px 18px;
+  }
+}
+@media (max-width: 480px) {
+  .nav-right {
+    gap: 10px;
+  }
+  .nav-right a {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+  .nav-btn {
+    padding: 8px 14px;
+  }
+}
+
+</style>
+<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="./" class="nav-logo">PARLA STUDIO</a>
+</nav>
+
+<main>
+
+<section class="enquiry">
+  <div class="enquiry-inner reveal">
+    <h1 class="enquiry-heading">get in touch</h1>
+    <p class="enquiry-sub">Choose your artist and tell us a little about what you have in mind, and we'll be in touch to talk through the next steps</p>
+    <form class="enquiry-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="name">Name</label>
+          <input class="form-input" type="text" id="name" placeholder="Your full name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input class="form-input" type="email" id="email" placeholder="your@email.com" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="artist">Select artist</label>
+        <select class="form-select" id="artist" required>
+          <option value="" disabled selected>Choose an artist</option>
+          <option value="Studio Artist 1">Studio Artist 1</option>
+          <option value="Studio Artist 2">Studio Artist 2</option>
+          <option value="Studio Artist 3">Studio Artist 3</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <p class="form-question-num">1.<span>Which service are you interested in?</span></p>
+        <div class="form-options">
+          <div class="form-option"><input type="radio" name="service" id="sv-concierge" value="concierge"><label for="sv-concierge">Concierge service</label></div>
+          <div class="form-option"><input type="radio" name="service" id="sv-itinerary" value="custom-itinerary"><label for="sv-itinerary">Custom-crafted itinerary</label></div>
+          <div class="form-option"><input type="radio" name="service" id="sv-both" value="both"><label for="sv-both">Both</label></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <p class="form-question-num">2.<span>When are you planning to travel?</span></p>
+        <input class="form-input" type="text" id="q1" placeholder="e.g. October 2026">
+      </div>
+
+      <div class="form-group">
+        <p class="form-question-num">3.<span>How many days do you have, and are there any destinations you already have in mind?</span></p>
+        <input class="form-input" type="text" id="q2" placeholder="e.g. 14 days, interested in Java and Bali">
+      </div>
+
+      <div class="form-group">
+        <p class="form-question-num">4.<span>Who are you travelling with?</span></p>
+        <div class="form-options">
+          <div class="form-option"><input type="radio" name="travel-with" id="tw-solo" value="solo"><label for="tw-solo">Solo</label></div>
+          <div class="form-option"><input type="radio" name="travel-with" id="tw-couple" value="couple"><label for="tw-couple">Couple</label></div>
+          <div class="form-option"><input type="radio" name="travel-with" id="tw-friends" value="friends"><label for="tw-friends">Friends</label></div>
+          <div class="form-option"><input type="radio" name="travel-with" id="tw-family" value="family"><label for="tw-family">Family</label></div>
+        </div>
+        <p class="form-hint">If travelling with children, please share their ages below</p>
+      </div>
+
+      <div class="form-group">
+        <p class="form-question-num">4a.<span>If travelling with family, what are the ages of the children?</span></p>
+        <input class="form-input" type="text" id="q4a" placeholder="e.g. 6, 9, and 12">
+      </div>
+
+      <div class="form-group">
+        <p class="form-question-num">5.<span>What type of stays feel right for you?</span></p>
+        <div class="form-options">
+          <div class="form-option"><input type="radio" name="stays" id="st-premium" value="premium"><label for="st-premium">Premium — high-end hotels & private villas</label></div>
+          <div class="form-option"><input type="radio" name="stays" id="st-boutique" value="boutique"><label for="st-boutique">Boutique — design-led, characterful stays</label></div>
+          <div class="form-option"><input type="radio" name="stays" id="st-comfortable" value="comfortable"><label for="st-comfortable">Comfortable — well-rated, good value</label></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <p class="form-question-num">6.<span>What would you like this trip to centre around?</span></p>
+        <div class="form-options">
+          <div class="form-option"><input type="checkbox" id="fc-nature" value="nature"><label for="fc-nature">Nature & landscapes</label></div>
+          <div class="form-option"><input type="checkbox" id="fc-culture" value="culture"><label for="fc-culture">Culture & local life</label></div>
+          <div class="form-option"><input type="checkbox" id="fc-food" value="food"><label for="fc-food">Food & dining</label></div>
+          <div class="form-option"><input type="checkbox" id="fc-wellness" value="wellness"><label for="fc-wellness">Rest, wellness & relaxation</label></div>
+          <div class="form-option"><input type="checkbox" id="fc-adventure" value="adventure"><label for="fc-adventure">Light adventure</label></div>
+          <div class="form-option"><input type="checkbox" id="fc-design" value="design"><label for="fc-design">Design & unique stays</label></div>
+        </div>
+        <p class="form-hint">Select up to three</p>
+      </div>
+
+      <div class="form-group">
+        <p class="form-question-num">7.<span>How would you like us to support your journey?</span></p>
+        <div class="form-options">
+          <div class="form-option"><input type="radio" name="support" id="sp-full" value="full"><label for="sp-full">Full concierge — we arrange everything end-to-end</label></div>
+          <div class="form-option"><input type="radio" name="support" id="sp-partial" value="partial"><label for="sp-partial">Partial — itinerary + key bookings only</label></div>
+          <div class="form-option"><input type="radio" name="support" id="sp-itinerary" value="itinerary"><label for="sp-itinerary">Itinerary design only</label></div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <p class="form-question-num">8.<span>If there's anything you'd especially like us to prioritise or avoid, you can share it here</span></p>
+        <textarea class="form-textarea" id="q7" placeholder="Special requests, dietary needs, accessibility requirements, places you'd love to visit..."></textarea>
+      </div>
+
+      <div class="h-captcha" data-sitekey="__HCAPTCHA_SITE_KEY__" data-theme="dark"></div>
+      <button type="submit" class="enquiry-submit">Enquire Now</button>
+    </form>
+    <p class="enquiry-confirmation">Once we receive your enquiry, we'll review the details and get back to you within two business days to discuss the next steps</p>
+  </div>
+</section>
+
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <span class="footer-faqs">Parla Studio</span>
+  <span class="footer-copy">&copy; 2026 Parla Studio</span>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+const nav = document.querySelector('.nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+});
+</script>
+
+<script>
+(function () {
+  var ENDPOINT = '__SUPABASE_URL__';
+  var FORM_KEY = '__FORM_KEY__';
+
+  var form = document.querySelector('.enquiry-form');
+  var submitBtn = form.querySelector('.enquiry-submit');
+  var confirmation = document.querySelector('.enquiry-confirmation');
+
+  // Enforce max 3 checkboxes on trip focus (Q6)
+  var focusCheckboxes = form.querySelectorAll('input[type="checkbox"]');
+  focusCheckboxes.forEach(function (cb) {
+    cb.addEventListener('change', function () {
+      var checked = form.querySelectorAll('input[type="checkbox"]:checked');
+      if (checked.length > 3) {
+        cb.checked = false;
+      }
+    });
+  });
+
+  function showError(msg) {
+    var existing = form.querySelector('.form-error-banner');
+    if (existing) existing.remove();
+    var banner = document.createElement('div');
+    banner.className = 'form-error-banner';
+    banner.style.cssText = 'background:rgba(220,60,60,0.15);border:1px solid rgba(220,60,60,0.4);color:#f2c4c4;padding:14px 18px;border-radius:8px;font-size:14px;margin-bottom:16px;font-family:var(--font-body);';
+    banner.textContent = msg;
+    submitBtn.parentNode.insertBefore(banner, submitBtn);
+    setTimeout(function () { if (banner.parentNode) banner.remove(); }, 8000);
+  }
+
+  function resetForm() {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'ENQUIRE NOW';
+    if (typeof hcaptcha !== 'undefined') hcaptcha.reset();
+  }
+
+  function collectPayload() {
+    var checkedFocus = [];
+    form.querySelectorAll('input[type="checkbox"]:checked').forEach(function (cb) {
+      checkedFocus.push(cb.value);
+    });
+
+    var service = form.querySelector('input[name="service"]:checked');
+    var travelWith = form.querySelector('input[name="travel-with"]:checked');
+    var stays = form.querySelector('input[name="stays"]:checked');
+    var support = form.querySelector('input[name="support"]:checked');
+
+    var answers = {};
+
+    var artist = form.querySelector('#artist').value;
+    if (artist) answers.artist = { question: 'Select artist', value: artist };
+
+    if (service) answers.service_interest = { question: 'Which service are you interested in?', value: service.value };
+
+    var q1 = form.querySelector('#q1').value.trim();
+    if (q1) answers.travel_dates = { question: 'When are you planning to travel?', value: q1 };
+
+    var q2 = form.querySelector('#q2').value.trim();
+    if (q2) answers.destinations = { question: 'How many days do you have, and are there any destinations you already have in mind?', value: q2 };
+
+    if (travelWith) answers.travel_group = { question: 'Who are you travelling with?', value: travelWith.value };
+
+    var q4a = form.querySelector('#q4a').value.trim();
+    if (q4a) answers.family_ages = { question: 'If travelling with family, what are the ages of the children?', value: q4a };
+
+    if (stays) answers.accommodation_style = { question: 'What type of stays feel right for you?', value: stays.value };
+    if (checkedFocus.length) answers.trip_interests = { question: 'What would you like this trip to centre around?', value: checkedFocus.join(', ') };
+    if (support) answers.support_level = { question: 'How would you like us to support your journey?', value: support.value };
+
+    var q7 = form.querySelector('#q7').value.trim();
+    if (q7) answers.special_requests = { question: 'Anything you\'d especially like us to prioritise or avoid', value: q7 };
+
+    var captchaResponse = document.querySelector('[name="h-captcha-response"]');
+
+    return {
+      form_key: FORM_KEY,
+      name: form.querySelector('#name').value.trim(),
+      email: form.querySelector('#email').value.trim(),
+      submission_id: crypto.randomUUID(),
+      captcha_token: captchaResponse ? captchaResponse.value : '',
+      answers: answers,
+      source_url: window.location.href
+    };
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var existing = form.querySelector('.form-error-banner');
+    if (existing) existing.remove();
+
+    var nameVal = form.querySelector('#name').value.trim();
+    var emailVal = form.querySelector('#email').value.trim();
+
+    if (!nameVal) { showError('Please enter your name.'); return; }
+    if (!emailVal || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(emailVal)) {
+      showError('Please enter a valid email address.');
+      return;
+    }
+    if (!form.querySelector('#artist').value) { showError('Please select an artist.'); return; }
+
+    var payload = collectPayload();
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'SENDING...';
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function (res) {
+      return res.json().then(function (data) { return { ok: res.ok, status: res.status, data: data }; });
+    })
+    .then(function (result) {
+      if (result.ok) {
+        form.style.display = 'none';
+        confirmation.textContent = 'Thank you, ' + nameVal + '. We\u2019ve received your enquiry and will be in touch within two business days.';
+        confirmation.style.fontSize = '18px';
+        confirmation.style.color = 'rgba(255,255,255,0.85)';
+        confirmation.style.fontStyle = 'normal';
+      } else if (result.status === 429) {
+        showError('You\u2019ve recently submitted an enquiry. Please wait a while before trying again.');
+        resetForm();
+      } else {
+        showError(result.data.error || 'Something went wrong. Please try again.');
+        resetForm();
+      }
+    })
+    .catch(function () {
+      showError('Unable to connect. Please check your internet and try again.');
+      resetForm();
+    });
+  });
+})();
+</script>
+
+
+</body>
+</html>

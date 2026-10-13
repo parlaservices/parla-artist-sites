@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://parla-studio.netlify.app/sitemap.xml
