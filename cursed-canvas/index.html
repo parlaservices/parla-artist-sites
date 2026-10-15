@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Tattoo — Cursed Canvas | Edmondson Park, Sydney</title>
+<meta name="description" content="Booking request form for Cursed Canvas tattoo studio, Edmondson Park NSW.">
+<link rel="canonical" href="https://cursed-canvas.netlify.app/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cursed Canvas">
+<meta property="og:title" content="Book a Tattoo — Cursed Canvas">
+<meta property="og:description" content="Booking request form for Cursed Canvas tattoo studio, Edmondson Park NSW.">
+<meta property="og:url" content="https://cursed-canvas.netlify.app/">
+<meta property="og:image" content="https://cursed-canvas.netlify.app/logo.webp">
+<meta property="og:locale" content="en_AU">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Book a Tattoo — Cursed Canvas">
+<meta name="twitter:description" content="Booking request form for Cursed Canvas tattoo studio, Edmondson Park NSW.">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" as="image" href="logo.webp" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TattooParlor",
+  "name": "Cursed Canvas",
+  "url": "https://cursed-canvas.netlify.app/",
+  "email": "cursedcanvastattoo@gmail.com",
+  "telephone": "+61480524780",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Shop AG24, 52 Soldiers Pde",
+    "addressLocality": "Edmondson Park",
+    "addressRegion": "NSW",
+    "addressCountry": "AU"
+  }
+}
+</script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<style>
+  :root {
+    --bg: #000;
+    --ink: #fff;
+    --ink-70: rgba(255,255,255,.7);
+    --ink-55: rgba(255,255,255,.55);
+    --ink-35: rgba(255,255,255,.35);
+    --line: rgba(255,255,255,.2);
+    --line-strong: rgba(255,255,255,.45);
+    --pink: #FE04D8;
+    --cyan: #05F5FE;
+    --error: #ff5a7a;
+    --font-display: 'Archivo Black', 'Arial Black', sans-serif;
+    --font-body: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    --w: 680px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  ::selection { background: var(--pink); color: #000; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative; text-align: center;
+    padding: 72px 24px 24px; overflow: hidden;
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0;
+    background: url("hero.webp") center/cover no-repeat;
+    opacity: .16; filter: blur(14px) saturate(1.2);
+    -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 30%, transparent 100%);
+  }
+  .hero > * { position: relative; }
+  .hero-logo { width: min(320px, 72vw); height: auto; display: block; margin: 0 auto 28px; }
+  .hero h1 {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(30px, 5.2vw, 48px); line-height: 1.1;
+    letter-spacing: .06em; text-transform: uppercase;
+  }
+  .hero h1 span { color: var(--pink); }
+
+  /* ---------- Notes ---------- */
+  .notes {
+    max-width: var(--w); margin: 40px auto 0; padding: 26px 0;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    list-style: none;
+  }
+  .notes li {
+    position: relative; padding-left: 26px; margin: 8px 0;
+    font-size: 14px; line-height: 1.7; color: var(--ink-70);
+  }
+  .notes li::before { content: "✦"; position: absolute; left: 0; top: 0; color: var(--cyan); font-size: 12px; }
+  .notes strong { color: var(--ink); font-weight: 500; }
+
+  /* ---------- Form ---------- */
+  main { padding: 0 24px 100px; }
+  .enquiry-form { max-width: var(--w); margin: 56px auto 0; }
+
+  .section-label {
+    display: flex; align-items: center; gap: 16px;
+    margin: 64px 0 8px;
+    font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--cyan);
+  }
+  .section-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .section-label:first-child { margin-top: 0; }
+
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+  .field { margin-top: 34px; }
+  fieldset.field { border: 0; min-width: 0; }
+
+  .label {
+    display: block; font-size: 11px; font-weight: 500;
+    letter-spacing: .135em; text-transform: uppercase; color: var(--ink-55);
+  }
+  .q-num { display: block; font-size: 11px; color: var(--pink); letter-spacing: .1em; margin-bottom: 2px; }
+  .q {
+    display: block; font-size: 13px; font-weight: 500;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--ink);
+  }
+  .req { color: var(--pink); margin-left: 2px; }
+  .help { display: block; margin-top: 6px; font-size: 13px; line-height: 1.6; color: var(--ink-35); text-transform: none; letter-spacing: 0; font-weight: 300; }
+
+  input[type=text], input[type=email], input[type=tel], textarea {
+    width: 100%; background: transparent; border: 0; border-bottom: 1px solid var(--line);
+    border-radius: 0; color: var(--ink); font: 400 16px/1.5 var(--font-body);
+    padding: 14px 0; outline: none; transition: border-color .25s;
+    -webkit-appearance: none; appearance: none;
+  }
+  textarea { resize: vertical; min-height: 92px; }
+  .select-wrap { position: relative; }
+  .select-wrap::after {
+    content: ""; position: absolute; right: 4px; top: 50%; width: 8px; height: 8px; margin-top: -6px;
+    border: solid var(--pink); border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); pointer-events: none;
+  }
+  select {
+    width: 100%; background: transparent; border: 0; border-bottom: 1px solid var(--line); border-radius: 0;
+    color: var(--ink); font: 400 16px/1.5 var(--font-body); padding: 14px 28px 14px 0; outline: none; cursor: pointer;
+    -webkit-appearance: none; appearance: none; transition: border-color .25s;
+  }
+  select:invalid, select option[value=""] { color: var(--ink-35); }
+  select option { background: #111; color: var(--ink); }
+  select:focus { border-bottom-color: var(--pink); }
+  .invalid select { border-bottom-color: var(--error); }
+  input::placeholder, textarea::placeholder { color: var(--ink-35); }
+  input:focus, textarea:focus { border-bottom-color: var(--pink); }
+  .invalid input, .invalid textarea { border-bottom-color: var(--error); }
+
+  /* Pills (radio + checkbox) */
+  .pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .pill { position: relative; }
+  .pill input { position: absolute; opacity: 0; pointer-events: none; }
+  .pill span {
+    display: inline-block; cursor: pointer; user-select: none;
+    padding: 10px 20px; border: 1px solid var(--line); border-radius: 30px;
+    font-size: 14px; font-weight: 400; color: rgba(255,255,255,.75);
+    transition: border-color .2s, color .2s, background .2s;
+  }
+  .pill span:hover { border-color: var(--line-strong); color: var(--ink); }
+  .pill input:checked + span { border-color: var(--pink); color: var(--ink); background: rgba(254,4,216,.12); }
+  .pill input:focus-visible + span { outline: 2px solid var(--cyan); outline-offset: 2px; }
+  .invalid .pill span { border-color: rgba(255,90,122,.5); }
+
+  .inline-warning {
+    display: none; margin-top: 14px; padding: 12px 16px; border-left: 2px solid var(--pink);
+    font-size: 14px; color: var(--ink-70); background: rgba(254,4,216,.06);
+  }
+  .inline-warning.show { display: block; }
+
+  /* Uploads */
+  .drop {
+    margin-top: 16px; display: block; cursor: pointer;
+    border: 1px dashed var(--line-strong); border-radius: 14px;
+    padding: 28px 20px; text-align: center; transition: border-color .2s, background .2s, opacity .2s;
+  }
+  .drop:hover, .drop.drag { border-color: var(--cyan); background: rgba(5,245,254,.04); }
+  .drop:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+  .drop.full { opacity: .45; cursor: default; }
+  .drop.full:hover { border-color: var(--line-strong); background: none; }
+  .file-input { display: none; }
+  .drop-title { font-size: 12px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; }
+  .drop-title b { color: var(--cyan); font-weight: 500; }
+  .drop-sub { display: block; font-size: 13px; color: var(--ink-35); margin-top: 4px; }
+  .invalid .drop { border-color: var(--error); }
+  .file-list { list-style: none; margin-top: 10px; }
+  .file-list li {
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.08);
+    font-size: 13px; color: var(--ink-70);
+  }
+  .file-thumb { flex: none; width: 36px; height: 36px; object-fit: cover; border-radius: 6px; background: #111; }
+  .file-meta { flex: 1; min-width: 0; }
+  .file-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .file-status { font-size: 12px; color: var(--ink-35); }
+  .file-status.bad { color: var(--error); }
+  .file-list button {
+    background: none; border: 0; color: var(--ink-35); cursor: pointer; font: inherit; font-size: 18px; line-height: 1;
+  }
+  .file-list button:hover { color: var(--pink); }
+
+  /* Consent + submit */
+  .consent { display: flex; gap: 12px; align-items: flex-start; margin-top: 44px; cursor: pointer; font-size: 14px; color: var(--ink-70); line-height: 1.6; }
+  .consent input { appearance: none; -webkit-appearance: none; flex: none; width: 18px; height: 18px; margin-top: 2px; border: 1px solid var(--line-strong); border-radius: 4px; cursor: pointer; position: relative; }
+  .consent input:checked { background: var(--pink); border-color: var(--pink); }
+  .consent input:checked::after { content: ""; position: absolute; left: 5px; top: 1px; width: 5px; height: 10px; border: solid #000; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+  .consent input:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+  .invalid.consent input { border-color: var(--error); }
+
+  .cf-turnstile { margin-top: 28px; }
+
+  .enquiry-submit {
+    display: block; width: 100%; margin-top: 36px; padding: 20px;
+    background: var(--pink); color: #000; border: 0; border-radius: 30px; cursor: pointer;
+    font: 600 13px/1 var(--font-body); letter-spacing: .14em; text-transform: uppercase;
+    transition: background .25s, transform .15s, box-shadow .25s;
+  }
+  .enquiry-submit:hover { box-shadow: 0 0 0 1px var(--pink), 0 0 28px rgba(254,4,216,.35); }
+  .enquiry-submit:active { transform: translateY(1px); }
+  .enquiry-submit:disabled { opacity: .5; cursor: not-allowed; box-shadow: none; }
+
+  .progress { margin-top: 14px; min-height: 1.6em; font-size: 13px; color: var(--ink-55); text-align: center; }
+
+  .captcha-notice { margin-top: 18px; font-size: 12px; color: var(--ink-35); text-align: center; }
+  .captcha-notice a { color: var(--ink-55); }
+
+  .form-error-banner {
+    margin-top: 28px; padding: 14px 18px; border-radius: 12px;
+    border: 1px solid rgba(255,90,122,.45); background: rgba(255,90,122,.08);
+    color: #ffc2cf; font-size: 14px;
+  }
+  .form-error-banner[hidden] { display: none; }
+
+  .enquiry-confirmation {
+    max-width: var(--w); margin: 64px auto 0; text-align: center;
+    padding: 56px 24px; border: 1px solid var(--line); border-radius: 20px;
+  }
+  .enquiry-confirmation[hidden] { display: none; }
+  .enquiry-confirmation h2 { font-family: var(--font-display); font-weight: 400; font-size: 28px; letter-spacing: .05em; text-transform: uppercase; color: var(--cyan); }
+  .enquiry-confirmation p { margin-top: 14px; color: var(--ink-70); font-size: 17px; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    border-top: 1px solid var(--line); padding: 56px 24px 64px; text-align: center;
+  }
+  .foot-grid { max-width: 900px; margin: 0 auto; display: flex; justify-content: center; gap: 72px; flex-wrap: wrap; }
+  .foot-grid h4 { font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--pink); margin-bottom: 10px; }
+  .foot-grid p, .foot-grid a { font-size: 14px; color: var(--ink-70); text-decoration: none; line-height: 1.8; }
+  .foot-grid a:hover { color: var(--cyan); }
+  .foot-mark { margin-top: 48px; font-family: var(--font-display); font-size: 13px; letter-spacing: .25em; color: var(--ink-35); }
+
+  /* ---------- Reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 720px) {
+    .hero { padding-top: 56px; }
+    .row { grid-template-columns: 1fr; }
+    main { padding: 0 20px 80px; }
+    .foot-grid { gap: 36px; flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img class="hero-logo" src="logo.webp" alt="Cursed Canvas" width="320" height="224" fetchpriority="high">
+  <h1>Book your next piece</h1>
+</header>
+
+<main id="book">
+  <ul class="notes reveal">
+    <li><strong>Please be as detailed as possible</strong> so we can review your request quickly.</li>
+    <li><strong>Select multiple preferred months and days</strong> — it increases your chance of securing a spot. Weekends book out fastest.</li>
+    <li><strong>Submitting this form does not guarantee a booking.</strong> Requests are not processed first-come, first-served; availability depends on dates, design and placement.</li>
+    <li>We'll reply by email. Please <strong>check your junk/spam folder</strong> so you don't miss it.</li>
+    <li>You must be <strong>18 or over</strong> to be tattooed. We don't tattoo under 18s, even with parental consent.</li>
+  </ul>
+
+  <form class="enquiry-form" novalidate>
+
+    <!-- ===== About you ===== -->
+    <div class="section-label reveal">About you</div>
+
+    <div class="row">
+      <div class="field" data-required>
+        <label class="label" for="first_name">First name<span class="req">*</span></label>
+        <input type="text" id="first_name" name="first_name" autocomplete="given-name" placeholder="First name" maxlength="100">
+      </div>
+      <div class="field" data-required>
+        <label class="label" for="last_name">Last name<span class="req">*</span></label>
+        <input type="text" id="last_name" name="last_name" autocomplete="family-name" placeholder="Last name" maxlength="100">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field" data-required>
+        <label class="label" for="email">Email<span class="req">*</span></label>
+        <input type="email" id="email" name="email" autocomplete="email" placeholder="you@email.com" maxlength="254">
+      </div>
+      <div class="field" data-required>
+        <label class="label" for="phone">Contact number<span class="req">*</span></label>
+        <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="04xx xxx xxx" maxlength="40">
+      </div>
+    </div>
+
+    <fieldset class="field" data-required data-group="over_18">
+      <legend><span class="q-num">01.</span><span class="q">Are you aged 18 or over?<span class="req">*</span></span></legend>
+      <div class="pills">
+        <label class="pill"><input type="radio" name="over_18" value="Yes"><span>Yes</span></label>
+        <label class="pill"><input type="radio" name="over_18" value="No"><span>No</span></label>
+      </div>
+      <div class="inline-warning" id="age-warning">Sorry — we can't tattoo anyone under 18, even with parental consent. We'd love to see you once you're 18.</div>
+    </fieldset>
+
+    <fieldset class="field" data-required data-group="first_visit">
+      <legend><span class="q-num">02.</span><span class="q">Is this your first time at Cursed Canvas?<span class="req">*</span></span></legend>
+      <div class="pills">
+        <label class="pill"><input type="radio" name="first_visit" value="Yes"><span>Yes</span></label>
+        <label class="pill"><input type="radio" name="first_visit" value="No"><span>No</span></label>
+      </div>
+    </fieldset>
+
+    <div class="field" data-required>
+      <label for="artist"><span class="q-num">03.</span><span class="q">Select your preferred artist<span class="req">*</span></span></label>
+      <div class="select-wrap">
+        <!-- Each value must equal the artist's studio_members.jotform_option_value in Parla
+             exactly, or the request waits in Unassigned (see README). -->
+        <select id="artist" name="artist" required>
+          <option value="" disabled selected>Choose an artist</option>
+          <option value="No preference">No preference / first available</option>
+          <option value="Artist 1">Artist 1</option>
+          <option value="Artist 2">Artist 2</option>
+          <option value="Artist 3">Artist 3</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- ===== Availability ===== -->
+    <div class="section-label reveal">Availability</div>
+
+    <fieldset class="field" data-required data-group="preferred_months">
+      <legend><span class="q-num">04.</span><span class="q">Preferred months<span class="req">*</span></span>
+        <span class="help">Select all that work for you.</span></legend>
+      <div class="pills" id="month-pills"><!-- generated --></div>
+    </fieldset>
+
+    <fieldset class="field" data-required data-group="preferred_days">
+      <legend><span class="q-num">05.</span><span class="q">Preferred days of the week<span class="req">*</span></span>
+        <span class="help">Select all that work for you.</span></legend>
+      <div class="pills">
+        <label class="pill"><input type="checkbox" name="preferred_days" value="Monday"><span>Monday</span></label>
+        <label class="pill"><input type="checkbox" name="preferred_days" value="Tuesday"><span>Tuesday</span></label>
+        <label class="pill"><input type="checkbox" name="preferred_days" value="Wednesday"><span>Wednesday</span></label>
+        <label class="pill"><input type="checkbox" name="preferred_days" value="Thursday"><span>Thursday</span></label>
+        <label class="pill"><input type="checkbox" name="preferred_days" value="Friday"><span>Friday</span></label>
+        <label class="pill"><input type="checkbox" name="preferred_days" value="Saturday"><span>Saturday</span></label>
+      </div>
+    </fieldset>
+
+    <!-- ===== Your tattoo ===== -->
+    <div class="section-label reveal">Your tattoo</div>
+
+    <fieldset class="field" data-required data-group="tattoo_type">
+      <legend><span class="q-num">06.</span><span class="q">Tattoo type<span class="req">*</span></span></legend>
+      <div class="pills">
+        <label class="pill"><input type="radio" name="tattoo_type" value="New"><span>New</span></label>
+        <label class="pill"><input type="radio" name="tattoo_type" value="Cover up"><span>Cover up</span></label>
+        <label class="pill"><input type="radio" name="tattoo_type" value="Other"><span>Other</span></label>
+      </div>
+    </fieldset>
+
+    <div class="field" data-required>
+      <label for="design_description"><span class="q-num">07.</span><span class="q">Tattoo design description<span class="req">*</span></span>
+        <span class="help">Please be as detailed as you can — subject, style, colour or black &amp; grey, any text.</span></label>
+      <textarea id="design_description" name="design_description" rows="4" placeholder="Describe your idea…" maxlength="5000"></textarea>
+    </div>
+
+    <div class="row">
+      <div class="field" data-required>
+        <label for="placement"><span class="q-num">08.</span><span class="q">Placement<span class="req">*</span></span>
+          <span class="help">Where on your body?</span></label>
+        <input type="text" id="placement" name="placement" placeholder="e.g. Left forearm, outer" maxlength="200">
+      </div>
+      <div class="field" data-required>
+        <label for="size"><span class="q-num">09.</span><span class="q">Size<span class="req">*</span></span>
+          <span class="help">Approximate size in cm.</span></label>
+        <input type="text" id="size" name="size" placeholder="e.g. 10 × 15 cm" maxlength="100">
+      </div>
+    </div>
+
+    <div class="field" data-required data-upload-kind="reference">
+      <span class="q-num">10.</span><span class="q" id="reference-label">Design reference images<span class="req">*</span></span>
+      <span class="help">Tattoos, artworks, photos, drawings — anything that helps us visualise your idea. Up to 5 images.</span>
+      <div class="drop" role="button" tabindex="0" aria-labelledby="reference-label" aria-describedby="reference-sub">
+        <span class="drop-title"><b>Browse files</b> or drag &amp; drop</span>
+        <span class="drop-sub" id="reference-sub">JPG, PNG or HEIC</span>
+      </div>
+      <input class="file-input" type="file" accept="image/*" multiple tabindex="-1" aria-hidden="true">
+      <ul class="file-list"></ul>
+    </div>
+
+    <div class="field" data-required data-upload-kind="placement">
+      <span class="q-num">11.</span><span class="q" id="placement-photos-label">Placement photos<span class="req">*</span></span>
+      <span class="help">A clear photo of the area, with the placement and approximate size marked or circled. For large or wrap-around pieces, include all angles. Up to 5 images.</span>
+      <div class="drop" role="button" tabindex="0" aria-labelledby="placement-photos-label" aria-describedby="placement-photos-sub">
+        <span class="drop-title"><b>Browse files</b> or drag &amp; drop</span>
+        <span class="drop-sub" id="placement-photos-sub">JPG, PNG or HEIC</span>
+      </div>
+      <input class="file-input" type="file" accept="image/*" multiple tabindex="-1" aria-hidden="true">
+      <ul class="file-list"></ul>
+    </div>
+
+    <!-- ===== Anything else ===== -->
+    <div class="section-label reveal">Anything else</div>
+
+    <div class="field">
+      <label for="allergies"><span class="q-num">12.</span><span class="q">Allergies or skin conditions</span>
+        <span class="help">If yes, please give details.</span></label>
+      <input type="text" id="allergies" name="allergies" placeholder="None" maxlength="1000">
+    </div>
+
+    <div class="field">
+      <label for="comments"><span class="q-num">13.</span><span class="q">Additional comments</span></label>
+      <textarea id="comments" name="comments" rows="3" placeholder="Anything else we should know" maxlength="5000"></textarea>
+    </div>
+
+    <!-- Honeypot: real visitors never see or fill this -->
+    <div class="sr-only" aria-hidden="true">
+      <label for="website">Website</label>
+      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    <label class="consent" data-consent>
+      <input type="checkbox" id="consent" name="consent">
+      <span>I understand submitting this form doesn't guarantee a booking, and I'm happy to be contacted by Cursed Canvas about my request.</span>
+    </label>
+
+    <div class="cf-turnstile" data-sitekey="__TURNSTILE_SITE_KEY__" data-theme="dark"></div>
+
+    <div class="form-error-banner" role="alert" hidden></div>
+    <button type="submit" class="enquiry-submit">Send booking request</button>
+    <p class="progress" aria-live="polite"></p>
+
+    <p class="captcha-notice">Protected by Cloudflare Turnstile. See the <a href="https://myparla.app/privacy" target="_blank" rel="noopener">Parla Privacy Policy</a> and Cloudflare&rsquo;s <a href="https://www.cloudflare.com/en-gb/turnstile-privacy-policy/" target="_blank" rel="noopener">Turnstile Privacy Addendum</a>.</p>
+  </form>
+
+  <div class="enquiry-confirmation" role="status" aria-live="polite" hidden>
+    <h2>Request received</h2>
+    <p id="confirmation-text"></p>
+  </div>
+</main>
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <h4>Location</h4>
+      <p>Shop AG24, 52 Soldiers Pde<br>Edmondson Park NSW</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p><a href="mailto:cursedcanvastattoo@gmail.com">cursedcanvastattoo@gmail.com</a><br>
+         <a href="tel:+61480524780">0480 524 780</a></p>
+    </div>
+  </div>
+  <div class="foot-mark">CURSED CANVAS</div>
+</footer>
+
+<script>
+(function () {
+  var ENDPOINT = '__SUPABASE_URL__';
+  var FORM_KEY = '__FORM_KEY__';
+  // Same functions host; the upload step lives beside website-enquiry.
+  var UPLOAD_ENDPOINT = ENDPOINT.replace(/\/website-enquiry\/?$/, '/create-website-upload-urls');
+
+  // Must stay inside the backend policy (_shared/website-uploads.ts).
+  var MAX_FILES_PER_FIELD = 5;
+  var MAX_BYTES = 10 * 1024 * 1024;
+  var ACCEPTED = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+  var MAX_EDGE = 2400; // px; re-encoding also strips EXIF (GPS) metadata
+
+  // "Preferred months" offers the current month plus the next ones.
+  var MONTHS_AHEAD = 6;
+  var FALLBACK_ERROR = 'Something went wrong sending your request. Please try again, or email cursedcanvastattoo@gmail.com.';
+
+  var form = document.querySelector('.enquiry-form');
+  var submitBtn = form.querySelector('.enquiry-submit');
+  var banner = form.querySelector('.form-error-banner');
+  var progress = form.querySelector('.progress');
+  var confirmation = document.querySelector('.enquiry-confirmation');
+
+  // One id per enquiry, kept across retries so a lost response cannot
+  // create a duplicate (website-enquiry answers a repeat with "Already received").
+  var submissionId = crypto.randomUUID();
+
+  // Reveal on scroll
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+  // Month pills: current month + next N
+  (function buildMonths() {
+    var wrap = document.getElementById('month-pills');
+    var d = new Date(); d.setDate(1);
+    for (var i = 0; i < MONTHS_AHEAD; i++) {
+      var m = new Date(d.getFullYear(), d.getMonth() + i, 1);
+      var value = m.toLocaleString('en-AU', { month: 'long', year: 'numeric' });
+      wrap.insertAdjacentHTML('beforeend',
+        '<label class="pill"><input type="checkbox" name="preferred_months" value="' + value + '"><span>' + value + '</span></label>');
+    }
+  })();
+
+  // Conditional: under 18
+  var ageWarning = document.getElementById('age-warning');
+  form.querySelectorAll('input[name="over_18"]').forEach(function (r) {
+    r.addEventListener('change', function () {
+      var under = r.checked && r.value === 'No';
+      ageWarning.classList.toggle('show', under);
+      submitBtn.disabled = under;
+    });
+  });
+
+  // Clear invalid state on interaction
+  form.addEventListener('input', function (e) { var f = e.target.closest('.invalid'); if (f) f.classList.remove('invalid'); });
+  form.addEventListener('change', function (e) { var f = e.target.closest('.invalid'); if (f) f.classList.remove('invalid'); });
+
+  // ── Photo fields ──────────────────────────────────────────────────────────
+
+  var uploads = {}; // kind → [{ file, prepared: Promise<{blob, mimeType, previewUrl}|Error>, ok, result }]
+
+  function formatSize(bytes) {
+    return bytes < 1024 * 1024 ? Math.max(1, Math.round(bytes / 1024)) + ' KB' : (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+
+  function loadImage(file) {
+    return new Promise(function (resolve, reject) {
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function () { resolve({ img: img, url: url }); };
+      img.onerror = function () { URL.revokeObjectURL(url); reject(new Error('unreadable')); };
+      img.src = url;
+    });
+  }
+
+  // Re-encode to JPEG: shrinks phone photos well under the 10 MB limit and
+  // drops location metadata. Browsers apply EXIF orientation when drawing.
+  // HEIC decodes only where the browser supports it (Safari); elsewhere the
+  // file is marked as unusable.
+  function prepareImage(file) {
+    return loadImage(file).then(function (loaded) {
+      var img = loaded.img;
+      var scale = Math.min(1, MAX_EDGE / Math.max(img.naturalWidth, img.naturalHeight));
+      var w = Math.max(1, Math.round(img.naturalWidth * scale));
+      var h = Math.max(1, Math.round(img.naturalHeight * scale));
+      var canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      var ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, w, h);
+      ctx.drawImage(img, 0, 0, w, h);
+      return new Promise(function (resolve, reject) {
+        canvas.toBlob(function (blob) {
+          if (!blob) { reject(new Error('unreadable')); return; }
+          if (blob.size > MAX_BYTES) { reject(new Error('too_large')); return; }
+          resolve({ blob: blob, mimeType: 'image/jpeg', previewUrl: loaded.url });
+        }, 'image/jpeg', 0.85);
+      });
+    });
+  }
+
+  function setupUploadField(field) {
+    var kind = field.getAttribute('data-upload-kind');
+    var zone = field.querySelector('.drop');
+    var input = field.querySelector('.file-input');
+    var list = field.querySelector('.file-list');
+    uploads[kind] = [];
+
+    function refreshZone() {
+      zone.classList.toggle('full', uploads[kind].length >= MAX_FILES_PER_FIELD);
+    }
+
+    function addFiles(fileList) {
+      field.classList.remove('invalid');
+      var files = Array.prototype.slice.call(fileList);
+      var skipped = 0;
+      files.forEach(function (file) {
+        if (uploads[kind].length >= MAX_FILES_PER_FIELD) { skipped++; return; }
+        var entry = { file: file, prepared: null, ok: false };
+        var li = document.createElement('li');
+        li.innerHTML = '<img class="file-thumb" alt=""><div class="file-meta"><div class="file-name"></div><div class="file-status">Preparing…</div></div><button type="button" aria-label="Remove file">×</button>';
+        li.querySelector('.file-name').textContent = file.name;
+        var status = li.querySelector('.file-status');
+        var thumb = li.querySelector('.file-thumb');
+        list.appendChild(li);
+        uploads[kind].push(entry);
+
+        if (ACCEPTED.indexOf(file.type) === -1 && !/^image\//.test(file.type)) {
+          entry.prepared = Promise.resolve(new Error('type'));
+        } else if (file.size > 40 * 1024 * 1024) {
+          entry.prepared = Promise.resolve(new Error('too_large'));
+        } else {
+          entry.prepared = prepareImage(file).then(function (r) { return r; }, function (err) { return err; });
+        }
+
+        entry.prepared.then(function (result) {
+          if (result instanceof Error) {
+            status.classList.add('bad');
+            status.textContent = result.message === 'too_large'
+              ? 'This file is too large. Please resize it and try again.'
+              : 'This file can’t be used. Please upload a JPG or PNG image.';
+            thumb.remove();
+          } else {
+            entry.ok = true;
+            entry.result = result;
+            thumb.src = result.previewUrl;
+            status.textContent = formatSize(result.blob.size);
+          }
+        });
+
+        li.querySelector('button').addEventListener('click', function () {
+          var i = uploads[kind].indexOf(entry);
+          if (i !== -1) uploads[kind].splice(i, 1);
+          if (entry.result) URL.revokeObjectURL(entry.result.previewUrl);
+          li.remove();
+          refreshZone();
+        });
+      });
+      if (skipped) showBanner('You can upload up to ' + MAX_FILES_PER_FIELD + ' images per field. ' + skipped + ' file' + (skipped === 1 ? ' was' : 's were') + ' not added.');
+      refreshZone();
+    }
+
+    function openPicker() {
+      if (uploads[kind].length < MAX_FILES_PER_FIELD) input.click();
+    }
+
+    zone.addEventListener('click', openPicker);
+    zone.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPicker(); }
+    });
+    input.addEventListener('change', function () {
+      addFiles(input.files);
+      input.value = '';
+    });
+    ['dragenter', 'dragover'].forEach(function (type) {
+      zone.addEventListener(type, function (e) { e.preventDefault(); zone.classList.add('drag'); });
+    });
+    ['dragleave', 'drop'].forEach(function (type) {
+      zone.addEventListener(type, function (e) { e.preventDefault(); zone.classList.remove('drag'); });
+    });
+    zone.addEventListener('drop', function (e) {
+      if (e.dataTransfer && e.dataTransfer.files) addFiles(e.dataTransfer.files);
+    });
+  }
+
+  form.querySelectorAll('[data-upload-kind]').forEach(setupUploadField);
+
+  // ── Validation ────────────────────────────────────────────────────────────
+
+  function val(id) { var el = form.querySelector('#' + id); return el ? el.value.trim() : ''; }
+  function radio(name) { var el = form.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : ''; }
+  function checks(name) { return Array.prototype.map.call(form.querySelectorAll('input[name="' + name + '"]:checked'), function (c) { return c.value; }); }
+
+  var EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+  function validate() {
+    var firstBad = null;
+    function mark(field) { field.classList.add('invalid'); firstBad = firstBad || field; }
+
+    form.querySelectorAll('.invalid').forEach(function (el) { el.classList.remove('invalid'); });
+    form.querySelectorAll('[data-required]').forEach(function (field) {
+      var ok;
+      if (field.hasAttribute('data-group')) ok = !!radio(field.getAttribute('data-group')) || checks(field.getAttribute('data-group')).length > 0;
+      else if (field.hasAttribute('data-upload-kind')) ok = uploads[field.getAttribute('data-upload-kind')].length > 0;
+      else { var inp = field.querySelector('input, textarea, select'); ok = inp && inp.value.trim() !== ''; }
+      if (!ok) mark(field);
+    });
+    if (val('email') && !EMAIL_RE.test(val('email'))) mark(form.querySelector('#email').closest('.field'));
+    if (val('phone') && val('phone').replace(/\D/g, '').length < 6) mark(form.querySelector('#phone').closest('.field'));
+    if (!form.querySelector('#consent').checked) mark(form.querySelector('[data-consent]'));
+
+    if (firstBad) {
+      firstBad.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      var focusable = firstBad.querySelector('input:not(.file-input), select, textarea, .drop');
+      if (focusable) focusable.focus({ preventScroll: true });
+      showBanner('Please complete the highlighted fields.');
+      return false;
+    }
+    if (radio('over_18') === 'No') { showBanner('We can only tattoo clients aged 18 or over.'); return false; }
+    return true;
+  }
+
+  // ── Submission ────────────────────────────────────────────────────────────
+
+  function showBanner(msg) {
+    banner.textContent = msg;
+    banner.hidden = false;
+  }
+
+  function hideBanner() { banner.hidden = true; banner.textContent = ''; }
+
+  // Turnstile runs invisibly on page load: it writes its token into the
+  // form's cf-turnstile-response field and refreshes it before it expires.
+  // Someone who submits within seconds of arriving waits for it (up to 10s).
+  function waitForCaptchaToken() {
+    // A wall-clock deadline: background tabs throttle timers, so counting
+    // polls would stretch the wait far past 10s.
+    var deadline = Date.now() + 10000;
+    return new Promise(function (resolve) {
+      (function poll() {
+        var field = form.querySelector('[name="cf-turnstile-response"]');
+        var token = field ? field.value : '';
+        if (token || Date.now() >= deadline) { resolve(token); return; }
+        setTimeout(poll, 250);
+      })();
+    });
+  }
+
+  function setBusy(busy, text) {
+    submitBtn.disabled = busy;
+    submitBtn.textContent = busy ? 'Sending…' : 'Send booking request';
+    progress.textContent = text || '';
+  }
+
+  function answer(question, value) { return { question: question, value: value }; }
+
+  function collectAnswers() {
+    var a = {};
+    // The description goes first: website-enquiry summarises an enquiry by
+    // its first answer. artist_selection is the key studio routing reads.
+    a.tattoo_description = answer('Tattoo design description', val('design_description'));
+    a.artist_selection = answer('Select your preferred artist', val('artist'));
+    a.age_18_plus = answer('Are you aged 18 or over?', radio('over_18'));
+    a.phone = answer('Contact number', val('phone'));
+    a.first_visit = answer('Is this your first time at Cursed Canvas?', radio('first_visit'));
+    a.preferred_months = answer('Preferred months', checks('preferred_months').join(', '));
+    a.preferred_days = answer('Preferred days of the week', checks('preferred_days').join(', '));
+    a.tattoo_type = answer('Tattoo type', radio('tattoo_type'));
+    a.tattoo_placement = answer('Placement', val('placement'));
+    a.tattoo_size = answer('Size (cm)', val('size'));
+    if (val('allergies')) a.allergies = answer('Allergies or skin conditions', val('allergies'));
+    if (val('comments')) a.additional_comments = answer('Additional comments', val('comments'));
+    return a;
+  }
+
+  function postJson(url, body) {
+    return fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (data) {
+        if (!res.ok) {
+          var err = new Error(data.error || data.message || FALLBACK_ERROR);
+          err.status = res.status;
+          throw err;
+        }
+        return data;
+      });
+    });
+  }
+
+  function putFile(url, blob, mimeType) {
+    return fetch(url, {
+      method: 'PUT',
+      headers: { 'Content-Type': mimeType, 'x-upsert': 'false' },
+      body: blob
+    }).then(function (res) {
+      if (!res.ok) throw new Error('A photo did not upload. Please check your connection and try again.');
+    });
+  }
+
+  // All photos, in field order, once every one has finished preparing.
+  function preparedPhotos() {
+    var all = [];
+    ['reference', 'placement'].forEach(function (kind) {
+      uploads[kind].forEach(function (entry) { all.push({ kind: kind, entry: entry }); });
+    });
+    return Promise.all(all.map(function (p) { return p.entry.prepared; })).then(function () {
+      var bad = all.filter(function (p) { return !p.entry.ok; });
+      if (bad.length) {
+        throw new Error('Some files can’t be uploaded. Please remove the ones marked in red and try again.');
+      }
+      return all.map(function (p) {
+        return { kind: p.kind, blob: p.entry.result.blob, mimeType: p.entry.result.mimeType };
+      });
+    });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    hideBanner();
+    if (!validate()) return;
+
+    var name = (val('first_name') + ' ' + val('last_name')).trim();
+    var email = val('email');
+
+    setBusy(true, 'Preparing photos…');
+
+    // Photos and the captcha token get ready side by side.
+    Promise.all([preparedPhotos(), waitForCaptchaToken()])
+      .then(function (ready) {
+        var photos = ready[0];
+        var captchaToken = ready[1];
+        if (!captchaToken) {
+          throw new Error('We couldn’t verify your browser. Please refresh the page and try again.');
+        }
+        setBusy(true, 'Uploading photos…');
+        return postJson(UPLOAD_ENDPOINT, {
+          form_key: FORM_KEY,
+          submission_id: submissionId,
+          captcha_token: captchaToken,
+          captcha_provider: 'turnstile',
+          files: photos.map(function (p) { return { kind: p.kind, mimeType: p.mimeType, sizeBytes: p.blob.size }; })
+        }).then(function (session) {
+          var done = 0;
+          var total = session.uploads.length;
+          setBusy(true, 'Uploading photos… 0 of ' + total);
+          return Promise.all(session.uploads.map(function (u) {
+            var photo = photos[u.index];
+            return putFile(u.signedUrl, photo.blob, photo.mimeType).then(function () {
+              done++;
+              setBusy(true, 'Uploading photos… ' + done + ' of ' + total);
+            });
+          })).then(function () { return session.ticket; });
+        });
+      })
+      .then(function (ticket) {
+        setBusy(true, 'Sending your request…');
+        return postJson(ENDPOINT, {
+          form_key: FORM_KEY,
+          name: name,
+          email: email,
+          submission_id: submissionId,
+          upload_ticket: ticket,
+          answers: collectAnswers(),
+          source_url: window.location.href,
+          website: form.querySelector('#website').value
+        });
+      })
+      .then(function () {
+        form.hidden = true;
+        document.querySelector('.notes').hidden = true;
+        document.getElementById('confirmation-text').textContent =
+          'Thanks, ' + val('first_name') + '. We’ve got your request and will be in touch by email — keep an eye on your junk folder too.';
+        confirmation.hidden = false;
+        confirmation.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      })
+      .catch(function (err) {
+        var msg = err && err.message ? err.message : FALLBACK_ERROR;
+        if (err && err.status === 429) msg = 'Too many attempts. Please wait a minute and try again.';
+        if (err instanceof TypeError) msg = 'Unable to connect. Please check your internet and try again.';
+        showBanner(msg);
+        setBusy(false);
+        // A captcha token verifies once; every retry needs a fresh one.
+        if (typeof turnstile !== 'undefined') turnstile.reset();
+      });
+  });
+})();
+</script>
+</body>
+</html>
