@@ -364,14 +364,11 @@ legend.field-label + * { clear: both; }
   .form-title { font-size: 26px; }
   .input.half, .select.half { max-width: none; }
 }
-@media (max-width: 360px) {
-  .h-captcha { transform: scale(0.9); transform-origin: center; }
-}
 @media (max-width: 420px) {
   .name-row { grid-template-columns: 1fr; gap: 16px; }
 }
 </style>
-<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -568,7 +565,7 @@ legend.field-label + * { clear: both; }
     </div>
 
     <div class="form-footer">
-      <div class="h-captcha" data-sitekey="__HCAPTCHA_SITE_KEY__"></div>
+      <div class="cf-turnstile" data-sitekey="__TURNSTILE_SITE_KEY__"></div>
       <div class="banner" role="alert" hidden></div>
       <p class="progress" aria-live="polite"></p>
       <button type="submit" class="submit-btn">Submit</button>
@@ -799,6 +796,23 @@ legend.field-label + * { clear: both; }
   }
   function hideBanner() { banner.hidden = true; banner.textContent = ''; }
 
+  // Turnstile runs invisibly on page load: it writes its token into the
+  // form's cf-turnstile-response field and refreshes it before it expires.
+  // Someone who submits within seconds of arriving waits for it (up to 10s).
+  function waitForCaptchaToken() {
+    // A wall-clock deadline: background tabs throttle timers, so counting
+    // polls would stretch the wait far past 10s.
+    var deadline = Date.now() + 10000;
+    return new Promise(function (resolve) {
+      (function poll() {
+        var field = form.querySelector('[name="cf-turnstile-response"]');
+        var token = field ? field.value : '';
+        if (token || Date.now() >= deadline) { resolve(token); return; }
+        setTimeout(poll, 250);
+      })();
+    });
+  }
+
   function setBusy(busy, text) {
     submitBtn.disabled = busy;
     submitBtn.textContent = busy ? 'Submitting…' : 'Submit';
@@ -879,23 +893,24 @@ legend.field-label + * { clear: both; }
       return;
     }
 
-    var captchaToken = typeof hcaptcha !== 'undefined' ? hcaptcha.getResponse() : '';
-    if (!captchaToken) {
-      showBanner('Please complete the captcha before submitting.');
-      return;
-    }
-
     var name = (val('first-name') + ' ' + val('last-name')).trim();
     var email = val('email');
     setBusy(true, 'Preparing photos…');
 
-    preparedPhotos()
-      .then(function (photos) {
+    // Photos and the captcha token get ready side by side.
+    Promise.all([preparedPhotos(), waitForCaptchaToken()])
+      .then(function (ready) {
+        var photos = ready[0];
+        var captchaToken = ready[1];
+        if (!captchaToken) {
+          throw new Error('We couldn’t verify your browser. Please refresh the page and try again.');
+        }
         setBusy(true, 'Uploading photos…');
         return postJson(UPLOAD_ENDPOINT, {
           form_key: FORM_KEY,
           submission_id: submissionId,
           captcha_token: captchaToken,
+          captcha_provider: 'turnstile',
           files: photos.map(function (p) { return { kind: p.kind, mimeType: p.mimeType, sizeBytes: p.blob.size }; })
         }).then(function (session) {
           var done = 0;
@@ -935,7 +950,7 @@ legend.field-label + * { clear: both; }
         showBanner(msg);
         setBusy(false);
         // A captcha token verifies once; every retry needs a fresh one.
-        if (typeof hcaptcha !== 'undefined') hcaptcha.reset();
+        if (typeof turnstile !== 'undefined') turnstile.reset();
       });
   });
 })();

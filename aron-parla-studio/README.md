@@ -11,7 +11,8 @@ photo fields that use the website-form uploads from parla-service #199 (migratio
 
 1. Photos are prepared in the browser: each one is re-encoded to JPEG (longest edge 2400px).
    That keeps files under 10 MB and strips EXIF/GPS data. Up to 5 per field.
-2. `POST create-website-upload-urls` with the form key, submission id, hCaptcha token and file list.
+2. `POST create-website-upload-urls` with the form key, submission id, Turnstile token
+   (`captcha_provider: "turnstile"`) and file list. The invisible widget gets the token on page load.
    The response contains signed upload URLs plus a one-time `ticket`.
 3. Each photo is `PUT` to its signed URL (straight to Supabase Storage).
 4. `POST website-enquiry` with the answers and `upload_ticket` (the ticket replaces the captcha).
@@ -25,7 +26,7 @@ because Parla summarises an enquiry by its first answer.
 
 ```
 SUPABASE_URL=https://cqqycpzitpkiepfxhvts.supabase.co/functions/v1/website-enquiry \
-FORM_KEY=<website_form_id> HCAPTCHA_SITE_KEY=<site key> bash aron-parla-studio/deploy.sh
+FORM_KEY=<website_form_id> TURNSTILE_SITE_KEY=<site key> bash aron-parla-studio/deploy.sh
 ```
 
 The repo keeps the `__TOKENS__` placeholders. The script substitutes them on a staged copy and refuses
@@ -87,20 +88,21 @@ with parla-studio's user key `4d5147c2-…`. To change the key:
 A key must belong to only one user *or* one studio (the user lookup wins). Redeploy with the new
 `FORM_KEY` afterwards.
 
-### 4. hCaptcha
+### 4. Cloudflare Turnstile (invisible)
 
-The site reuses parla-studio's site key `c92aef22-…`, which lives in the same hCaptcha account as prod's
-`HCAPTCHA_SECRET_KEY`. The widget renders on the new domain.
+All website forms share one Turnstile widget, because prod verifies with one `TURNSTILE_SECRET_KEY`.
 
-- In the hCaptcha dashboard → Sites → that site → add `aron-parla-studio.netlify.app` to its domains.
-  If domain restriction is on, tokens from unlisted hostnames fail verification ("CAPTCHA verification failed", 403).
-- If you prefer a separate site key, create it in **the same hCaptcha account**, because prod has one secret.
-  Then redeploy with `HCAPTCHA_SITE_KEY=<new key>`.
+- Cloudflare dashboard → Turnstile → the widget: **Widget mode = Invisible**. The mode belongs to the
+  widget (site key), not the page, so visitors see nothing.
+- Its hostnames must list every form's domain (`aron-parla-studio.netlify.app`, `parla-studio.netlify.app`,
+  `samastatravels.com`, …). Tokens from an unlisted hostname fail verification ("CAPTCHA verification failed", 403).
+- Invisible mode requires the site's privacy policy to reference Cloudflare's Turnstile Privacy Addendum.
+- Redeploy with `TURNSTILE_SITE_KEY=<site key>`.
 
 ### 5. End-to-end test
 
 1. Open the site and fill in every required field with test data. Add one photo to each upload field.
-   Complete the captcha and submit.
+   Submit (there is no captcha to complete).
 2. You should see "Thank you!".
 3. In the Parla dashboard, the enquiry should show the answers, the reference images and the tattoo area photos.
    The notification email should say "2 photos attached".
@@ -109,7 +111,8 @@ The site reuses parla-studio's site key `c92aef22-…`, which lives in the same 
 |---|---|---|
 | `Requested function was not found` | #199 not on prod | Step 1 |
 | CORS error in console / "Unable to connect" | origin not allowed | Step 2 |
-| `CAPTCHA verification failed` | site key / domain mismatch | Step 4 |
+| `CAPTCHA verification failed` | site key / hostname mismatch | Step 4 |
+| `We couldn’t verify your browser…` | Turnstile gave no token in 10s (script blocked, CSP, bad site key) | Step 4; check the console |
 | `Form not found` | FORM_KEY not on a live user/studio | Step 3 |
-| `Photo uploads are not available right now.` | `HCAPTCHA_SECRET_KEY` unset on prod | set it |
+| `Photo uploads are not available right now.` | `TURNSTILE_SECRET_KEY` unset on prod | set it |
 | `Too many requests…` | rate limit (5/min per IP) | wait a minute |
