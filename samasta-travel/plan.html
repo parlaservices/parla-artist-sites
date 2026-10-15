@@ -600,6 +600,15 @@ a { text-decoration: none; color: inherit; }
 .enquiry-submit:hover {
   background: #cec1ab;
 }
+.captcha-notice {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  margin-top: 16px;
+  line-height: 1.5;
+}
+.captcha-notice a { color: inherit; text-decoration: underline; }
 .enquiry-confirmation {
   font-family: var(--font-body);
   font-weight: 300;
@@ -745,7 +754,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 </style>
-<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -918,8 +927,9 @@ a { text-decoration: none; color: inherit; }
         <textarea class="form-textarea" id="q7" placeholder="Special requests, dietary needs, accessibility requirements, places you'd love to visit..."></textarea>
       </div>
 
-      <div class="h-captcha" data-sitekey="__HCAPTCHA_SITE_KEY__" data-theme="dark"></div>
+      <div class="cf-turnstile" data-sitekey="__TURNSTILE_SITE_KEY__" data-theme="dark"></div>
       <button type="submit" class="enquiry-submit">Enquire Now</button>
+      <p class="captcha-notice">Protected by Cloudflare Turnstile. See the <a href="https://myparla.app/privacy" target="_blank" rel="noopener">Parla Privacy Policy</a> and Cloudflare&rsquo;s <a href="https://www.cloudflare.com/en-gb/turnstile-privacy-policy/" target="_blank" rel="noopener">Turnstile Privacy Addendum</a>.</p>
     </form>
     <p class="enquiry-confirmation">Once we receive your enquiry, we'll review the details and get back to you within two business days to discuss the next steps</p>
   </div>
@@ -1000,7 +1010,25 @@ window.addEventListener('scroll', () => {
   function resetForm() {
     submitBtn.disabled = false;
     submitBtn.textContent = 'ENQUIRE NOW';
-    if (typeof hcaptcha !== 'undefined') hcaptcha.reset();
+    // A token verifies once; every retry needs a fresh one.
+    if (typeof turnstile !== 'undefined') turnstile.reset();
+  }
+
+  // Turnstile runs invisibly on page load: it writes its token into the
+  // form's cf-turnstile-response field and refreshes it before it expires.
+  // Someone who submits within seconds of arriving waits for it (up to 10s).
+  function waitForCaptchaToken() {
+    // A wall-clock deadline: background tabs throttle timers, so counting
+    // polls would stretch the wait far past 10s.
+    var deadline = Date.now() + 10000;
+    return new Promise(function (resolve) {
+      (function poll() {
+        var field = form.querySelector('[name="cf-turnstile-response"]');
+        var token = field ? field.value : '';
+        if (token || Date.now() >= deadline) { resolve(token); return; }
+        setTimeout(poll, 250);
+      })();
+    });
   }
 
   function collectPayload() {
@@ -1036,14 +1064,13 @@ window.addEventListener('scroll', () => {
     var q7 = form.querySelector('#q7').value.trim();
     if (q7) answers.special_requests = { question: 'Anything you\'d especially like us to prioritise or avoid', value: q7 };
 
-    var captchaResponse = document.querySelector('[name="h-captcha-response"]');
-
     return {
       form_key: FORM_KEY,
       name: form.querySelector('#name').value.trim(),
       email: form.querySelector('#email').value.trim(),
       submission_id: crypto.randomUUID(),
-      captcha_token: captchaResponse ? captchaResponse.value : '',
+      // captcha_token is added once Turnstile has one (see submit).
+      captcha_provider: 'turnstile',
       answers: answers,
       source_url: window.location.href
     };
@@ -1069,10 +1096,15 @@ window.addEventListener('scroll', () => {
     submitBtn.disabled = true;
     submitBtn.textContent = 'SENDING...';
 
-    fetch(ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+    waitForCaptchaToken()
+    .then(function (token) {
+      if (!token) throw new Error('captcha');
+      payload.captcha_token = token;
+      return fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
     })
     .then(function (res) {
       return res.json().then(function (data) { return { ok: res.ok, status: res.status, data: data }; });
@@ -1092,8 +1124,10 @@ window.addEventListener('scroll', () => {
         resetForm();
       }
     })
-    .catch(function () {
-      showError('Unable to connect. Please check your internet and try again.');
+    .catch(function (err) {
+      showError(err && err.message === 'captcha'
+        ? 'We couldn\u2019t verify your browser. Please refresh the page and try again.'
+        : 'Unable to connect. Please check your internet and try again.');
       resetForm();
     });
   });
