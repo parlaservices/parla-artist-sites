@@ -325,6 +325,8 @@ legend.field-label + * { clear: both; }
 }
 .banner[hidden] { display: none; }
 .progress { font-size: 14px; color: var(--text-muted); min-height: 21px; }
+.captcha-notice { font-size: 12px; color: var(--text-muted); text-align: center; line-height: 1.5; margin: 0; }
+.captcha-notice a { color: inherit; text-decoration: underline; }
 .submit-btn {
   min-width: 180px;
   height: 48px;
@@ -569,6 +571,7 @@ legend.field-label + * { clear: both; }
       <div class="banner" role="alert" hidden></div>
       <p class="progress" aria-live="polite"></p>
       <button type="submit" class="submit-btn">Submit</button>
+      <p class="captcha-notice">Protected by Cloudflare Turnstile. See the <a href="https://myparla.app/privacy" target="_blank" rel="noopener">Parla Privacy Policy</a> and Cloudflare&rsquo;s <a href="https://www.cloudflare.com/en-gb/turnstile-privacy-policy/" target="_blank" rel="noopener">Turnstile Privacy Addendum</a>.</p>
     </div>
   </form>
 

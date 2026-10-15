@@ -600,6 +600,15 @@ a { text-decoration: none; color: inherit; }
 .enquiry-submit:hover {
   background: #cec1ab;
 }
+.captcha-notice {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  margin-top: 16px;
+  line-height: 1.5;
+}
+.captcha-notice a { color: inherit; text-decoration: underline; }
 .enquiry-confirmation {
   font-family: var(--font-body);
   font-weight: 300;
@@ -920,6 +929,7 @@ a { text-decoration: none; color: inherit; }
 
       <div class="cf-turnstile" data-sitekey="__TURNSTILE_SITE_KEY__" data-theme="dark"></div>
       <button type="submit" class="enquiry-submit">Enquire Now</button>
+      <p class="captcha-notice">Protected by Cloudflare Turnstile. See the <a href="https://myparla.app/privacy" target="_blank" rel="noopener">Parla Privacy Policy</a> and Cloudflare&rsquo;s <a href="https://www.cloudflare.com/en-gb/turnstile-privacy-policy/" target="_blank" rel="noopener">Turnstile Privacy Addendum</a>.</p>
     </form>
     <p class="enquiry-confirmation">Once we receive your enquiry, we'll review the details and get back to you within two business days to discuss the next steps</p>
   </div>
