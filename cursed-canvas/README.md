@@ -33,6 +33,8 @@ without them. Do not deploy from the repo root.
 
 1. **FORM_KEY:** give the Cursed Canvas studio a key, then put its real artists into the dropdown.
    `update studios set website_form_id = gen_random_uuid() where id = '<studio id>' and website_form_id is null returning website_form_id;`
+   The dropdown currently lists one artist, Daniel Butler, with option value `Daniel Butler` (2026-10-22). His
+   `studio_members.jotform_option_value` must be the same value (Parla → Studio → Artists → "Studio form option").
 2. **CORS:** add `https://cursed-canvas.netlify.app` to the prod `ALLOWED_WEBSITE_ORIGINS` secret. The value is a
    comma-separated list and `set` replaces all of it, so keep the existing origins.
 3. **Turnstile:** add `cursed-canvas.netlify.app` to the shared invisible widget's hostnames.
